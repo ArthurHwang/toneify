@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ArthurHwang/toneify#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "eslint-plugin-react": "^7.10.0",
     "express": "^4.16.3",
