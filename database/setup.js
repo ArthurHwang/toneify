@@ -1,6 +1,6 @@
 require('dotenv/config');
 const { MongoClient } = require('mongodb');
-const seeddData = require('./seed');
+const seedData = require('./seed');
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -10,9 +10,10 @@ MongoClient
     const db = client.db('toneify')
     const collection = db.collection('pedalboards')
 
-    // const remove = collection.remove()
-    // const see = collection.insertMany(seedData)
-
-
     return collection.removeMany()
+      .then(() => collection.insertMany(seedData))
+      .then(() => client.close())
+  }).catch(err => {
+    console.log(err)
+    process.exit(1)
   })
