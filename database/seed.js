@@ -1,5 +1,4 @@
 const uuid = require('uuid/v1')
-
 const seedData = [
   {
     id: uuid(),
