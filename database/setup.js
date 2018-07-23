@@ -6,7 +6,7 @@ const seedData = require('./seed');
 const MONGODB_URI = process.env.MONGODB_URI
 
 MongoClient
-  .connect(MONGODB_URI, {useNewUrlParse: true})
+  .connect(MONGODB_URI, {useNewUrlParser: true})
   .then(client => {
     const db = client.db('toneify')
     const collection = db.collection('pedalboards')
