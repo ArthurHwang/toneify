@@ -45,7 +45,7 @@
     "babel-plugin-transform-react-jsx": "6.24.1",
     "babelify": "8.0.0",
     "body-parser": "^1.18.3",
-    "browser-sync": "2.24.5",
+    "browser-sync": "^2.24.6",
     "dotenv": "^6.0.0",
     "eslint": "^5.2.0",
     "eslint-config-standard": "^11.0.0",

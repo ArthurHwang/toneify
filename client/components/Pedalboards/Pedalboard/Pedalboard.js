@@ -4,7 +4,7 @@ import { Button, Card, Image } from 'semantic-ui-react'
 const pedalBoard = ({ price, brand, model, description, image }) => {
   return (
     <Card>
-      <Image src={image} style={{ height: '150px' }} />
+      <Image src={image} style={{ height: '150px', margin: '15px' }} />
       <Card.Content>
         <Card.Header>{brand}</Card.Header>
         <Card.Meta>{model}</Card.Meta>
