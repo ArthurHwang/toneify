@@ -11,8 +11,6 @@ class App extends Component {
       currentPedalboard: null,
       modalOpen: false
     }
-    this.handlePedalBoardClick = this.handlePedalBoardClick.bind(this)
-    this.handleModalClick = this.handleModalClick.bind(this)
   }
 
   componentDidMount() {
@@ -26,7 +24,7 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  handlePedalBoardClick(id, event) {
+  handlePedalBoardClick = (id, event) => {
     const foundPedalBoard = this.state.pedalboards.find((elem, index) => {
       if (index === id) {
         return elem
@@ -36,7 +34,7 @@ class App extends Component {
     this.setState({ modalOpen: true, currentPedalboard: foundPedalBoard })
   }
 
-  handleModalClick(event) {
+  handleModalClick = event => {
     this.setState({ modalOpen: false })
   }
 
