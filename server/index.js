@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/public', express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'))
 
 MongoClient.connect(
   process.env.MONGODB_URI,
