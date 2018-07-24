@@ -26,11 +26,10 @@ class App extends Component {
 
   handlePedalBoardClick = (id, event) => {
     const foundPedalBoard = this.state.pedalboards.find((elem, index) => {
-      if (index === id) {
+      if (elem.id === id) {
         return elem
       }
     })
-
     this.setState({ modalOpen: true, currentPedalboard: foundPedalBoard })
   }
 

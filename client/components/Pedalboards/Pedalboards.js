@@ -10,7 +10,7 @@ const pedalBoards = ({ handleClick, pedalData }) => {
           return (
             <PedalBoard
               key={index}
-              id={index}
+              id={elem.id}
               handleClick={handleClick}
               image={elem.image}
               brand={elem.brand}
