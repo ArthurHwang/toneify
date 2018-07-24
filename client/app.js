@@ -41,12 +41,12 @@ class App extends Component {
   }
 
   render() {
-    const { pedalboards, currentPedalboard } = this.state
-
+    const { modalOpen, pedalboards, currentPedalboard } = this.state
     const modal = this.state.modalOpen ? (
       <Modal
         handleClick={this.handleModalClick}
         pedalData={currentPedalboard}
+        modalOpen={modalOpen}
       />
     ) : null
     return (
