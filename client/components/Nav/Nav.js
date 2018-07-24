@@ -18,7 +18,7 @@ const nav = props => (
     </Menu.Item>
 
     <Menu.Item name="features">
-      <Link to="/Pedals">Pedals</Link>
+      <Link to="/pedals">Pedals</Link>
     </Menu.Item>
   </Menu>
 )

@@ -1,9 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Nav from './components/Nav/Nav'
+import PedalBoards from './components/PedalBoards/PedalBoards'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      pedalboards: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3001/pedalboards', {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ pedalboards: data })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
-    return <Nav />
+    const { pedalboards } = this.state
+    return (
+      <Fragment>
+        <Nav />
+        <PedalBoards pedalData={pedalboards} />
+      </Fragment>
+    )
   }
 }
 
