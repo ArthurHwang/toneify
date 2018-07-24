@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/pedalboards', {
+    fetch('/pedalboards', {
       method: 'GET'
     })
       .then(res => res.json())
