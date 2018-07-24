@@ -1,7 +1,8 @@
 .title-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   position: relative;
-  top: -13px;
+  top: -11px;
+  color: #bc003f;
 }
 
 .logo {
