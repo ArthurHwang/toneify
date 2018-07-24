@@ -13,13 +13,6 @@ const pedalBoard = ({ price, brand, model, description, image }) => {
         </Card.Description>
         <Card.Description>{description.slice(0, 200) + '...'}</Card.Description>
       </Card.Content>
-      <Card.Content extra>
-        <div className="ui">
-          <Button size="small" basic color="red">
-            View
-          </Button>
-        </div>
-      </Card.Content>
     </Card>
   )
 }
