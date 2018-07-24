@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Button, Card, Image } from 'semantic-ui-react'
+import { Icon, Card, Image } from 'semantic-ui-react'
 
 const pedalBoard = ({
   id,
