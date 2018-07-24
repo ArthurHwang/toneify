@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image } from 'semantic-ui-react'
 
 const pedalBoard = ({ price, brand, model, description, image }) => {
   return (
