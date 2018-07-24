@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const nav = props => (
   <Menu inverted stackable>
     <Menu.Item>
-      <Link to="/">
+      <Link>
         <img
           className="logo"
           src="https://image.flaticon.com/icons/svg/199/199449.svg"
@@ -14,10 +14,10 @@ const nav = props => (
       </Link>
     </Menu.Item>
     <Menu.Item name="features">
-      <Link to="/pedalboards">Pedalboards</Link>
+      <Link>Pedalboards</Link>
     </Menu.Item>
     <Menu.Item name="features">
-      <Link to="/pedals">Pedals</Link>
+      <Link>Pedals</Link>
     </Menu.Item>
   </Menu>
 )
