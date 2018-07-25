@@ -1,8 +1,28 @@
 import React, { Component, Fragment } from 'react'
+import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/PedalboardBuilderDisplay'
 
 class Builder extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentPedalboard: null
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      currentPedalboard: this.props.location.state.currentPedalboard
+    })
+  }
+
   render() {
-    return <h1> Hello Friend </h1>
+    return (
+      <Fragment>
+        <PedalboardBuilderDisplay
+          currentPedalboard={this.state.currentPedalboard}
+        />
+      </Fragment>
+    )
   }
 }
 
