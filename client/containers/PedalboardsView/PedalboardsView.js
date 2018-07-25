@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-// import Nav from './components/Nav/Nav'
 import PedalBoards from '../../components/PedalBoards/PedalBoards'
 import Modal from '../../components/Modal/Modal'
 
@@ -37,6 +36,33 @@ class Pedalboards extends Component {
     this.setState({ modalOpen: false })
   }
 
+  handleBuildClick = event => {
+    this.props.history.push({
+      pathname: '/builder',
+      state: {
+        currentPedalboard: this.state.currentPedalboard
+      }
+    })
+  }
+
+  // builderHandler => {
+  //   const queryParams = []
+  // for (let i in this.state.ingredients) {
+  //   queryParams.push(
+  //     encodeURIComponent(i) +
+  //       '=' +
+  //       encodeURIComponent(this.state.ingredients[i])
+  //   )
+  // }
+  //
+  // const queryString = queryParams.join('&')
+  // this.props.history.push({
+  //   pathname: '/checkout',
+  //   search: '?' + queryString
+  // })
+  // }
+  // }
+
   render() {
     const { modalOpen, pedalboards, currentPedalboard } = this.state
     const modal = this.state.modalOpen ? (
@@ -44,12 +70,12 @@ class Pedalboards extends Component {
         handleClick={this.handleModalClick}
         pedalData={currentPedalboard}
         modalOpen={modalOpen}
+        handleBuildClick={this.handleBuildClick}
       />
     ) : null
     return (
       <Fragment>
         {modal}
-        {/* <Nav /> */}
         <PedalBoards
           handleClick={this.handlePedalBoardClick}
           pedalData={pedalboards}
