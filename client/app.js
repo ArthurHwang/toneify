@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import Nav from './components/Nav/Nav'
 import PedalBoards from './components/PedalBoards/PedalBoards'
+import Modal from './components/Modal/Modal'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pedalboards: []
+      pedalboards: [],
+      currentPedalboard: null,
+      modalOpen: false
     }
   }
 
@@ -21,12 +24,36 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  handlePedalBoardClick = (id, event) => {
+    const foundPedalBoard = this.state.pedalboards.find((elem, index) => {
+      if (elem.id === id) {
+        return elem
+      }
+    })
+    this.setState({ modalOpen: true, currentPedalboard: foundPedalBoard })
+  }
+
+  handleModalClick = event => {
+    this.setState({ modalOpen: false })
+  }
+
   render() {
-    const { pedalboards } = this.state
+    const { modalOpen, pedalboards, currentPedalboard } = this.state
+    const modal = this.state.modalOpen ? (
+      <Modal
+        handleClick={this.handleModalClick}
+        pedalData={currentPedalboard}
+        modalOpen={modalOpen}
+      />
+    ) : null
     return (
       <Fragment>
+        {modal}
         <Nav />
-        <PedalBoards pedalData={pedalboards} />
+        <PedalBoards
+          handleClick={this.handlePedalBoardClick}
+          pedalData={pedalboards}
+        />
       </Fragment>
     )
   }

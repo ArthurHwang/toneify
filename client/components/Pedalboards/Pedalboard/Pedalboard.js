@@ -1,17 +1,27 @@
 import React from 'react'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Icon, Card, Image } from 'semantic-ui-react'
 
-const pedalBoard = ({ price, brand, model, description, image }) => {
+const pedalBoard = ({
+  id,
+  handleClick,
+  price,
+  brand,
+  model,
+  description,
+  image
+}) => {
   return (
-    <Card>
+    <Card onClick={e => handleClick(id, e)}>
       <Image src={image} style={{ height: '150px', margin: '15px' }} />
       <Card.Content>
         <Card.Header>{brand}</Card.Header>
         <Card.Meta>{model}</Card.Meta>
         <Card.Description>
-          <strong>{price}</strong>
+          <strong>
+            <Icon name="money bill alternate" />
+            {price}
+          </strong>
         </Card.Description>
-        <Card.Description>{description.slice(0, 200) + '...'}</Card.Description>
       </Card.Content>
     </Card>
   )
