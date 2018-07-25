@@ -197,17 +197,6 @@ const seedData = [
     description:
       'The Classic PRO should be familiar to you.  Based on the original PT-PRO, the Classic PRO features Pedaltrain’s original five-rail “pro” design with traditional rail spacing. The Classic PRO continues Pedaltrain’s trend toward an open front design making power supply and switching system mounting flexible and convenient. Classic PRO is available for purchase with Pedaltrain’s fitted soft case (featuring a heavy-duty metal zipper and reinforced stress points) or our newly redesigned tour case with wheels, engineered to be up to 35% lighter than previous models. '
   }
-
-  // {
-  //   id: uuid(),
-  //   brand: 'Gator',
-  //   model: 'Small Aluminum',
-  //   price: 99.99,
-  //   image:
-  //     'http://static.shoplightspeed.com/shops/605535/files/002109577/image.jpg',
-  //   description:
-  //     'Gator offers a host of rugged cases and bags, so you can make sure every element of your rig is secure. If you need protection for a mixer or rackmount equipment, Gator offers multiple hard-shell cases, durable bags, and covers. Likewise, theres no better way to protect your acoustic or electric guitar, bass, or keyboard than by using one of Gators gig bags or hard cases. Gator even offers an extensive line of pedalboard accessories, laptop cases, PA bags, microphone cases, and more. When it comes to your gear, trust Gator for the ultimate in protection.'
-  // }
 ]
 
 module.exports = seedData

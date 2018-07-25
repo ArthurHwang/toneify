@@ -45,24 +45,6 @@ class Pedalboards extends Component {
     })
   }
 
-  // builderHandler => {
-  //   const queryParams = []
-  // for (let i in this.state.ingredients) {
-  //   queryParams.push(
-  //     encodeURIComponent(i) +
-  //       '=' +
-  //       encodeURIComponent(this.state.ingredients[i])
-  //   )
-  // }
-  //
-  // const queryString = queryParams.join('&')
-  // this.props.history.push({
-  //   pathname: '/checkout',
-  //   search: '?' + queryString
-  // })
-  // }
-  // }
-
   render() {
     const { modalOpen, pedalboards, currentPedalboard } = this.state
     const modal = this.state.modalOpen ? (

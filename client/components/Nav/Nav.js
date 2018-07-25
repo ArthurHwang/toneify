@@ -13,13 +13,13 @@ const nav = props => (
         <span className="title-text">toneify</span>
       </Link>
     </Menu.Item>
-    <Menu.Item name="features">
+    <Menu.Item name="pedalboards">
       <Link to="/pedalboards">Pedalboards</Link>
     </Menu.Item>
-    <Menu.Item name="features">
+    <Menu.Item name="pedals">
       <Link to="/pedals">Pedals</Link>
     </Menu.Item>
-    <Menu.Item name="features">
+    <Menu.Item name="builder">
       <Link to="/builder">Builder</Link>
     </Menu.Item>
   </Menu>

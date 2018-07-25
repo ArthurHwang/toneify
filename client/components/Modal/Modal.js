@@ -12,11 +12,9 @@ const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => (
     closeIcon>
     <Modal.Header>
       {pedalData.brand}
-      {/* <Link to="/builder"> */}
       <Button onClick={handleBuildClick} compact floated="right" primary>
         Build
       </Button>
-      {/* </Link> */}
     </Modal.Header>
     <Modal.Content image>
       <Image wrapped size="massive" src={pedalData.image} />

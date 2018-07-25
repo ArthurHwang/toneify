@@ -14,7 +14,6 @@ class App extends Component {
           <Switch>
             <Route path="/builder" component={Builder} />
             <Route path="/" component={PedalBoards} />
-            {/* <Route path='/pedals'> */}
           </Switch>
         </Layout>
       </Fragment>
