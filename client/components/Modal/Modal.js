@@ -1,9 +1,10 @@
 import React from 'react'
 import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
-const modal = ({ handleClick, pedalData, modalOpen }) => (
+const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => (
   <Modal
-    style={{ top: '40%' }}
+    style={{ top: '38%' }}
     dimmer="blurring"
     open
     size="large"
@@ -11,9 +12,11 @@ const modal = ({ handleClick, pedalData, modalOpen }) => (
     closeIcon>
     <Modal.Header>
       {pedalData.brand}
-      <Button compact floated="right" primary>
+      {/* <Link to="/builder"> */}
+      <Button onClick={handleBuildClick} compact floated="right" primary>
         Build
       </Button>
+      {/* </Link> */}
     </Modal.Header>
     <Modal.Content image>
       <Image wrapped size="massive" src={pedalData.image} />

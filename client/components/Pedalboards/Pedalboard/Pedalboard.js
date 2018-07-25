@@ -11,7 +11,7 @@ const pedalBoard = ({
   image
 }) => {
   return (
-    <Card onClick={e => handleClick(id, e)}>
+    <Card raised onClick={e => handleClick(id, e)}>
       <Image src={image} style={{ height: '150px', margin: '15px' }} />
       <Card.Content>
         <Card.Header>{brand}</Card.Header>

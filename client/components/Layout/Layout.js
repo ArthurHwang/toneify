@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import Nav from '../Nav/Nav'
-// import Modal from '../Modal/Modal'
-// import PedalBoards from '../PedalBoards/PedalBoards'
 
 class Layout extends Component {
   render() {
