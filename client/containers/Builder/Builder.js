@@ -18,6 +18,7 @@ class Builder extends Component {
   render() {
     return (
       <Fragment>
+        <h1 className="title-text">PedalBuilder</h1>
         <PedalboardBuilderDisplay
           currentPedalboard={this.state.currentPedalboard}
         />

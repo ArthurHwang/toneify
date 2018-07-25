@@ -2,7 +2,12 @@ import React from 'react'
 import { Image } from 'semantic-ui-react'
 
 const PedalboardBuilderDisplay = ({ currentPedalboard }) => (
-  <Image src={currentPedalboard.topView} fluid />
+  <Image
+    // style={{ width: '80%', height: '50%' }}
+    size="massive"
+    src={currentPedalboard.topView}
+    centered
+  />
 )
 
 // import React from 'react'
