@@ -10,7 +10,7 @@ class pedals extends Component {
   }
 
   componentDidMount() {
-    fetch('/pedals/', {
+    fetch('/api/pedals', {
       method: 'GET'
     })
       .then(res => res.json())
