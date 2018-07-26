@@ -47,17 +47,14 @@ class Pedalboards extends Component {
 
   render() {
     const { modalOpen, pedalboards, currentPedalboard } = this.state
-    const modal = this.state.modalOpen ? (
-      <Modal
-        handleClick={this.handleModalClick}
-        pedalData={currentPedalboard}
-        modalOpen={modalOpen}
-        handleBuildClick={this.handleBuildClick}
-      />
-    ) : null
     return (
       <Fragment>
-        {modal}
+        <Modal
+          handleClick={this.handleModalClick}
+          pedalData={currentPedalboard}
+          modalOpen={modalOpen}
+          handleBuildClick={this.handleBuildClick}
+        />
         <PedalBoards
           handleClick={this.handlePedalBoardClick}
           pedalData={pedalboards}

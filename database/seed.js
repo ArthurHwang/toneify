@@ -28,7 +28,7 @@ const seedData = [
     model: 'Novo18',
     price: 129.99,
     image:
-      'https://media.sweetwater.com/api/i/q-82__ha-9d77d6be07e80dbb__hmac-cb3acda1292a71eae11f0d169359ffff3f8fc4af/images/items/750/PTN18SC-large.jpg',
+      'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
     topView: '/img/pedalboards/Pedaltrain Novo18.PNG',
     description:
       'A fresh take on Pedaltrains timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. '
