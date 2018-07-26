@@ -15,10 +15,24 @@ MongoClient.connect(
   { useNewUrlParser: true }
 ).then(client => {
   const db = client.db('toneify')
-  const collection = db.collection('pedalboards')
+  const pedalboards = db.collection('pedalboards')
+  const pedals = db.collection('pedals')
 
   app.get('/pedalboards', (req, res) => {
-    return collection
+    return pedalboards
+      .find()
+      .toArray()
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  })
+
+  app.get('/pedals', (req, res) => {
+    return pedals
       .find()
       .toArray()
       .then(data => {
