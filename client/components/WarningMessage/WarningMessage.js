@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Message, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
