@@ -156,7 +156,7 @@ const seedData = [
     price: 89.99,
     image:
       'https://cdn.shopify.com/s/files/1/0747/1009/products/SOLO_18_White_Side_1024x1024.JPG?v=1421706141',
-    topView: '/img/pedalboards/Tepleboards Solo 18.PNG',
+    topView: '/img/pedalboards/Templeboards Solo 18.PNG',
 
     description:
       'The Temple SOLO 18 is our most compact pedalboard, but dont let the size fool you! Our unique perforated top surface and strategically placed cable management holes allow you to “Tetris” in a lot more pedals than you might think (as well as mount power supply/pedals underneath!). This is a great board for acoustic guitarists, minimalist gurus, or those wanting a secondary board to load up just the essentials for smaller gigs.'

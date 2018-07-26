@@ -3,8 +3,12 @@ import { Message, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const warningMessage = () => (
-  <Container style={{ marginTop: '37%', width: '25%' }}>
+  <Container
+    style={{
+      width: '25%'
+    }}>
     <Message
+      color="black"
       header="No Pedalboard Selected"
       content="Please select a pedalboard to continue"
     />
