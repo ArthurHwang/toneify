@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/PedalboardBuilderDisplay'
+import WarningMessage from '../../components/WarningMessage/WarningMessage'
 
 class Builder extends Component {
   constructor(props) {
@@ -21,20 +22,16 @@ class Builder extends Component {
   }
 
   render() {
-    let pedalBoardBuilder = null
-    if (this.state.currentPedalboard === null) {
-      pedalBoardBuilder = <h1>Please pick a pedalboard!</h1>
-    }
-    if (this.state.currentPedalboard) {
-      pedalBoardBuilder = (
-        <Fragment>
-          <h1 className="title-text">PedalBuilder</h1>
-          <PedalboardBuilderDisplay
-            currentPedalboard={this.state.currentPedalboard}
-          />
-        </Fragment>
-      )
-    }
+    let pedalBoardBuilder = this.state.currentPedalboard ? (
+      <Fragment>
+        <h1 className="title-text">PedalBuilder</h1>
+        <PedalboardBuilderDisplay
+          currentPedalboard={this.state.currentPedalboard}
+        />
+      </Fragment>
+    ) : (
+      <WarningMessage />
+    )
     return <Fragment>{pedalBoardBuilder}</Fragment>
   }
 }
