@@ -7,11 +7,14 @@ const pedal = ({ id, price, brand, model, description, image, type }) => {
       <Image
         src={image}
         style={{
-          height: '400px',
+          height: '200px',
+          width: '135px',
+          // height: '250px',
+          // width: '135px',
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          margin: '15px'
+          margin: '15px 15px 15px 25%'
         }}
       />
       <Card.Content extra>
