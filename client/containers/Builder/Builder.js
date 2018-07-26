@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/PedalboardBuilderDisplay'
 import WarningMessage from '../../components/WarningMessage/WarningMessage'
+import BuilderTitle from '../../components/BuilderTitle/BuilderTitle'
 
 class Builder extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Builder extends Component {
   render() {
     let pedalBoardBuilder = this.state.currentPedalboard ? (
       <Fragment>
-        <h1 className="title-text">PedalBuilder</h1>
+        <BuilderTitle pedalboardName={this.state.currentPedalboard} />
         <PedalboardBuilderDisplay
           currentPedalboard={this.state.currentPedalboard}
         />
