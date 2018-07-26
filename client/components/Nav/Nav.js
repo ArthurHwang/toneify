@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const nav = props => (
@@ -13,11 +13,14 @@ const nav = props => (
         <span className="title-text">toneify</span>
       </Link>
     </Menu.Item>
-    <Menu.Item name="features">
+    <Menu.Item name="pedalboards">
       <Link to="/pedalboards">Pedalboards</Link>
     </Menu.Item>
-    <Menu.Item name="features">
-      <Link to="/name=">Pedals</Link>
+    <Menu.Item name="pedals">
+      <Link to="/pedals">Pedals</Link>
+    </Menu.Item>
+    <Menu.Item name="builder">
+      <Link to="/builder">Builder</Link>
     </Menu.Item>
   </Menu>
 )
