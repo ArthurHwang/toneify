@@ -11,7 +11,6 @@ const pedals = ({ pedalData }) => {
             <Pedal
               key={index}
               id={elem.id}
-              // handleClick={handleClick}
               image={elem.image}
               brand={elem.brand}
               description={elem.description}
