@@ -5,7 +5,7 @@ const pedals = [
     id: uuid(),
     brand: 'Boss',
     model: 'DS-1-4A',
-    type: 'distortion'
+    type: 'distortion',
     price: 56.99,
     image: './img/pedals/Boss DS-1-4A.png',
     description:
@@ -15,7 +15,7 @@ const pedals = [
     id: uuid(),
     brand: 'Ibanez',
     model: 'TS9B',
-    type: 'overdrive'
+    type: 'overdrive',
     price: 119.99,
     image: './img/pedals/Ibanez TS9B.png',
     description:
@@ -25,7 +25,7 @@ const pedals = [
     id: uuid(),
     brand: 'A+',
     model: 'Buzz Bass Drive',
-    type: 'overdrive'
+    type: 'overdrive',
     price: 155.99,
     image: './img/pedals/A+ Buzz Bass Drive.png',
     description:
