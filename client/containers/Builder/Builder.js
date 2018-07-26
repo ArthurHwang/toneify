@@ -10,7 +10,6 @@ class Builder extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location)
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
     }
