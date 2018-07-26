@@ -12,10 +12,21 @@ const pedalBoard = ({
 }) => {
   return (
     <Card raised onClick={e => handleClick(id, e)}>
-      <Image src={image} style={{ height: '150px', margin: '15px' }} />
+      <Image
+        src={image}
+        style={{
+          height: '200px',
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          margin: '15px'
+        }}
+      />
       <Card.Content>
         <Card.Header>{brand}</Card.Header>
-        <Card.Meta>{model}</Card.Meta>
+        <Card.Meta>
+          <span style={{ color: '#bc003f' }}>{model}</span>
+        </Card.Meta>
         <Card.Description>
           <strong>
             <Icon name="money bill alternate" />

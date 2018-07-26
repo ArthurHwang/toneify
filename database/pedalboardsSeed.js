@@ -5,6 +5,7 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Voodoo Lab',
     model: 'Dingbat',
+    size: 'small',
     price: 299.99,
     image: 'https://www.americanmusical.com/Galleria/2/VOO%20DBLM-Large.jpg',
     topView: '/img/pedalboards/Voodoo Dingbat Medium.png',
@@ -15,6 +16,7 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Boss',
     model: 'BCB-60',
+    size: 'large',
     price: 169.99,
     image:
       'https://media.sweetwater.com/api/i/q-82__ha-9eab6e2635087263__hmac-be016dc3a34f115f2f11cffb15a296ec6f8ce8a0/images/items/750/BCB60-large.jpg',
@@ -26,6 +28,7 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Pedaltrain',
     model: 'Novo18',
+    size: 'medium',
     price: 129.99,
     image:
       'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
@@ -37,6 +40,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Pedaltrain',
     model: 'Novo24',
+    size: 'medium',
+
     price: 129.99,
     image:
       'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
@@ -48,6 +53,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'MONO',
     model: 'Large Aluminum Pedalboard',
+    size: 'large',
+
     price: 219.99,
     image:
       'https://www.premierguitar.com/ext/resources/images/content/2017_01/LNU2/Jan17_LNU_MONO_Pedalboard_WEB.jpg',
@@ -60,6 +67,8 @@ const pedalBoards = [
     brand: 'MONO',
     model: 'Medium Aluminum Pedalboard',
     price: 189.99,
+    size: 'medium',
+
     image:
       'http://static.keymusic.com/products/262967/XL/mono-pedalboard-medium-black.jpg',
     topView: '/img/pedalboards/Mono Medium.PNG',
@@ -72,6 +81,8 @@ const pedalBoards = [
     brand: 'MONO',
     model: 'Small Aluminum Pedalboard',
     price: 169.99,
+    size: 'small',
+
     image: 'https://www.thomann.de/pics/bdb/428335/12826677_800.jpg',
     topView: '/img/pedalboards/Mono Small.PNG',
 
@@ -82,6 +93,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Pedaltrain',
     model: 'Metro 20 TC',
+    size: 'small',
+
     price: 169.99,
     image: 'https://www.thomann.de/pics/bdb/365471/9983026_800.jpg',
     topView: '/img/pedalboards/Pedaltrain metro 20.PNG',
@@ -93,6 +106,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Pedaltrain',
     model: 'Metro 24',
+    size: 'medium',
+
     price: 99.99,
     image:
       'https://c1.zzounds.com/media/productmedia/fit,2018by3200/quality,85/dga-3107364e469ef5e5378990bcd0384264.jpg',
@@ -105,6 +120,8 @@ const pedalBoards = [
     brand: 'Pedaltrain',
     model: 'Novo 24',
     price: 169.99,
+    size: 'medium',
+
     image:
       'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
     topView:
@@ -117,8 +134,10 @@ const pedalBoards = [
     brand: 'Friedman',
     model: 'Tour Pro 1530',
     price: 479.99,
+    size: 'large',
+
     image:
-      'https://c1.zzounds.com/media/productmedia/fit,2018by3200/quality,85/TP1525-1-373a52ace653bf765131ce415d68b190.jpg',
+      'http://friedmanamplification.com/images/FA_PedalBrd_Lrg_back_2000x2000.jpg',
     topView: '/img/pedalboards/friedman tour pro 1530.PNG',
 
     description:
@@ -129,6 +148,8 @@ const pedalBoards = [
     brand: 'Gator',
     model: 'Large Aluminum',
     price: 149.99,
+    size: 'large',
+
     image:
       'https://images.reverb.com/image/upload/s--5vlFAUKK--/a_exif,c_limit,e_unsharp_mask:80,f_auto,fl_progressive,g_south,h_620,q_90,w_620/v1474921942/i4jtgpy392ind2yxkhwq.jpg',
     topView: '/img/pedalboards/Gator Aluminum Large.PNG',
@@ -142,6 +163,8 @@ const pedalBoards = [
     brand: 'Pedaltrain',
     model: 'Classic Jr SC 18',
     price: 119.99,
+    size: 'small',
+
     image:
       'http://www.long-mcquade.com/files/61296/lg_faa30df9624ec2f59fafecb2887ab83d.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic JR.PNG',
@@ -153,6 +176,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Templeboards',
     model: 'Solo 18',
+    size: 'small',
+
     price: 89.99,
     image:
       'https://cdn.shopify.com/s/files/1/0747/1009/products/SOLO_18_White_Side_1024x1024.JPG?v=1421706141',
@@ -165,6 +190,8 @@ const pedalBoards = [
     id: uuid(),
     brand: 'Pedaltrain',
     model: 'Classic 1',
+    size: 'medium',
+
     price: 199.99,
     image:
       'https://jimmyegypt.com/wp-content/uploads/2018/06/pedal-boards-classic-1-6_1024x1024-e1529929747883.jpg',
@@ -178,6 +205,8 @@ const pedalBoards = [
     brand: 'Pedaltrain',
     model: 'Classic 2',
     price: 229.99,
+    size: 'large',
+
     image:
       'https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products968888-1200x1200--1903151945.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic 2.PNG',
@@ -190,12 +219,57 @@ const pedalBoards = [
     brand: 'Pedaltrain',
     model: 'Classic Pro',
     price: 189.99,
+    size: 'medium',
+
     image:
       'https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products968888-1200x1200--1903151945.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic Pro.PNG',
 
     description:
       'The Classic PRO should be familiar to you.  Based on the original PT-PRO, the Classic PRO features Pedaltrain’s original five-rail “pro” design with traditional rail spacing. The Classic PRO continues Pedaltrain’s trend toward an open front design making power supply and switching system mounting flexible and convenient. Classic PRO is available for purchase with Pedaltrain’s fitted soft case (featuring a heavy-duty metal zipper and reinforced stress points) or our newly redesigned tour case with wheels, engineered to be up to 35% lighter than previous models. '
+  },
+  {
+    id: uuid(),
+    brand: 'Behringer',
+    model: 'PB600',
+    price: 99.99,
+    size: 'medium',
+
+    image:
+      'https://media.sweetwater.com/api/i/f-webp__q-82__ha-4ac4d89785b19fb6__hmac-8413415f1c8fecb5cc16c0ef9dc11a86d54fcb3a/images/items/750/PB600-large.jpg.auto.webp',
+    topView:
+      'https://c1.zzounds.com/media/productmedia/fit,2018by3200/quality,85/PB600_P0A0A_Top1_XXL_clipped-56d7fb002618798ca705b0171d0a48ea.jpg',
+
+    description:
+      "A smart solution for your guitar pedals! The Behringer Pedal Board PB600 protects your pedals during transport, it provides power to them, and helps prevents your pedal from wandering off after your gigs. Guitarists at Sweetwater know how convenient it is to keep your guitar pedals on a pedalboard, and the Pedal Board PB600 gives you space for up to six 2.5' x 4.5' guitar pedals. Got bigger pedals? You can easily cut the snug foam padding to custom-fit your effects. It's easy to set up your guitar and pedal rig when you've got the Behringer Pedal Board PB600!"
+  },
+  {
+    id: uuid(),
+    brand: 'Behringer',
+    model: 'PB1000',
+    price: 129.99,
+    size: 'large',
+
+    image:
+      'https://media.sweetwater.com/api/i/f-webp__q-82__ha-d30b3b4090cd0058__hmac-e80f441b369f045762788fed5d8e300bbe1c56e4/images/items/750/PB1000-large.jpg.auto.webp',
+    topView: '/img/pedalboards/Behringer PB1000.png',
+
+    description:
+      "The Behringer PB1000 pedal board offers you the utmost in flexibility, allowing you to add and group effects pedals to your heart's content. Get your effects pedals wired up and ready to play at all times in thie protective, roadworthy Behringer PB1000. The PB1000 is an ultra-compact and rugged pedal board for musicians who want to pre-arrange and carry up to 12 effects pedals in a heavy-duty, yet lightweight, case designed to withstand heavy impact. The Behringer PB1000 features a generous 1.7 A power adapter and includes all cabling to power multiple stomp boxes simultaneously."
+  },
+  {
+    id: uuid(),
+    brand: 'Pedaltrain',
+    model: 'Novo 32 SC',
+    price: 199.99,
+    size: 'large',
+
+    image:
+      'https://cosmomusic.ca/media/catalog/product/cache/1/image/1800x/040ec09b1e35df139433887a97daa66f/F/A/FAPBPEDPTN32SC_3_3.jpg',
+    topView: '/img/pedalboards/Pedaltraina Novo 32.png',
+
+    description:
+      "A fresh take on Pedaltrain's timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. Featuring a redesigned open-front configuration, Sweetwater guitarists really appreciate the extra space the Novo 32 provides for loop switchers and bigger pedals, while uncluttered format makes it easy to install power supplies and cabling. The Novo 32 even comes with a package of zip ties and hook-and-loop fasteners to get you started. What's more, this Novo 32 package comes with a fitted soft case, providing lightweight grab-and-go convenience when it's time to hit the road."
   }
 ]
 
