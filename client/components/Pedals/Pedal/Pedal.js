@@ -1,16 +1,23 @@
 import React from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
 
-const pedal = ({ id, price, brand, model, description, image, type }) => {
+const pedal = ({
+  id,
+  price,
+  brand,
+  model,
+  description,
+  image,
+  type,
+  handleClick
+}) => {
   return (
-    <Card raised>
+    <Card raised onClick={e => handleClick(id, e)}>
       <Image
         src={image}
         style={{
           height: '200px',
           width: '135px',
-          // height: '250px',
-          // width: '135px',
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
