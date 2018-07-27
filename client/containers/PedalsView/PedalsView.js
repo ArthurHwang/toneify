@@ -20,6 +20,8 @@ class pedals extends Component {
       .catch(err => console.log(err))
   }
 
+  handlePedalClick = (id, event) => {}
+
   render() {
     const { pedals } = this.state
     return (
