@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import PedalBoards from './containers/PedalboardsView/PedalboardsView'
 import { Switch, Route } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import Builder from './containers/Builder/Builder'
+import PedalBoards from './containers/PedalboardsView/PedalboardsView'
+import Pedals from './containers/PedalsView/PedalsView'
 
 class App extends Component {
   render() {
@@ -10,8 +11,13 @@ class App extends Component {
       <Fragment>
         <Layout>
           <Switch>
+            <Route path="/pedals" component={Pedals} />
             <Route path="/builder" component={Builder} />
-            <Route path="/" component={PedalBoards} />
+            <Route path="/pedalboards/" component={PedalBoards} />
+            <Route
+              path="/"
+              render={() => <h1>Ready to get hella crunch tones?</h1>}
+            />
           </Switch>
         </Layout>
       </Fragment>
