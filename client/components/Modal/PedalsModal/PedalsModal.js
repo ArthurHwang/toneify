@@ -13,7 +13,7 @@ const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>
-          Build
+          Add to Pedalboard
         </Button>
       </Modal.Header>
       <Modal.Content image>

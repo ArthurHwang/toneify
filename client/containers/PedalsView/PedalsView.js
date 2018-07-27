@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import Pedals from '../../components/Pedals/Pedals'
+import PedalsModal from '../../components/Modal/PedalsModal/PedalsModal'
 
 class pedals extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pedals: []
+      pedals: [],
+      currentPedal: null,
+      modalOpen: false
     }
   }
 
@@ -20,13 +23,40 @@ class pedals extends Component {
       .catch(err => console.log(err))
   }
 
-  handlePedalClick = (id, event) => {}
+  handlePedalClick = (id, event) => {
+    console.log(this.state)
+    const foundPedal = this.state.pedals.find((elem, index) => {
+      if (elem.id === id) {
+        return elem
+      }
+    })
+    this.setState({ modalOpen: true, currentPedal: foundPedal })
+  }
+
+  handleModalClick = event => {
+    this.setState({ modalOpen: false })
+  }
+
+  handleBuildClick = event => {
+    this.props.history.push({
+      pathname: '/builder',
+      state: {
+        currentPedalboard: this.state.currentPedalboard
+      }
+    })
+  }
 
   render() {
-    const { pedals } = this.state
+    const { pedals, currentPedal, modalOpen } = this.state
     return (
       <Fragment>
-        <Pedals pedalData={pedals} />
+        <PedalsModal
+          handleClick={this.handleModalClick}
+          pedalData={currentPedal}
+          modalOpen={modalOpen}
+          handleBuildClick={this.handleBuildClick}
+        />
+        <Pedals handleClick={this.handlePedalClick} pedalData={pedals} />
       </Fragment>
     )
   }
