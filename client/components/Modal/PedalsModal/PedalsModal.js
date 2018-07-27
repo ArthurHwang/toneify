@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
 
 const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
   let ModalOutput = modalOpen ? (
@@ -14,14 +13,28 @@ const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>
-          Build
+          Add to Pedalboard
         </Button>
       </Modal.Header>
       <Modal.Content image>
-        <Image wrapped size="massive" src={pedalData.image} />
+        <Image
+          style={{
+            height: '100%',
+            width: '300px',
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+          wrapped
+          size="massive"
+          src={pedalData.image}
+        />
         <Modal.Description>
           <Header>
-            {pedalData.model}
+            <span style={{ color: '#bc003f' }}>{pedalData.model}</span>
+            <div style={{ color: '#bc003f' }}>
+              <strong>{pedalData.type}</strong>
+            </div>
             <div>
               <strong>
                 <Icon name="money bill alternate" />
@@ -29,7 +42,7 @@ const modal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
               </strong>
             </div>
           </Header>
-          <p>{pedalData.description}</p>
+          <div>{pedalData.description}</div>
         </Modal.Description>
       </Modal.Content>
     </Modal>

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PedalBoards from '../../components/PedalBoards/PedalBoards'
-import Modal from '../../components/Modal/Modal'
+import PedalboardsModal from '../../components/Modal/PedalboardsModal/PedalboardsModal'
 
 class Pedalboards extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class Pedalboards extends Component {
     const { modalOpen, pedalboards, currentPedalboard } = this.state
     return (
       <Fragment>
-        <Modal
+        <PedalboardsModal
           handleClick={this.handleModalClick}
           pedalData={currentPedalboard}
           modalOpen={modalOpen}

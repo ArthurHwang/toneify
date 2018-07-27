@@ -2,13 +2,14 @@ import React from 'react'
 import Pedal from './Pedal/Pedal'
 import { Container, Card } from 'semantic-ui-react'
 
-const pedals = ({ pedalData }) => {
+const pedals = ({ pedalData, handleClick }) => {
   return (
     <Container>
       <Card.Group itemsPerRow={4} className="ui center aligned grid">
         {pedalData.map((elem, index) => {
           return (
             <Pedal
+              handleClick={handleClick}
               key={index}
               id={elem.id}
               image={elem.image}
