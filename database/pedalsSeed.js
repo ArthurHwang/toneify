@@ -84,13 +84,14 @@ const pedals = [
   },
   {
     id: uuid(),
-    brand: 'Vox',
-    model: 'V847',
-    type: 'wah',
-    price: 99.99,
-    image: './img/pedals/Vox V847 Wah.png',
+    brand: 'Electro-Harmonix',
+    model: 'Superego+',
+    type: 'synth',
+    price: 249.99,
+    image:
+      'http://cdn.shopify.com/s/files/1/0810/2125/products/electro-harmonix-superego-synth-engine-832097386515_1200x1200.jpg?v=1522480649',
     description:
-      "Sporting the same legendary circuit that's been electrifying rock rigs for four decades in a limited-release chassis, the Boss DS-1-4A Distortion 40th Anniversary Edition commemorates a pedalboard staple. The same three controls for distortion, level, and tone afford the full landscape of light snap to full-on saturated snarl in a black-and-gold chassis available only in a limited run. An affordable collectible for any metalhead."
+      'Building on the synthesis platform of the award-winning Superego, the Electro-Harmonix Superego+ raises the bar when it comes to creating synth effects, sound layers, glissandos, infinite sustain and more. Plus, the designers added a complete effects section featuring 11 effects types, an EXP input for effect parameter control and an EXT jack for a 3-button controller.'
   },
   {
     id: uuid(),
