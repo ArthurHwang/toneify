@@ -3,9 +3,8 @@ import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/
 import WarningMessage from '../../components/WarningMessage/WarningMessage'
 import BuilderTitle from '../../components/BuilderTitle/BuilderTitle'
 import BuilderModal from '../../components/Modal/BuilderModal/BuilderModal'
-import { Button, Icon } from 'semantic-ui-react'
-
 import BuilderPedals from '../../components/BuilderPedals/BuilderPedals'
+import BuilderAddPedalButton from '../../components/BuilderAddPedalButton/BuilderAddPedalButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class Builder extends Component {
       currentPedalboard: null,
       pedals: [],
       pedalsOnBoard: [],
-      showModal: true
+      showModal: false
     }
   }
 
@@ -29,7 +28,8 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    } else {
+    }
+    else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
@@ -45,62 +45,36 @@ class Builder extends Component {
 
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
 
-    this.setState(
-      { pedalsOnBoard: updatePedalsOnBoard, showModal: false },
-      console.log(this.state.pedalsOnBoard)
-    )
+    this.setState({ showModal: false, pedalsOnBoard: updatePedalsOnBoard })
   }
 
   openModalHandler = () => {
-    this.setState({ modalOpen: true }, console.log(this.state.modalOpen))
+    this.setState({ showModal: true })
+  }
+
+  closeModalHandler = () => {
+    this.setState({ showModal: false })
   }
 
   render() {
-    // let modal = this.state.showModal ? (
-    //   <BuilderModal
-    //     handleClick={this.pedalAddHandler}
-    //     pedalData={this.state.pedals}
-    //   />
-    // ) : null
-
     let pedalBoardBuilder = this.state.currentPedalboard ? (
       <Fragment>
         <BuilderTitle pedalboardName={this.state.currentPedalboard} />
-        <PedalboardBuilderDisplay
-          currentPedalboard={this.state.currentPedalboard}
-        />
+        <PedalboardBuilderDisplay currentPedalboard={this.state.currentPedalboard} />
       </Fragment>
     ) : (
       <WarningMessage />
     )
     return (
       <Fragment>
-        <Button
-          onClick={this.openModalHandler}
-          color="black"
-          style={{
-            marginTop: '10px',
-            marginRight: '0',
-            float: 'right',
-            height: '48px',
-            width: '150px',
-            display: 'inline'
-          }}>
-          <Icon size="large" color="green" name="add" />
-          <span
-            style={{
-              color: '#21ba45'
-            }}>
-            Add Pedal
-          </span>
-        </Button>
+        <BuilderAddPedalButton showButton={this.state.currentPedalboard} showModal={this.openModalHandler} />
+        <BuilderModal
+          closeModalHandler={this.closeModalHandler}
+          showModal={this.state.showModal}
+          pedalData={this.state.pedals}
+          handleClick={this.pedalAddHandler}
+        />
         {pedalBoardBuilder}
-        {this.state.showModal ? (
-          <BuilderModal
-            handleClick={this.pedalAddHandler}
-            pedalData={this.state.pedals}
-          />
-        ) : null}
         <BuilderPedals pedals={this.state.pedalsOnBoard} />
       </Fragment>
     )
