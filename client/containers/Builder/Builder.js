@@ -42,10 +42,15 @@ class Builder extends Component {
         return elem
       }
     })
-
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
 
-    this.setState({ showModal: false, pedalsOnBoard: updatePedalsOnBoard }, console.log(this.state.pedalsOnBoard))
+    const withRotation = updatePedalsOnBoard.map((elem, index) => ({
+      ...elem,
+      rotation: elem.rotation || 0,
+      showRotateButton: elem.showRotateButton || false
+    }))
+
+    this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
   openModalHandler = () => {
@@ -54,6 +59,40 @@ class Builder extends Component {
 
   closeModalHandler = () => {
     this.setState({ showModal: false })
+  }
+
+  rotateButtonShow = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.showRotate = true
+      }
+    })
+
+    this.setState({ pedalsOnBoard: copy })
+  }
+
+  rotateButtonHide = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.showRotate = false
+      }
+    })
+
+    this.setState({ pedalsOnBoard: copy })
+  }
+
+  rotatePedal = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
+      }
+    })
+    this.setState({ pedalsOnBoard: copy })
   }
 
   render() {
@@ -76,7 +115,12 @@ class Builder extends Component {
           handleClick={this.pedalAddHandler}
         />
         {pedalBoardBuilder}
-        <BuilderPedals pedals={pedalsOnBoard} />
+        <BuilderPedals
+          mouseLeave={this.rotateButtonHide}
+          mouseOver={this.rotateButtonShow}
+          rotate={this.rotatePedal}
+          pedals={pedalsOnBoard}
+        />
       </Fragment>
     )
   }
