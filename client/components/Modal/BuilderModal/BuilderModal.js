@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal } from 'semantic-ui-react'
 import Pedals from '../../Pedals/Pedals'
 
-const builderModal = ({
+const BuilderModal = ({
   closeModalHandler,
   showModal,
   handleClick,
@@ -24,4 +24,4 @@ const builderModal = ({
   return showModal && modalOutput
 }
 
-export default builderModal
+export default BuilderModal

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import PedalBoards from '../../components/PedalBoards/PedalBoards'
+import PedalBoards from '../../components/Pedalboards/Pedalboards'
 import PedalboardsModal from '../../components/Modal/PedalboardsModal/PedalboardsModal'
 
-class Pedalboards extends Component {
+class PedalboardsView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -64,4 +64,4 @@ class Pedalboards extends Component {
   }
 }
 
-export default Pedalboards
+export default PedalboardsView
