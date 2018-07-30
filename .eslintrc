@@ -10,6 +10,8 @@
     "curly": ["error", "multi-line"],
     "brace-style": ["error", "stroustrup"],
     "react/prop-types": 0,
+    "array-callback-return": 0,
+    "jsx-a11y/mouse-events-have-key-events": 0,
     "react/no-deprecated": 0,
     "space-before-function-paren": ["error", {
       "anonymous": "always",

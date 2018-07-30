@@ -41,10 +41,15 @@ class Builder extends Component {
         return elem
       }
     })
-
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
 
-    this.setState({ showModal: false, pedalsOnBoard: updatePedalsOnBoard })
+    const withRotation = updatePedalsOnBoard.map((elem, index) => ({
+      ...elem,
+      rotation: elem.rotation || 0,
+      showRotateButton: elem.showRotateButton || false
+    }))
+
+    this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
   openModalHandler = () => {
@@ -55,14 +60,49 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
+  rotateButtonShow = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.showRotate = true
+      }
+    })
+
+    this.setState({ pedalsOnBoard: copy })
+  }
+
+  rotateButtonHide = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.showRotate = false
+      }
+    })
+
+    this.setState({ pedalsOnBoard: copy })
+  }
+
+  rotatePedal = (id, event) => {
+    const copy = [...this.state.pedalsOnBoard]
+
+    copy.forEach((elem, index) => {
+      if (elem.id === id) {
+        elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
+      }
+    })
+    this.setState({ pedalsOnBoard: copy })
+  }
+
   render() {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
-    const pedalBoardBuilder = (
+    let pedalBoardBuilder = (
       <Fragment>
         <BuilderTitle pedalboardName={currentPedalboard} />
         <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
       </Fragment>
     )
+
     return (
       <Fragment>
         <BuilderAddPedalButton
@@ -76,10 +116,14 @@ class Builder extends Component {
           handleClick={this.addPedal}
         />
         {currentPedalboard ? pedalBoardBuilder : <WarningMessage />}
-        <BuilderPedals pedals={pedalsOnBoard} />
+        <BuilderPedals
+          mouseLeave={this.rotateButtonHide}
+          mouseOver={this.rotateButtonShow}
+          rotate={this.rotatePedal}
+          pedals={pedalsOnBoard}
+        />
       </Fragment>
     )
   }
 }
-
 export default Builder

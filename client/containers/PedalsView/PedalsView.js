@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Pedals from '../../components/Pedals/Pedals'
 import PedalsModal from '../../components/Modal/PedalsModal/PedalsModal'
 
-class pedals extends Component {
+class PedalsView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,7 +24,6 @@ class pedals extends Component {
   }
 
   handlePedalClick = (id, event) => {
-    console.log(this.state)
     const foundPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
@@ -62,4 +61,4 @@ class pedals extends Component {
   }
 }
 
-export default pedals
+export default PedalsView
