@@ -1,74 +1,55 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Image, Icon } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 
-<<<<<<< HEAD
-class builderPedals extends Component {
-  render() {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '20%', left: '29%' }}>
-        {this.props.pedals.map((elem, index) => (
-          <Draggable key={elem.id}>
-            <div>
-              {elem.showRotate ? (
-                <Icon
-                  onMouseEnter={event => this.props.mouseOver(elem.id, event)}
-                  onMouseLeave={event => this.props.mouseLeave(elem.id, event)}
-                  style={{
-                    fontSize: '40px',
-                    zIndex: '2000',
-                    color: '#bc003f',
-                    position: 'absolute',
-                    top: '-5px',
-                    left: '32%'
-                  }}
-                  onClick={event => this.props.rotate(elem.id, event)}
-                  name="undo"
-                />
-              ) : null}
-
-              <Image
-                onMouseEnter={event => this.props.mouseOver(elem.id, event)}
-                onMouseLeave={event => this.props.mouseLeave(elem.id, event)}
-                id={elem.id}
-                item={elem}
-                src={elem.image}
-                style={{
-                  transform: `rotate(${elem.rotation}deg)`,
-                  height: '200px',
-                  width: '135px',
-                  position: 'relative',
-                  display: 'inline-block'
-                }}
-              />
-            </div>
-          </Draggable>
-        ))}
-      </div>
-    )
-  }
-=======
-const BuilderPedals = ({ pedals }) => {
+const BuilderPedals = props => {
   return (
-    <div style={{ position: 'absolute', top: '20%', left: '29%' }}>
-      {pedals.map((elem, index) => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        position: 'absolute',
+        top: '20%',
+        left: '29%'
+      }}>
+      {props.pedals.map((elem, index) => (
         <Draggable key={elem.id}>
-          <Image
-            id={elem.id}
-            item={elem}
-            src={elem.image}
-            style={{
-              height: '200px',
-              width: '135px',
-              position: 'relative',
-              display: 'inline-block'
-            }}
-          />
+          <div>
+            {elem.showRotate ? (
+              <Icon
+                onMouseEnter={event => props.mouseOver(elem.id, event)}
+                onMouseLeave={event => props.mouseLeave(elem.id, event)}
+                style={{
+                  fontSize: '40px',
+                  zIndex: '2000',
+                  color: '#bc003f',
+                  position: 'absolute',
+                  top: '-5px',
+                  left: '32%'
+                }}
+                onClick={event => props.rotate(elem.id, event)}
+                name="undo"
+              />
+            ) : null}
+            <Image
+              onMouseEnter={event => props.mouseOver(elem.id, event)}
+              onMouseLeave={event => props.mouseLeave(elem.id, event)}
+              id={elem.id}
+              item={elem}
+              src={elem.image}
+              style={{
+                transform: `rotate(${elem.rotation}deg)`,
+                height: '200px',
+                width: '135px',
+                position: 'relative',
+                display: 'inline-block'
+              }}
+            />
+          </div>
         </Draggable>
       ))}
     </div>
   )
->>>>>>> user-can-drag-and-drop-pedals
 }
 
 export default BuilderPedals

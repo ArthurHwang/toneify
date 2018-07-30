@@ -24,7 +24,6 @@ class pedals extends Component {
   }
 
   handlePedalClick = (id, event) => {
-    console.log(this.state)
     const foundPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
