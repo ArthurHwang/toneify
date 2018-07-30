@@ -44,7 +44,7 @@ class Builder extends Component {
 
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
 
-    this.setState({ showModal: false, pedalsOnBoard: updatePedalsOnBoard }, console.log(this.state.pedalsOnBoard))
+    this.setState({ showModal: false, pedalsOnBoard: updatePedalsOnBoard })
   }
 
   openModalHandler = () => {
