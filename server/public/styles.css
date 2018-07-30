@@ -9,6 +9,7 @@
   height: 40px;
 }
 
-.title-text {
-  text-align: center;
+.react-draggable,
+.cursor {
+  cursor: move;
 }
