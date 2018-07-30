@@ -9,22 +9,23 @@
   height: 40px;
 }
 
-.title-text {
-  text-align: center;
-}
 .react-draggable,
 .cursor {
   cursor: move;
 }
+
 .no-cursor {
   cursor: auto;
 }
+
 .cursor-y {
   cursor: ns-resize;
 }
+
 .cursor-x {
   cursor: ew-resize;
 }
+
 .react-draggable strong {
   background: #ddd;
   border: 1px solid #999;
