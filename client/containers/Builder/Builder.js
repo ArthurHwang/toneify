@@ -35,7 +35,7 @@ class Builder extends Component {
     }
   }
 
-  pedalAddHandler = (id, event) => {
+  addPedal = (id, event) => {
     const findPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
@@ -96,14 +96,13 @@ class Builder extends Component {
 
   render() {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
-    let pedalBoardBuilder = currentPedalboard ? (
+    let pedalBoardBuilder = (
       <Fragment>
         <BuilderTitle pedalboardName={currentPedalboard} />
         <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
       </Fragment>
-    ) : (
-      <WarningMessage />
     )
+
     return (
       <Fragment>
         <BuilderAddPedalButton
@@ -114,9 +113,9 @@ class Builder extends Component {
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
-          handleClick={this.pedalAddHandler}
+          handleClick={this.addPedal}
         />
-        {pedalBoardBuilder}
+        {currentPedalboard ? pedalBoardBuilder : <WarningMessage />}
         <BuilderPedals
           mouseLeave={this.rotateButtonHide}
           mouseOver={this.rotateButtonShow}
