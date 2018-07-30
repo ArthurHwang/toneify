@@ -57,13 +57,11 @@ class Builder extends Component {
 
   render() {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
-    let pedalBoardBuilder = currentPedalboard ? (
+    const pedalBoardBuilder = (
       <Fragment>
         <BuilderTitle pedalboardName={currentPedalboard} />
         <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
       </Fragment>
-    ) : (
-      <WarningMessage />
     )
     return (
       <Fragment>
@@ -75,9 +73,9 @@ class Builder extends Component {
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
-          handleClick={this.pedalAddHandler}
+          handleClick={this.addPedal}
         />
-        {pedalBoardBuilder}
+        {currentPedalboard ? pedalBoardBuilder : <WarningMessage />}
         <BuilderPedals pedals={pedalsOnBoard} />
       </Fragment>
     )
