@@ -2,7 +2,7 @@ import React from 'react'
 import { Message, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-const warningMessage = () => (
+const WarningMessage = () => (
   <Container
     style={{
       width: '25%'
@@ -18,4 +18,4 @@ const warningMessage = () => (
   </Container>
 )
 
-export default warningMessage
+export default WarningMessage

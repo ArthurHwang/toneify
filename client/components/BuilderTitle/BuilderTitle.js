@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const builderTitle = ({ pedalboardName }) => (
+const BuilderTitle = ({ pedalboardName }) => (
   <Message color="black" compact>
     <span style={{ fontSize: '1.2rem', color: '#bc003f' }}>Pedalboard: </span>
     <strong>
@@ -10,4 +10,4 @@ const builderTitle = ({ pedalboardName }) => (
   </Message>
 )
 
-export default builderTitle
+export default BuilderTitle
