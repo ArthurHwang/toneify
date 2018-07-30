@@ -70,7 +70,7 @@ const pedals = [
     price: 119.99,
     image: './img/pedals/Ibanez TS9DX.png',
     description:
-      'The Ibanez TS9DX Turbo Tube Screamer Effects Pedal features the slightly warmer overdrive of the old TS808 Tube Screamers and also offers 3 new settings for increased low end crunch: +, Hot, and Turbo.'
+      "There is no single stomp box more famous than the Ibanez Tube Screamer. The Edge from U2 uses a TS9 for most of his overdrive tones, as do countless other famous rock and blues players. Thanks to tubelike distortion, smooth sustain, and fat tone, the Tube Screamer has been and continues to be the world's most popular solid-state overdrive. So much so that after production of the TS9 ended in 1984, used TS9s were going for as much as 4 times their original price at vintage shows a few years later. The TS9 reissue features the same careful hand wiring and analog circuitry as the original classic. Like almost all of the original TS9s, the reissue features the TA75558 IC chip. The TS9DX Turbo Tube Screamer adds three new settings for increased low end crunch: +, Hot, and Turbo."
   },
   {
     id: uuid(),
@@ -84,13 +84,14 @@ const pedals = [
   },
   {
     id: uuid(),
-    brand: 'Vox',
-    model: 'V847',
-    type: 'wah',
-    price: 99.99,
-    image: './img/pedals/Vox V847 Wah.png',
+    brand: 'Electro-Harmonix',
+    model: 'Superego+',
+    type: 'synth',
+    price: 249.99,
+    image:
+      'http://cdn.shopify.com/s/files/1/0810/2125/products/electro-harmonix-superego-synth-engine-832097386515_1200x1200.jpg?v=1522480649',
     description:
-      "Sporting the same legendary circuit that's been electrifying rock rigs for four decades in a limited-release chassis, the Boss DS-1-4A Distortion 40th Anniversary Edition commemorates a pedalboard staple. The same three controls for distortion, level, and tone afford the full landscape of light snap to full-on saturated snarl in a black-and-gold chassis available only in a limited run. An affordable collectible for any metalhead."
+      'Building on the synthesis platform of the award-winning Superego, the Electro-Harmonix Superego+ raises the bar when it comes to creating synth effects, sound layers, glissandos, infinite sustain and more. Plus, the designers added a complete effects section featuring 11 effects types, an EXP input for effect parameter control and an EXT jack for a 3-button controller.'
   },
   {
     id: uuid(),
@@ -110,7 +111,7 @@ const pedals = [
     price: 40.99,
     image: './img/pedals/Ibanez FL-9.png',
     description:
-      'The Ibanez FL9 Flanger provides classic flanger tones with a variety of controls. It features knobs for Speed, Regen, Width, and Delay Time.'
+      'The highly-successful 9 Series of effects pedal from Ibanez demonstrated how innovative and adventurous the company was in the early 80’s, and this series produced some of the most recognizable and most used pedals in history, such as the TS9 Tube Screamer, the AF9 Auto Filter and the incredible AD9 Analog Delay. Another of my favorites from this series is the FL9 Flanger, the pedal we’ll be checking out in this review.'
   },
   {
     id: uuid(),
@@ -151,7 +152,7 @@ const pedals = [
     image:
       'https://media.musiciansfriend.com/is/image/MMGS7/The-VCR-Ryan-Adams-Signature-Pedal/J50975000000000-00-500x500.jpg',
     description:
-      'Who said bass guitar didn’t need distortion? We believe it definitely does - and there’s a growing number of bass players who agree with us. Alas, there are still few dedicated bass distortion pedals; for the most part, bass players have had to use either guitar stompboxes or no distortion pedals at all.  Here at Shift Line, we take bass distortion seriously - most of us are bass players, after all. As soon as we released our Olympic MkII bass preamp, we started working on our brand new distortion pedal for bass: the A+ BUZZ.'
+      'Who said bass guitar didn’t need distortion? We believe it definitely does - and there’s a growing number of bass players who agree with us. Alas, there are still few dedicated bass distortion pedals; for the most part, bass players have had to use either guitar stompboxes or no distortion pedals at all.  '
   },
   {
     id: uuid(),

@@ -30,11 +30,10 @@ const pedalBoards = [
     model: 'Novo18',
     size: 'medium',
     price: 129.99,
-    image:
-      'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
+    image: 'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
     topView: '/img/pedalboards/Pedaltrain Novo18.PNG',
     description:
-      'A fresh take on Pedaltrains timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. '
+      'The Novo series is Pedaltrain’s new five-rail pedal board system. Novo means “a new beginning” in Latin. Pedaltrain’s new Novo Series is exactly that, a fresh redesign of their market-leading pedal board design. Thanks to Pedaltrain’s new modified rail system and open front design, mounting pedals and power supplies is easier than ever.  Even the smallest pedals make an incredibly strong bond with this new rail system. Novo 18’s five-rail design is perfect.'
   },
   {
     id: uuid(),
@@ -43,11 +42,10 @@ const pedalBoards = [
     size: 'medium',
 
     price: 129.99,
-    image:
-      'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
+    image: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
     topView: '/img/pedalboards/Pedaltrain Novo 24.PNG',
     description:
-      'A fresh take on Pedaltrains timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. '
+      "A fresh take on Pedaltrain's timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. Featuring a redesigned open-front configuration, Sweetwater guitarists really appreciate the extra space the Novo 24 provides for loop switchers and bigger pedals, while uncluttered format makes it easy to install power supplies and cabling. The Novo 24 even comes with a package of zip ties and hook-and-loop fasteners to get you started."
   },
   {
     id: uuid(),
@@ -56,8 +54,7 @@ const pedalBoards = [
     size: 'large',
 
     price: 219.99,
-    image:
-      'https://www.premierguitar.com/ext/resources/images/content/2017_01/LNU2/Jan17_LNU_MONO_Pedalboard_WEB.jpg',
+    image: 'https://www.premierguitar.com/ext/resources/images/content/2017_01/LNU2/Jan17_LNU_MONO_Pedalboard_WEB.jpg',
     topView: '/img/pedalboards/Mono Large.PNG',
     description:
       'This is it — the granddaddy of Pedalboard series. The MONO Pedalboard Large is a pro-sized and -featured pedal solution that wont weigh you down in size or cost. The Pedalboard Large is cut from a single piece of anodized aluminum for superior strength, light weight, and an elegant textured surface. Cutouts along the surface hide pedal jumpers and power cables for a streamlined, professional look. Rubber feet on the bottom absorb shock and prevent the Pedalboard Large from sliding across hard surfaces as you stomp. Unique to MONO pedalboards is the included 3M Dual Lock tape, which uses interlocking mushroom-shaped teeth to grip pedals to the board with 5x the strength of hook-and-loop systems.'
@@ -69,8 +66,7 @@ const pedalBoards = [
     price: 189.99,
     size: 'medium',
 
-    image:
-      'http://static.keymusic.com/products/262967/XL/mono-pedalboard-medium-black.jpg',
+    image: 'http://static.keymusic.com/products/262967/XL/mono-pedalboard-medium-black.jpg',
     topView: '/img/pedalboards/Mono Medium.PNG',
 
     description:
@@ -122,10 +118,8 @@ const pedalBoards = [
     price: 169.99,
     size: 'medium',
 
-    image:
-      'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
-    topView:
-      'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
+    image: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
+    topView: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
     description:
       "The Novo series is Pedaltrain’s five-rail pedal board system. Mounting pedals and power supplies has never been easier with Novo's open front design and rail spacing. Novo 24 is perfect for players who use true-bypass switchers or need an extra rail to accommodate a variety of pedal configurations. Novo 24 is available for purchase with either Pedaltrain’s fitted soft case (featuring a heavy-duty metal zipper and reinforced stress points) or Pedaltrain’s professional-grade tour case."
   },
@@ -136,8 +130,7 @@ const pedalBoards = [
     price: 479.99,
     size: 'large',
 
-    image:
-      'http://friedmanamplification.com/images/FA_PedalBrd_Lrg_back_2000x2000.jpg',
+    image: 'http://friedmanamplification.com/images/FA_PedalBrd_Lrg_back_2000x2000.jpg',
     topView: '/img/pedalboards/friedman tour pro 1530.PNG',
 
     description:
@@ -165,8 +158,7 @@ const pedalBoards = [
     price: 119.99,
     size: 'small',
 
-    image:
-      'http://www.long-mcquade.com/files/61296/lg_faa30df9624ec2f59fafecb2887ab83d.jpg',
+    image: 'http://www.long-mcquade.com/files/61296/lg_faa30df9624ec2f59fafecb2887ab83d.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic JR.PNG',
 
     description:
@@ -179,8 +171,7 @@ const pedalBoards = [
     size: 'small',
 
     price: 89.99,
-    image:
-      'https://cdn.shopify.com/s/files/1/0747/1009/products/SOLO_18_White_Side_1024x1024.JPG?v=1421706141',
+    image: 'https://cdn.shopify.com/s/files/1/0747/1009/products/SOLO_18_White_Side_1024x1024.JPG?v=1421706141',
     topView: '/img/pedalboards/Templeboards Solo 18.PNG',
 
     description:
@@ -193,8 +184,7 @@ const pedalBoards = [
     size: 'medium',
 
     price: 199.99,
-    image:
-      'https://jimmyegypt.com/wp-content/uploads/2018/06/pedal-boards-classic-1-6_1024x1024-e1529929747883.jpg',
+    image: 'https://jimmyegypt.com/wp-content/uploads/2018/06/pedal-boards-classic-1-6_1024x1024-e1529929747883.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic 1.PNG',
 
     description:
