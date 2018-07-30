@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-const nav = props => (
+const Nav = props => (
   <Menu inverted stackable>
     <Menu.Item>
       <Link to="/">
@@ -25,4 +25,4 @@ const nav = props => (
   </Menu>
 )
 
-export default nav
+export default Nav

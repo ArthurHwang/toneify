@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Card } from 'semantic-ui-react'
 import PedalBoard from './Pedalboard/Pedalboard'
 
-const pedalBoards = ({ handleClick, pedalData }) => (
+const PedalBoards = ({ handleClick, pedalData }) => (
   <Container>
     <Card.Group itemsPerRow={4} className="ui center aligned grid">
       {pedalData.map((elem, index) => (
@@ -21,4 +21,4 @@ const pedalBoards = ({ handleClick, pedalData }) => (
   </Container>
 )
 
-export default pedalBoards
+export default PedalBoards

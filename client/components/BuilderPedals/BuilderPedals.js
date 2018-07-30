@@ -2,47 +2,54 @@ import React from 'react'
 import { Image, Icon } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 
-const BuilderPedals = props => {
+const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
+  const styles = {
+    pedals: {
+      display: 'flex',
+      flexDirection: 'row',
+      position: 'absolute',
+      top: '20%',
+      left: '29%'
+    },
+    icon: {
+      fontSize: '40px',
+      zIndex: '2000',
+      color: '#bc003f',
+      position: 'absolute',
+      top: '-5px',
+      left: '32%'
+    },
+    image: {
+      height: '200px',
+      width: '135px',
+      position: 'relative',
+      display: 'inline-block'
+    }
+  }
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        position: 'absolute',
-        top: '20%',
-        left: '29%'
-      }}>
-      {props.pedals.map((elem, index) => (
+    <div style={styles.pedals}>
+      {pedals.map((elem, index) => (
         <Draggable key={elem.id}>
           <div>
             {elem.showRotate ? (
               <Icon
-                onMouseEnter={event => props.mouseOver(elem.id, event)}
-                onMouseLeave={event => props.mouseLeave(elem.id, event)}
-                style={{
-                  fontSize: '40px',
-                  zIndex: '2000',
-                  color: '#bc003f',
-                  position: 'absolute',
-                  top: '-5px',
-                  left: '32%'
-                }}
-                onClick={event => props.rotate(elem.id, event)}
+                onMouseEnter={event => mouseOver(elem.id, event)}
+                onMouseLeave={event => mouseLeave(elem.id, event)}
+                style={styles.icon}
+                onClick={event => rotate(elem.id, event)}
                 name="undo"
               />
             ) : null}
             <Image
-              onMouseEnter={event => props.mouseOver(elem.id, event)}
-              onMouseLeave={event => props.mouseLeave(elem.id, event)}
+              onMouseEnter={event => mouseOver(elem.id, event)}
+              onMouseLeave={event => mouseLeave(elem.id, event)}
               id={elem.id}
               item={elem}
               src={elem.image}
               style={{
-                transform: `rotate(${elem.rotation}deg)`,
-                height: '200px',
-                width: '135px',
-                position: 'relative',
-                display: 'inline-block'
+                ...styles.image,
+                transform: `rotate(${elem.rotation}deg)`
               }}
             />
           </div>

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PedalBoards from '../../components/Pedalboards/Pedalboards'
 import PedalboardsModal from '../../components/Modal/PedalboardsModal/PedalboardsModal'
 
-class Pedalboards extends Component {
+class PedalboardsView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -55,10 +55,13 @@ class Pedalboards extends Component {
           modalOpen={modalOpen}
           handleBuildClick={this.handleBuildClick}
         />
-        <PedalBoards handleClick={this.handlePedalBoardClick} pedalData={pedalboards} />
+        <PedalBoards
+          handleClick={this.handlePedalBoardClick}
+          pedalData={pedalboards}
+        />
       </Fragment>
     )
   }
 }
 
-export default Pedalboards
+export default PedalboardsView
