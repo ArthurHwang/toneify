@@ -28,15 +28,14 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    }
-    else {
+    } else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
     }
   }
 
-  pedalAddHandler = (id, event) => {
+  addPedal = (id, event) => {
     const findPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
@@ -68,7 +67,10 @@ class Builder extends Component {
     )
     return (
       <Fragment>
-        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <BuilderAddPedalButton
+          showButton={currentPedalboard}
+          showModal={this.openModalHandler}
+        />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
