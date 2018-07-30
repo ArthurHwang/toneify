@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const builderAddPedalButton = ({ showButton, showModal }) => {
-  let buttonOutput = showButton ? (
+const BuilderAddPedalButton = ({ showButton, showModal }) => {
+  let buttonOutput = (
     <Button
       onClick={showModal}
       color="black"
@@ -13,20 +13,17 @@ const builderAddPedalButton = ({ showButton, showModal }) => {
         height: '48px',
         width: '150px',
         display: 'inline'
-      }}
-    >
+      }}>
       <Icon size="large" color="green" name="add" />
       <span
         style={{
           color: '#21ba45'
-        }}
-      >
+        }}>
         Add Pedal
       </span>
     </Button>
-  ) : null
+  )
 
-  return buttonOutput
+  return showButton && buttonOutput
 }
-
-export default builderAddPedalButton
+export default BuilderAddPedalButton
