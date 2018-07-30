@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
 const BuilderAddPedalButton = ({ showButton, showModal }) => {
-  let buttonOutput = (
+  const buttonOutput = (
     <Button
       onClick={showModal}
       color="black"
