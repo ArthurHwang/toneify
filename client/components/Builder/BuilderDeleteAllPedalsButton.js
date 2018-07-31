@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
 const DeleteAllPedalsButton = ({ showButton, deleteAllPedals }) => {
-  const buttonOutput = showButton.length && (
+  const buttonOutput = showButton.length > 0 && (
     <Button
       onClick={deleteAllPedals}
       color="black"
