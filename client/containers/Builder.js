@@ -4,6 +4,7 @@ import WarningMessage from '../components/Builder/WarningMessage'
 import BuilderModal from '../components/Modal/BuilderModal'
 import BuilderPedals from '../components/Builder/BuilderPedals'
 import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
+import DeleteAllPedalsButton from '../components/Builder/BuilderDeleteAllPedalsButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -59,6 +60,10 @@ class Builder extends Component {
     this.setState({ pedalsOnBoard: copy })
   }
 
+  deleteAllPedals = () => {
+    this.setState({ pedalsOnBoard: [] })
+  }
+
   openModalHandler = () => {
     this.setState({ showModal: true })
   }
@@ -104,6 +109,10 @@ class Builder extends Component {
         <BuilderAddPedalButton
           showButton={currentPedalboard}
           showModal={this.openModalHandler}
+        />
+        <DeleteAllPedalsButton
+          showButton={this.state.pedalsOnBoard}
+          deleteAllPedals={this.deleteAllPedals}
         />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
