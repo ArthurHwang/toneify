@@ -6,7 +6,10 @@ const DeleteAllPedalsButton = ({ showButton, deleteAllPedals }) => {
     <Button
       onClick={deleteAllPedals}
       color="black"
-      className="pedal-delete-button">
+      className="pedal-delete-button"
+      style={{
+        margin: '10px 0'
+      }}>
       <Icon
         style={{
           position: 'relative',

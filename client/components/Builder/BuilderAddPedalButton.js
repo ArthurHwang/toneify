@@ -3,7 +3,13 @@ import { Button, Icon } from 'semantic-ui-react'
 
 const BuilderAddPedalButton = ({ showButton, showModal }) => {
   const buttonOutput = showButton && (
-    <Button onClick={showModal} color="black" className="pedal-add-button">
+    <Button
+      onClick={showModal}
+      color="black"
+      className="pedal-add-button"
+      style={{
+        margin: '10px 0'
+      }}>
       <Icon
         style={{
           position: 'relative',

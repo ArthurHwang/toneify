@@ -46,7 +46,6 @@
 }
 
 .pedal-add-button {
-  margin: 10px 0 !important;
   position: absolute;
   right: 0;
   height: 48px;
@@ -62,15 +61,13 @@
 }
 
 .pedal-modal-image {
-  height: 100% !important;
-  width: 300px !important;
+  height: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .pedal-delete-button {
-  margin: 10px 0 !important;
   position: absolute;
   right: 0;
   top: 10em;
