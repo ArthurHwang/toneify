@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Card } from 'semantic-ui-react'
-import PedalBoard from './Pedalboard/Pedalboard'
+import PedalBoard from './Pedalboard'
 
 const PedalBoards = ({ handleClick, pedalData }) => (
   <Container>

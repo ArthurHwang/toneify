@@ -13,3 +13,58 @@
 .cursor {
   cursor: move;
 }
+
+.icon-rotate {
+  z-index: 100;
+  color: #bc003f;
+  position: absolute;
+  top: -5px;
+  left: 40%;
+}
+
+.icon-delete {
+  z-index: 100;
+  color: #bc003f;
+  position: absolute;
+  bottom: -9px;
+  left: 37%;
+}
+
+.pedal-on-board-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 20%;
+  left: 29%;
+}
+
+.pedal-on-board {
+  height: 200px;
+  width: 135px;
+  position: relative;
+  display: inline-block;
+}
+
+.pedal-add-button {
+  margin: 12px 0 !important;
+  float: right;
+  height: 48px;
+  width: 150px;
+  display: inline;
+}
+
+.pedalboard-modal-image {
+  height: 100%;
+  width: 500px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pedal-modal-image {
+  height: 100% !important;
+  width: 300px !important;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

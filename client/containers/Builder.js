@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/PedalboardBuilderDisplay'
-import WarningMessage from '../../components/WarningMessage/WarningMessage'
-import BuilderTitle from '../../components/BuilderTitle/BuilderTitle'
-import BuilderModal from '../../components/Modal/BuilderModal/BuilderModal'
-import BuilderPedals from '../../components/BuilderPedals/BuilderPedals'
-import BuilderAddPedalButton from '../../components/BuilderAddPedalButton/BuilderAddPedalButton'
+import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
+import WarningMessage from '../components/Builder/WarningMessage'
+import BuilderModal from '../components/Modal/BuilderModal'
+import BuilderPedals from '../components/Builder/BuilderPedals'
+import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -35,21 +34,29 @@ class Builder extends Component {
     }
   }
 
-  addPedal = (id, event) => {
+  addPedal = id => {
     const findPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
       }
     })
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
-
     const withRotation = updatePedalsOnBoard.map((elem, index) => ({
       ...elem,
       rotation: elem.rotation || 0,
-      showRotateButton: elem.showRotateButton || false
+      showButtons: elem.showButtons || false
     }))
-
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
+  }
+
+  deletePedal = id => {
+    const copy = [...this.state.pedalsOnBoard]
+    copy.find((elem, index, array) => {
+      if (elem.id === id) {
+        array.splice(index, 1)
+      }
+    })
+    this.setState({ pedalsOnBoard: copy })
   }
 
   openModalHandler = () => {
@@ -60,33 +67,29 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
-  rotateButtonShow = (id, event) => {
+  buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
-        elem.showRotate = true
+        elem.showButtons = true
       }
     })
-
     this.setState({ pedalsOnBoard: copy })
   }
 
-  rotateButtonHide = (id, event) => {
+  buttonHide = id => {
     const copy = [...this.state.pedalsOnBoard]
-
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
-        elem.showRotate = false
+        elem.showButtons = false
       }
     })
-
     this.setState({ pedalsOnBoard: copy })
   }
 
-  rotatePedal = (id, event) => {
+  rotatePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
-
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
         elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
       }
@@ -96,13 +99,6 @@ class Builder extends Component {
 
   render() {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
-    let pedalBoardBuilder = (
-      <Fragment>
-        <BuilderTitle pedalboardName={currentPedalboard} />
-        <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
-      </Fragment>
-    )
-
     return (
       <Fragment>
         <BuilderAddPedalButton
@@ -115,10 +111,15 @@ class Builder extends Component {
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? pedalBoardBuilder : <WarningMessage />}
+        {currentPedalboard ? (
+          <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
+        ) : (
+          <WarningMessage />
+        )}
         <BuilderPedals
-          mouseLeave={this.rotateButtonHide}
-          mouseOver={this.rotateButtonShow}
+          deletePedal={this.deletePedal}
+          mouseLeave={this.buttonHide}
+          mouseOver={this.buttonShow}
           rotate={this.rotatePedal}
           pedals={pedalsOnBoard}
         />

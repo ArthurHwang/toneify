@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Card } from 'semantic-ui-react'
-import Pedal from './Pedal/Pedal'
+import Pedal from './Pedal'
 
 const Pedals = ({ pedalData, handleClick }) => (
   <Container>
@@ -8,7 +8,7 @@ const Pedals = ({ pedalData, handleClick }) => (
       {pedalData.map((elem, index) => (
         <Pedal
           handleClick={handleClick}
-          key={elem.model}
+          key={elem.id}
           id={elem.id}
           image={elem.image}
           brand={elem.brand}

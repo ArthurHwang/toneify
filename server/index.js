@@ -30,7 +30,8 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      }))
+      })
+  )
 
   app.get('/api/pedals', (req, res) =>
     pedals
@@ -42,7 +43,8 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      }))
+      })
+  )
 
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'), err => {
@@ -52,5 +54,5 @@ MongoClient.connect(
     })
   })
 
-  app.listen(port, () => console.log(`Listening on port ${3000}`))
+  app.listen(port, () => console.log(`Listening on port ${port}`))
 })
