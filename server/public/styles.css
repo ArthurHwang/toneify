@@ -74,3 +74,11 @@
   height: 48px;
   width: 150px;
 }
+
+.save-button {
+  position: absolute;
+  right: 0;
+  top: 13.8em;
+  height: 48px;
+  width: 150px;
+}
