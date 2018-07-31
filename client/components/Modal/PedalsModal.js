@@ -7,16 +7,7 @@ const PedalsModal = ({
   pedalData,
   modalOpen
 }) => {
-  const styles = {
-    image: {
-      height: '100%',
-      width: '300px',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }
-  }
-  let ModalOutput = modalOpen ? (
+  let ModalOutput = modalOpen && (
     <Modal
       style={{ top: '38%' }}
       dimmer="blurring"
@@ -32,7 +23,7 @@ const PedalsModal = ({
       </Modal.Header>
       <Modal.Content image>
         <Image
-          style={styles.image}
+          className="pedal-modal-image"
           wrapped
           size="massive"
           src={pedalData.image}
@@ -54,7 +45,7 @@ const PedalsModal = ({
         </Modal.Description>
       </Modal.Content>
     </Modal>
-  ) : null
+  )
 
   return ModalOutput
 }
