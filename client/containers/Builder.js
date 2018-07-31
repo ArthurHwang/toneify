@@ -5,6 +5,7 @@ import BuilderModal from '../components/Modal/BuilderModal'
 import BuilderPedals from '../components/Builder/BuilderPedals'
 import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
 import DeleteAllPedalsButton from '../components/Builder/BuilderDeleteAllPedalsButton'
+import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -114,6 +115,7 @@ class Builder extends Component {
           showButton={this.state.pedalsOnBoard}
           deleteAllPedals={this.deleteAllPedals}
         />
+        <BuilderSaveButton showButton={this.state.pedalsOnBoard} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
