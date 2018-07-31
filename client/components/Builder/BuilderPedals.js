@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Icon } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
+import PedalButtons from './PedalButtons'
 
 const BuilderPedals = ({
   mouseLeave,
@@ -15,19 +16,17 @@ const BuilderPedals = ({
         <Draggable key={elem.id}>
           <div>
             {elem.showButtons && (
-              <Icon
-                size="large"
-                className="icon-rotate"
-                onMouseEnter={event => mouseOver(elem.id, event)}
-                onMouseLeave={event => mouseLeave(elem.id, event)}
-                onClick={event => rotate(elem.id, event)}
-                name="refresh"
+              <PedalButtons
+                mouseEnter={() => mouseOver(elem.id)}
+                mouseLeave={() => mouseLeave(elem.id)}
+                rotate={() => rotate(elem.id)}
+                type="rotate"
               />
             )}
             <Image
               className="pedal-on-board"
-              onMouseEnter={event => mouseOver(elem.id, event)}
-              onMouseLeave={event => mouseLeave(elem.id, event)}
+              onMouseEnter={() => mouseOver(elem.id)}
+              onMouseLeave={() => mouseLeave(elem.id)}
               item={elem}
               src={elem.image}
               style={{
@@ -35,13 +34,11 @@ const BuilderPedals = ({
               }}
             />
             {elem.showButtons && (
-              <Icon
-                size="big"
-                className="icon-delete"
-                onMouseEnter={event => mouseOver(elem.id, event)}
-                onMouseLeave={event => mouseLeave(elem.id, event)}
-                onClick={event => deletePedal(elem.id, event)}
-                name="delete"
+              <PedalButtons
+                mouseEnter={() => mouseOver(elem.id)}
+                mouseLeave={() => mouseLeave(elem.id)}
+                deletePedal={() => deletePedal(elem.id)}
+                type="delete"
               />
             )}
           </div>

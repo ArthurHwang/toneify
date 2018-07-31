@@ -38,10 +38,7 @@ class PedalsView extends Component {
 
   handleBuildClick = event => {
     this.props.history.push({
-      pathname: '/builder',
-      state: {
-        currentPedalboard: this.state.currentPedalboard
-      }
+      pathname: '/builder'
     })
   }
 

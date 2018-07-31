@@ -8,7 +8,7 @@ const Pedals = ({ pedalData, handleClick }) => (
       {pedalData.map((elem, index) => (
         <Pedal
           handleClick={handleClick}
-          key={elem.model}
+          key={elem.id}
           id={elem.id}
           image={elem.image}
           brand={elem.brand}

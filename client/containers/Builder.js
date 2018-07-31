@@ -27,15 +27,14 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    }
-    else {
+    } else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
     }
   }
 
-  addPedal = (id, event) => {
+  addPedal = id => {
     const findPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
@@ -50,7 +49,7 @@ class Builder extends Component {
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
-  deletePedal = (id, event) => {
+  deletePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.find((elem, index, array) => {
       if (elem.id === id) {
@@ -68,7 +67,7 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
-  buttonShow = (id, event) => {
+  buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
       if (elem.id === id) {
@@ -78,7 +77,7 @@ class Builder extends Component {
     this.setState({ pedalsOnBoard: copy })
   }
 
-  buttonHide = (id, event) => {
+  buttonHide = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
       if (elem.id === id) {
@@ -88,7 +87,7 @@ class Builder extends Component {
     this.setState({ pedalsOnBoard: copy })
   }
 
-  rotatePedal = (id, event) => {
+  rotatePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
       if (elem.id === id) {
@@ -102,14 +101,21 @@ class Builder extends Component {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
     return (
       <Fragment>
-        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <BuilderAddPedalButton
+          showButton={currentPedalboard}
+          showModal={this.openModalHandler}
+        />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
+        {currentPedalboard ? (
+          <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
+        ) : (
+          <WarningMessage />
+        )}
         <BuilderPedals
           deletePedal={this.deletePedal}
           mouseLeave={this.buttonHide}
