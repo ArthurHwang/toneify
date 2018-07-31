@@ -19,7 +19,8 @@ const BuilderAddPedalButton = ({ showButton, showModal }) => {
       <span
         style={{
           color: '#21ba45'
-        }}>
+        }}
+      >
         Add Pedal
       </span>
     </Button>

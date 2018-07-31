@@ -1,35 +1,35 @@
 import React, { Component, Fragment } from 'react'
-import PedalBoards from '../../components/Pedalboards/Pedalboards'
-import PedalboardsModal from '../../components/Modal/PedalboardsModal/PedalboardsModal'
+import Pedals from '../components/Pedals/Pedals'
+import PedalsModal from '../components/Modal/PedalsModal'
 
-class PedalboardsView extends Component {
+class PedalsView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pedalboards: [],
-      currentPedalboard: null,
+      pedals: [],
+      currentPedal: {},
       modalOpen: false
     }
   }
 
   componentDidMount() {
-    fetch('/api/pedalboards', {
+    fetch('/api/pedals', {
       method: 'GET'
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ pedalboards: data })
+        this.setState({ pedals: data })
       })
       .catch(err => console.log(err))
   }
 
-  handlePedalBoardClick = (id, event) => {
-    const foundPedalBoard = this.state.pedalboards.find((elem, index) => {
+  handlePedalClick = (id, event) => {
+    const foundPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
       }
     })
-    this.setState({ modalOpen: true, currentPedalboard: foundPedalBoard })
+    this.setState({ modalOpen: true, currentPedal: foundPedal })
   }
 
   handleModalClick = event => {
@@ -46,22 +46,19 @@ class PedalboardsView extends Component {
   }
 
   render() {
-    const { modalOpen, pedalboards, currentPedalboard } = this.state
+    const { pedals, currentPedal, modalOpen } = this.state
     return (
       <Fragment>
-        <PedalboardsModal
+        <PedalsModal
           handleClick={this.handleModalClick}
-          pedalData={currentPedalboard}
+          pedalData={currentPedal}
           modalOpen={modalOpen}
           handleBuildClick={this.handleBuildClick}
         />
-        <PedalBoards
-          handleClick={this.handlePedalBoardClick}
-          pedalData={pedalboards}
-        />
+        <Pedals handleClick={this.handlePedalClick} pedalData={pedals} />
       </Fragment>
     )
   }
 }
 
-export default PedalboardsView
+export default PedalsView

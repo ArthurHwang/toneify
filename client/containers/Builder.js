@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import PedalboardBuilderDisplay from '../../components/PedalboardBuilderDisplay/PedalboardBuilderDisplay'
-import WarningMessage from '../../components/WarningMessage/WarningMessage'
-import BuilderTitle from '../../components/BuilderTitle/BuilderTitle'
-import BuilderModal from '../../components/Modal/BuilderModal/BuilderModal'
-import BuilderPedals from '../../components/BuilderPedals/BuilderPedals'
-import BuilderAddPedalButton from '../../components/BuilderAddPedalButton/BuilderAddPedalButton'
+import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
+import WarningMessage from '../components/Builder/WarningMessage'
+import BuilderModal from '../components/Modal/BuilderModal'
+import BuilderPedals from '../components/Builder/BuilderPedals'
+import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -28,7 +27,8 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    } else {
+    }
+    else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
@@ -42,13 +42,11 @@ class Builder extends Component {
       }
     })
     const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
-
     const withRotation = updatePedalsOnBoard.map((elem, index) => ({
       ...elem,
       rotation: elem.rotation || 0,
       showRotateButton: elem.showRotateButton || false
     }))
-
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
@@ -62,7 +60,7 @@ class Builder extends Component {
 
   rotateButtonShow = (id, event) => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
         elem.showRotate = true
       }
@@ -73,8 +71,7 @@ class Builder extends Component {
 
   rotateButtonHide = (id, event) => {
     const copy = [...this.state.pedalsOnBoard]
-
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
         elem.showRotate = false
       }
@@ -85,8 +82,7 @@ class Builder extends Component {
 
   rotatePedal = (id, event) => {
     const copy = [...this.state.pedalsOnBoard]
-
-    copy.forEach((elem, index) => {
+    copy.forEach(elem => {
       if (elem.id === id) {
         elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
       }
@@ -96,26 +92,16 @@ class Builder extends Component {
 
   render() {
     const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
-    let pedalBoardBuilder = (
-      <Fragment>
-        <BuilderTitle pedalboardName={currentPedalboard} />
-        <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
-      </Fragment>
-    )
-
     return (
       <Fragment>
-        <BuilderAddPedalButton
-          showButton={currentPedalboard}
-          showModal={this.openModalHandler}
-        />
+        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? pedalBoardBuilder : <WarningMessage />}
+        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
           mouseLeave={this.rotateButtonHide}
           mouseOver={this.rotateButtonShow}

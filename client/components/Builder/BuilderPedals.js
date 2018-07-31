@@ -32,7 +32,7 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
       {pedals.map((elem, index) => (
         <Draggable key={elem.id}>
           <div>
-            {elem.showRotate ? (
+            {elem.showRotate && (
               <Icon
                 onMouseEnter={event => mouseOver(elem.id, event)}
                 onMouseLeave={event => mouseLeave(elem.id, event)}
@@ -40,7 +40,7 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
                 onClick={event => rotate(elem.id, event)}
                 name="undo"
               />
-            ) : null}
+            )}
             <Image
               onMouseEnter={event => mouseOver(elem.id, event)}
               onMouseLeave={event => mouseLeave(elem.id, event)}

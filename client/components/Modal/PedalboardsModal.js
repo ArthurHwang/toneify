@@ -1,12 +1,7 @@
 import React from 'react'
 import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
 
-const PedalboardsModal = ({
-  handleBuildClick,
-  handleClick,
-  pedalData,
-  modalOpen
-}) => {
+const PedalboardsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
   const styles = {
     image: {
       height: '100%',
@@ -16,14 +11,8 @@ const PedalboardsModal = ({
       backgroundRepeat: 'no-repeat'
     }
   }
-  const ModalOutput = modalOpen ? (
-    <Modal
-      style={{ top: '38%' }}
-      dimmer="blurring"
-      open
-      size="large"
-      onClick={handleClick}
-      closeIcon>
+  const modalOutput = (
+    <Modal style={{ top: '38%' }} dimmer="blurring" open size="large" onClick={handleClick} closeIcon>
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>
@@ -31,12 +20,7 @@ const PedalboardsModal = ({
         </Button>
       </Modal.Header>
       <Modal.Content image>
-        <Image
-          style={styles.image}
-          wrapped
-          size="massive"
-          src={pedalData.image}
-        />
+        <Image style={styles.image} wrapped size="massive" src={pedalData.image} />
         <Modal.Description>
           <Header>
             <span style={{ color: '#bc003f' }}>{pedalData.model}</span>
@@ -51,9 +35,9 @@ const PedalboardsModal = ({
         </Modal.Description>
       </Modal.Content>
     </Modal>
-  ) : null
+  )
 
-  return ModalOutput
+  return modalOpen && modalOutput
 }
 
 export default PedalboardsModal
