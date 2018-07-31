@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, Icon } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 
-const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
+const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal }) => {
   const styles = {
     pedals: {
       display: 'flex',
@@ -11,12 +11,20 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
       top: '20%',
       left: '29%'
     },
-    icon: {
-      fontSize: '40px',
+    iconRotate: {
+      fontSize: '35px',
       zIndex: '2000',
       color: '#bc003f',
       position: 'absolute',
       top: '-5px',
+      left: '34%'
+    },
+    iconDelete: {
+      fontSize: '40px',
+      zIndex: '2000',
+      color: '#bc003f',
+      position: 'absolute',
+      bottom: '-25px',
       left: '32%'
     },
     image: {
@@ -32,19 +40,18 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
       {pedals.map((elem, index) => (
         <Draggable key={elem.id}>
           <div>
-            {elem.showRotate && (
+            {elem.showButtons && (
               <Icon
                 onMouseEnter={event => mouseOver(elem.id, event)}
                 onMouseLeave={event => mouseLeave(elem.id, event)}
-                style={styles.icon}
+                style={styles.iconRotate}
                 onClick={event => rotate(elem.id, event)}
-                name="undo"
+                name="refresh"
               />
             )}
             <Image
               onMouseEnter={event => mouseOver(elem.id, event)}
               onMouseLeave={event => mouseLeave(elem.id, event)}
-              id={elem.id}
               item={elem}
               src={elem.image}
               style={{
@@ -52,6 +59,15 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals }) => {
                 transform: `rotate(${elem.rotation}deg)`
               }}
             />
+            {elem.showButtons && (
+              <Icon
+                onMouseEnter={event => mouseOver(elem.id, event)}
+                onMouseLeave={event => mouseLeave(elem.id, event)}
+                style={styles.iconDelete}
+                onClick={event => deletePedal(elem.id, event)}
+                name="delete"
+              />
+            )}
           </div>
         </Draggable>
       ))}
