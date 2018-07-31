@@ -26,27 +26,17 @@ const pedalBoards = [
   },
   {
     id: uuid(),
-    brand: 'Pedaltrain',
-    model: 'Novo18',
-    size: 'medium',
-    price: 129.99,
-    image: 'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
-    topView: '/img/pedalboards/Pedaltrain Novo18.PNG',
+    brand: 'Voodoo Lab',
+    model: 'PX-8 PLUS',
+    size: 'large',
+    price: 169.99,
+    image:
+      'https://cdn.shopify.com/s/files/1/2015/7205/products/VoodooLab_Dingbat_PX_PX8Plus_d6382811-a9b8-4f15-9569-f0b22bf66037_800x.jpg?v=1510326062',
+    topView: '/img/pedalboards/VoodooLab PX-8 PLUS.png',
     description:
-      'The Novo series is Pedaltrain’s new five-rail pedal board system. Novo means “a new beginning” in Latin. Pedaltrain’s new Novo Series is exactly that, a fresh redesign of their market-leading pedal board design. Thanks to Pedaltrain’s new modified rail system and open front design, mounting pedals and power supplies is easier than ever.  Even the smallest pedals make an incredibly strong bond with this new rail system. Novo 18’s five-rail design is perfect.'
+      'The BOSS BCB-60 Pedal Case makes setup, breakdown and storage simple. Its padded interior protects and holds your effects pedals in place. The BCB-60 holds a wide range of gear including Boss compact and Twin pedals and select stompbox models from other manufacturers. A convenient AC adapter supplies power for up to 7 devices.'
   },
-  {
-    id: uuid(),
-    brand: 'Pedaltrain',
-    model: 'Novo24',
-    size: 'medium',
 
-    price: 129.99,
-    image: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
-    topView: '/img/pedalboards/Pedaltrain Novo 24.PNG',
-    description:
-      "A fresh take on Pedaltrain's timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. Featuring a redesigned open-front configuration, Sweetwater guitarists really appreciate the extra space the Novo 24 provides for loop switchers and bigger pedals, while uncluttered format makes it easy to install power supplies and cabling. The Novo 24 even comes with a package of zip ties and hook-and-loop fasteners to get you started."
-  },
   {
     id: uuid(),
     brand: 'MONO',
@@ -113,15 +103,16 @@ const pedalBoards = [
   },
   {
     id: uuid(),
-    brand: 'Pedaltrain',
-    model: 'Novo 24',
-    price: 169.99,
-    size: 'medium',
+    brand: 'Temple Audio Design',
+    model: 'Trio 28 Red',
+    price: 129.99,
+    size: 'large',
 
-    image: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
-    topView: 'https://d1aeri3ty3izns.cloudfront.net/media/14/146480/1200/preview.jpg',
+    image: 'https://www.thomann.de/pics/bdb/368330/10331999_800.jpg',
+    topView: '/img/pedalboards/Temple trio 28.png',
+
     description:
-      "The Novo series is Pedaltrain’s five-rail pedal board system. Mounting pedals and power supplies has never been easier with Novo's open front design and rail spacing. Novo 24 is perfect for players who use true-bypass switchers or need an extra rail to accommodate a variety of pedal configurations. Novo 24 is available for purchase with either Pedaltrain’s fitted soft case (featuring a heavy-duty metal zipper and reinforced stress points) or Pedaltrain’s professional-grade tour case."
+      'Amp guru Dave Friedman put 27 years of pedalboard-building experience into the Friedman Tour Pro 1530 Gold Pack pedalboard. This rugged two-tier pedalboard features a flat surface on the bottom tier and a slanted surface for the second tier, and guitarists at Sweetwater really like how this arrangement feels. Plenty of holes are available for routing patch cables and power supply lines. Best of all, the Tour Pro 1530 Gold Pack includes Friedmans Buffer Bay 6, a transparent-sounding buffer that maintains your core tone through long cable runs. Factor in the included padded carrying case, and the Friedman Tour Pro 1530 Gold Pack pedalboard is ready to rock.'
   },
   {
     id: uuid(),
@@ -166,7 +157,7 @@ const pedalBoards = [
   },
   {
     id: uuid(),
-    brand: 'Templeboards',
+    brand: 'Temple Audio Design',
     model: 'Solo 18',
     size: 'small',
 
@@ -260,6 +251,17 @@ const pedalBoards = [
 
     description:
       "A fresh take on Pedaltrain's timeless pedalboard designs, the Novo series offers you the stability and accessibility you need to take your guitar effects pedals on the road. Featuring a redesigned open-front configuration, Sweetwater guitarists really appreciate the extra space the Novo 32 provides for loop switchers and bigger pedals, while uncluttered format makes it easy to install power supplies and cabling. The Novo 32 even comes with a package of zip ties and hook-and-loop fasteners to get you started. What's more, this Novo 32 package comes with a fitted soft case, providing lightweight grab-and-go convenience when it's time to hit the road."
+  },
+  {
+    id: uuid(),
+    brand: 'Pedaltrain',
+    model: 'Novo18',
+    size: 'medium',
+    price: 129.99,
+    image: 'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
+    topView: '/img/pedalboards/pedaltrain novoo18.PNG',
+    description:
+      'The Novo series is Pedaltrain’s new five-rail pedal board system. Novo means “a new beginning” in Latin. Pedaltrain’s new Novo Series is exactly that, a fresh redesign of their market-leading pedal board design. Thanks to Pedaltrain’s new modified rail system and open front design, mounting pedals and power supplies is easier than ever.  Even the smallest pedals make an incredibly strong bond with this new rail system. Novo 18’s five-rail design is perfect.'
   }
 ]
 
