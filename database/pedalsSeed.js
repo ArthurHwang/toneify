@@ -58,7 +58,7 @@ const pedals = [
     model: 'MXR Distortion+',
     type: 'distortion',
     price: 79.99,
-    image: './img/pedals/Ibanez TS9B.png',
+    image: './img/pedals/MXR Distortion+.png',
     description:
       "The MXR Distortion + pedal gives you magical classic distortion tones from a road-tough, pedalboard-friendly unit! The Distortion + bridges the realm between overdrive and over-the-top fuzz tones, making it an essential element of your tonal toolkit. It's amazingly easy to dial in your favorite tones; simply tweak the Distortion knob to get the amount of crunch you desire, and use the Output knob to get the volume level you want. Add tasty character to your amp tones or push out serious retro pedal crunch, with the Distortion + pedal!"
   },
@@ -139,7 +139,7 @@ const pedals = [
     model: 'Reflection',
     type: 'reverb',
     price: 199.99,
-    image: './img/pedals/Ibanez TS9B.png',
+    image: './img/pedals/Wampler Reflection.png',
     description:
       'Brian Wampler’s attention to detail and commitment to designing the best and most player-friendly products out there are second to none. Those qualities are on full display within the Reflection reverb. From its convenient top-mounted jacks to its top-tier components, the Reflection reverb pedal is every bit a Wampler. - See more at: https://www.wamplerpedals.com/reflection#sthash.8XO5k3YU.dpuf'
   },

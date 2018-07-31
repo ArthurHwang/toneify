@@ -1,22 +1,13 @@
 import React from 'react'
 import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
 
-const PedalsModal = ({
+const PedalboardsModal = ({
   handleBuildClick,
   handleClick,
   pedalData,
   modalOpen
 }) => {
-  const styles = {
-    image: {
-      height: '100%',
-      width: '300px',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }
-  }
-  let ModalOutput = modalOpen ? (
+  const modalOutput = modalOpen && (
     <Modal
       style={{ top: '38%' }}
       dimmer="blurring"
@@ -27,12 +18,12 @@ const PedalsModal = ({
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>
-          Add to Pedalboard
+          Build
         </Button>
       </Modal.Header>
       <Modal.Content image>
         <Image
-          style={styles.image}
+          className="pedalboard-modal-image"
           wrapped
           size="massive"
           src={pedalData.image}
@@ -40,9 +31,6 @@ const PedalsModal = ({
         <Modal.Description>
           <Header>
             <span style={{ color: '#bc003f' }}>{pedalData.model}</span>
-            <div style={{ color: '#bc003f' }}>
-              <strong>{pedalData.type}</strong>
-            </div>
             <div>
               <strong>
                 <Icon name="money bill alternate" />
@@ -50,13 +38,13 @@ const PedalsModal = ({
               </strong>
             </div>
           </Header>
-          <div>{pedalData.description}</div>
+          <p>{pedalData.description}</p>
         </Modal.Description>
       </Modal.Content>
     </Modal>
-  ) : null
+  )
 
-  return ModalOutput
+  return modalOutput
 }
 
-export default PedalsModal
+export default PedalboardsModal
