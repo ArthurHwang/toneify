@@ -27,6 +27,9 @@ const PedalsModal = ({
           wrapped
           size="massive"
           src={pedalData.image}
+          style={{
+            width: '300px'
+          }}
         />
         <Modal.Description>
           <Header>

@@ -1,34 +1,33 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const BuilderAddPedalButton = ({ showButton, showModal }) => {
-  const buttonOutput = showButton && (
+const DeleteAllPedalsButton = ({ showButton, deleteAllPedals }) => {
+  const buttonOutput = showButton.length > 0 && (
     <Button
-      onClick={showModal}
+      onClick={deleteAllPedals}
       color="black"
-      className="pedal-add-button"
+      className="pedal-delete-button"
       style={{
         margin: '10px 0'
       }}>
       <Icon
         style={{
           position: 'relative',
-          bottom: '2px',
-          left: '-8px'
+          bottom: '3px'
         }}
         size="large"
-        color="green"
-        name="add"
+        color="red"
+        name="delete"
       />
       <span
         style={{
-          color: '#21ba45'
+          color: '#bc003f'
         }}>
-        Add Pedal
+        Clear Pedals
       </span>
     </Button>
   )
 
   return buttonOutput
 }
-export default BuilderAddPedalButton
+export default DeleteAllPedalsButton
