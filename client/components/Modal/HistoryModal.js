@@ -18,7 +18,8 @@ const HistoryModal = ({
   }
   const modalOutput = showModal && (
     <Modal
-      onClick={closeModalHandler}
+      closeIcon
+      onClose={closeModalHandler}
       open
       dimmer="blurring"
       style={styles.modal}>
