@@ -33,8 +33,7 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    }
-    else {
+    } else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
@@ -129,7 +128,7 @@ class Builder extends Component {
     fetch('/api/userConfigs', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -137,7 +136,10 @@ class Builder extends Component {
         pedals: this.state.pedalsOnBoard
       })
     })
-      .then(res => res.json())
+      .then(res => {
+        alert('Build Configuration Saved')
+        res.json()
+      })
       .then(data => {
         fetch('/api/userConfigs', {
           method: 'GET'
@@ -151,12 +153,28 @@ class Builder extends Component {
   }
 
   render() {
-    const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
+    const {
+      buildHistory,
+      showHistoryModal,
+      pedals,
+      showModal,
+      currentPedalboard,
+      pedalsOnBoard
+    } = this.state
     return (
       <Fragment>
-        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
-        <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
-        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
+        <BuilderAddPedalButton
+          showButton={currentPedalboard}
+          showModal={this.openModalHandler}
+        />
+        <DeleteAllPedalsButton
+          showButton={this.state.pedalsOnBoard}
+          deleteAllPedals={this.deleteAllPedals}
+        />
+        <BuilderSaveButton
+          saveBuild={this.saveBuild}
+          showButton={this.state.pedalsOnBoard}
+        />
         <ShowHistoryButton showModal={this.openHistoryModalHandler} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
@@ -164,7 +182,11 @@ class Builder extends Component {
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
+        {currentPedalboard ? (
+          <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
+        ) : (
+          <WarningMessage />
+        )}
         <BuilderPedals
           deletePedal={this.deletePedal}
           mouseLeave={this.buttonHide}
