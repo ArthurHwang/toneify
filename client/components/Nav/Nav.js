@@ -11,7 +11,7 @@ class Nav extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu size="large" inverted stackable>
+      <Menu style={{ borderRadius: '0' }} size="large" inverted stackable>
         <Menu.Item
           onClick={this.handleItemClick}
           active={activeItem === '/'}
