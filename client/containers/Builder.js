@@ -6,6 +6,8 @@ import BuilderPedals from '../components/Builder/BuilderPedals'
 import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
 import DeleteAllPedalsButton from '../components/Builder/BuilderDeleteAllPedalsButton'
 import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
+import HistoryModal from '../components/Modal/HistoryModal'
+import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -14,7 +16,9 @@ class Builder extends Component {
       currentPedalboard: null,
       pedals: [],
       pedalsOnBoard: [],
-      showModal: false
+      showModal: false,
+      buildHistory: null,
+      showHistoryModal: false
     }
   }
 
@@ -29,11 +33,21 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    } else {
+    }
+    else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
     }
+
+    fetch('/api/userConfigs', {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ buildHistory: data })
+      })
+      .catch(err => console.log(err))
   }
 
   addPedal = id => {
@@ -73,6 +87,14 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
+  openHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: true })
+  }
+
+  closeHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: false })
+  }
+
   buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
@@ -103,36 +125,48 @@ class Builder extends Component {
     this.setState({ pedalsOnBoard: copy })
   }
 
+  saveBuild = () => {
+    fetch('/api/userConfigs', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pedalBoard: this.state.currentPedalboard,
+        pedals: this.state.pedalsOnBoard
+      })
+    })
+      .then(res => res.json())
+      .catch(error => console.log(error))
+  }
+
   render() {
-    const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
+    const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
     return (
       <Fragment>
-        <BuilderAddPedalButton
-          showButton={currentPedalboard}
-          showModal={this.openModalHandler}
-        />
-        <DeleteAllPedalsButton
-          showButton={this.state.pedalsOnBoard}
-          deleteAllPedals={this.deleteAllPedals}
-        />
-        <BuilderSaveButton showButton={this.state.pedalsOnBoard} />
+        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
+        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
+        <ShowHistoryButton showModal={this.openHistoryModalHandler} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? (
-          <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
-        ) : (
-          <WarningMessage />
-        )}
+        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
           deletePedal={this.deletePedal}
           mouseLeave={this.buttonHide}
           mouseOver={this.buttonShow}
           rotate={this.rotatePedal}
           pedals={pedalsOnBoard}
+        />
+        <HistoryModal
+          showModal={showHistoryModal}
+          closeModalHandler={this.closeHistoryModalHandler}
+          buildHistory={buildHistory}
         />
       </Fragment>
     )

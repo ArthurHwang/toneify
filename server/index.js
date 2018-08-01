@@ -1,4 +1,5 @@
 require('dotenv/config')
+const uuid = require('uuid')
 const express = require('express')
 const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
@@ -19,6 +20,7 @@ MongoClient.connect(
   const db = client.db('toneify')
   const pedalboards = db.collection('pedalboards')
   const pedals = db.collection('pedals')
+  const userConfigs = db.collection('userConfigs')
 
   app.get('/api/pedalboards', (req, res) =>
     pedalboards
@@ -30,8 +32,7 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      })
-  )
+      }))
 
   app.get('/api/pedals', (req, res) =>
     pedals
@@ -43,8 +44,36 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
+      }))
+
+  app.get('/api/userConfigs', (req, res) =>
+    userConfigs
+      .find()
+      .toArray()
+      .then(data => {
+        res.json(data)
       })
-  )
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      }))
+
+  app.post('/api/userConfigs', (req, res) => {
+    const id = uuid()
+    const pedalBoard = req.body.pedalBoard
+    const pedals = req.body.pedals
+    const date = new Date()
+    const utcDate = date.toUTCString()
+    const slicedDate = utcDate.slice(0, 25)
+
+    userConfigs
+      .insertOne({ id, timeStamp: slicedDate, pedalBoard, pedals })
+      .then(response => res.send(response))
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  })
 
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'), err => {

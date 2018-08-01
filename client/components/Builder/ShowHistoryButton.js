@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const BuilderSaveButton = ({ showButton, saveBuild }) => {
-  const buttonOutput = showButton.length > 0 && (
+const ShowHistoryButton = ({ showModal }) => {
+  const buttonOutput = (
     <Button
-      onClick={saveBuild}
+      onClick={showModal}
       color="black"
-      className="save-button"
+      className="show-history-button"
       style={{
         margin: '10px 0'
       }}
@@ -26,7 +26,7 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
           color: '#2185d0'
         }}
       >
-        Save Build
+        ShowHistory
       </span>
     </Button>
   )
@@ -34,4 +34,4 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
   return buttonOutput
 }
 
-export default BuilderSaveButton
+export default ShowHistoryButton
