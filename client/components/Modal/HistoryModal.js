@@ -25,6 +25,9 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
               <Table.HeaderCell textAlign="center">
                 Exchange Build
               </Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">
+                Delete Build
+              </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -44,6 +47,9 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="top">
                   <Icon color="orange" name="exchange" />
+                </Table.Cell>
+                <Table.Cell textAlign="center" verticalAlign="top">
+                  <Icon color="red" name="delete" />
                 </Table.Cell>
               </Table.Row>
             ))}

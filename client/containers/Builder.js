@@ -153,6 +153,12 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
+  deleteBuild = id => {
+    fetch('/api/userConfigs', {
+      method: 'DELETE'
+    })
+  }
+
   render() {
     const {
       buildHistory,
@@ -199,6 +205,7 @@ class Builder extends Component {
           showModal={showHistoryModal}
           closeModalHandler={this.closeHistoryModalHandler}
           buildHistory={buildHistory}
+          deleteBuild={this.deleteBuild}
         />
         <SaveCompleteModal
           closeModal={this.closeSaveModal}
