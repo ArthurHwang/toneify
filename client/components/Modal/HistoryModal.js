@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon, Table, Modal } from 'semantic-ui-react'
+import moment from 'moment'
 
 const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
   const styles = {
@@ -53,6 +54,8 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
       </Modal.Content>
     </Modal>
   )
+
+  moment
 
   return modalOutput
 }

@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
 const path = require('path')
+const moment = require('moment')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -64,25 +65,9 @@ MongoClient.connect(
     const id = uuid()
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
-
-    const date = new Date()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    let ampm = hours >= 12 ? 'pm' : 'am'
-    hours = hours % 12
-    hours = hours || 12
-    minutes = minutes < 10 ? '0' + minutes : minutes
-
-    const dateOfMonth = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
-
-    const strTime = hours + ':' + minutes + ' ' + ampm
-    const strDate = month + '/' + dateOfMonth + '/' + year
-    const aggregate = strDate + ' ' + strTime
-
+    const date = moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
     userConfigs
-      .insertOne({ id, timeStamp: aggregate, pedalBoard, pedals })
+      .insertOne({ id, timeStamp: date, pedalBoard, pedals })
       .then(result => res.json(result.ops[0]))
       .catch(err => {
         console.log(err)
