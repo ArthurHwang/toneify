@@ -9,24 +9,22 @@ const ShowHistoryButton = ({ showModal }) => {
       className="show-history-button"
       style={{
         margin: '10px 0'
-      }}
-    >
+      }}>
       <Icon
         style={{
           position: 'relative',
           bottom: '3px',
-          left: '-4px'
+          left: '-15px'
         }}
         size="large"
-        color="blue"
-        name="save outline"
+        color="orange"
+        name="history"
       />
       <span
         style={{
-          color: '#2185d0'
-        }}
-      >
-        ShowHistory
+          color: '#f2711c'
+        }}>
+        History
       </span>
     </Button>
   )
