@@ -29,7 +29,7 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
     </Button>
   )
 
-  return buttonOutput;
+  return buttonOutput
 }
 
 export default BuilderSaveButton
