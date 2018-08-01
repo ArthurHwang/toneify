@@ -2,12 +2,18 @@ import React from 'react'
 import { Icon, Table, Modal } from 'semantic-ui-react'
 
 const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
+  const styles = {
+    modal: {
+      position: 'absolute',
+      top: '13%'
+    }
+  }
   const modalOutput = showModal && (
     <Modal
       onClick={closeModalHandler}
       open
       dimmer="blurring"
-      style={{ position: 'absolute', top: '13%' }}>
+      style={styles.modal}>
       <Modal.Header>Saved Builds</Modal.Header>
       <Modal.Content scrolling>
         <Table striped>
