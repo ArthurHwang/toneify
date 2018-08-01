@@ -1,11 +1,19 @@
 import React from 'react'
 import { Icon, Table, Modal } from 'semantic-ui-react'
 
-const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
+const HistoryModal = ({
+  closeModalHandler,
+  showModal,
+  buildHistory,
+  deleteBuild
+}) => {
   const styles = {
     modal: {
       position: 'absolute',
       top: '13%'
+    },
+    iconDelete: {
+      cursor: 'pointer'
     }
   }
   const modalOutput = showModal && (
@@ -46,10 +54,15 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
                   ))}
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="top">
-                  <Icon color="orange" name="exchange" />
+                  <Icon color="blue" name="exchange" />
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="top">
-                  <Icon color="red" name="delete" />
+                  <Icon
+                    style={styles.iconDelete}
+                    onClick={() => deleteBuild(elem.id)}
+                    color="red"
+                    name="delete"
+                  />
                 </Table.Cell>
               </Table.Row>
             ))}
