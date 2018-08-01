@@ -5,6 +5,10 @@ import BuilderModal from '../components/Modal/BuilderModal'
 import BuilderPedals from '../components/Builder/BuilderPedals'
 import BuilderAddPedalButton from '../components/Builder/BuilderAddPedalButton'
 import DeleteAllPedalsButton from '../components/Builder/BuilderDeleteAllPedalsButton'
+import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
+import HistoryModal from '../components/Modal/HistoryModal'
+import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
+import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 
 class Builder extends Component {
   constructor(props) {
@@ -13,7 +17,10 @@ class Builder extends Component {
       currentPedalboard: null,
       pedals: [],
       pedalsOnBoard: [],
-      showModal: false
+      showModal: false,
+      buildHistory: null,
+      showHistoryModal: false,
+      showSaveCompleteModal: false
     }
   }
 
@@ -33,6 +40,15 @@ class Builder extends Component {
         currentPedalboard: this.props.location.state.currentPedalboard
       })
     }
+
+    fetch('/api/userConfigs', {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ buildHistory: data })
+      })
+      .catch(err => console.log(err))
   }
 
   addPedal = id => {
@@ -72,6 +88,18 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
+  openHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: true })
+  }
+
+  closeHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: false })
+  }
+
+  closeSaveModal = () => {
+    this.setState({ showSaveCompleteModal: false })
+  }
+
   buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
@@ -102,8 +130,38 @@ class Builder extends Component {
     this.setState({ pedalsOnBoard: copy })
   }
 
+  saveBuild = () => {
+    fetch('/api/userConfigs', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pedalBoard: this.state.currentPedalboard,
+        pedals: this.state.pedalsOnBoard
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const appendToHistory = [...this.state.buildHistory, data]
+        this.setState({
+          buildHistory: appendToHistory,
+          showSaveCompleteModal: true
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
   render() {
-    const { pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
+    const {
+      buildHistory,
+      showHistoryModal,
+      pedals,
+      showModal,
+      currentPedalboard,
+      pedalsOnBoard
+    } = this.state
     return (
       <Fragment>
         <BuilderAddPedalButton
@@ -114,6 +172,11 @@ class Builder extends Component {
           showButton={this.state.pedalsOnBoard}
           deleteAllPedals={this.deleteAllPedals}
         />
+        <BuilderSaveButton
+          saveBuild={this.saveBuild}
+          showButton={this.state.pedalsOnBoard}
+        />
+        <ShowHistoryButton showModal={this.openHistoryModalHandler} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
@@ -131,6 +194,15 @@ class Builder extends Component {
           mouseOver={this.buttonShow}
           rotate={this.rotatePedal}
           pedals={pedalsOnBoard}
+        />
+        <HistoryModal
+          showModal={showHistoryModal}
+          closeModalHandler={this.closeHistoryModalHandler}
+          buildHistory={buildHistory}
+        />
+        <SaveCompleteModal
+          closeModal={this.closeSaveModal}
+          showModal={this.state.showSaveCompleteModal}
         />
       </Fragment>
     )

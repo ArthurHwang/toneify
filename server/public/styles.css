@@ -27,7 +27,7 @@
   color: #bc003f;
   position: absolute;
   bottom: -9px;
-  left: 37%;
+  left: 39%;
 }
 
 .pedal-on-board-container {
@@ -68,9 +68,29 @@
 }
 
 .pedal-delete-button {
+  z-index: 100;
   position: absolute;
   right: 0;
-  top: 10em;
+  top: 246px;
+  height: 48px;
+  width: 150px;
+}
+
+.save-button {
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  top: 193px;
+  height: 48px;
+  width: 150px;
+}
+
+.show-history-button {
+  z-index: 100;
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 140px;
   height: 48px;
   width: 150px;
 }
