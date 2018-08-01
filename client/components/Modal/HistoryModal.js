@@ -9,7 +9,7 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory }) => {
       dimmer="blurring"
       style={{ position: 'absolute', top: '13%' }}>
       <Modal.Header>Saved Builds</Modal.Header>
-      <Modal.Content>
+      <Modal.Content scrolling>
         <Table striped>
           <Table.Header>
             <Table.Row>
