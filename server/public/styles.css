@@ -69,10 +69,9 @@
 
 .pedal-delete-button {
   z-index: 100;
-
   position: absolute;
   right: 0;
-  top: 10em;
+  top: 246px;
   height: 48px;
   width: 150px;
 }
@@ -81,16 +80,17 @@
   z-index: 100;
   position: absolute;
   right: 0;
-  top: 13.8em;
+  top: 193px;
   height: 48px;
   width: 150px;
 }
 
 .show-history-button {
   z-index: 100;
+  float: right;
   position: absolute;
   right: 0;
-  top: 16.8em;
+  top: 140px;
   height: 48px;
   width: 150px;
 }
