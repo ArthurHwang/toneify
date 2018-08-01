@@ -150,7 +150,7 @@ class Builder extends Component {
           showSaveCompleteModal: true
         })
       })
-      .catch(error => console.log(error))
+      .catch(err => console.log(err))
   }
 
   deleteBuild = id => {
