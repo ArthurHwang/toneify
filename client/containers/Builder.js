@@ -157,15 +157,14 @@ class Builder extends Component {
     fetch('/api/userConfigs/' + id, {
       method: 'DELETE'
     })
-      .then(res => res.json())
       .then(() => {
-        fetch('/api/userConfigs', {
-          method: 'GET'
+        const copy = [...this.state.buildHistory]
+        copy.find((elem, index, array) => {
+          if (elem.id === id) {
+            array.splice(index, 1)
+          }
         })
-          .then(res => res.json())
-          .then(data => {
-            this.setState({ buildHistory: data })
-          })
+        this.setState({ buildHistory: copy })
       })
       .catch(error => console.log(error))
   }
