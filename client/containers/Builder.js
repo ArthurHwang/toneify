@@ -136,18 +136,10 @@ class Builder extends Component {
         pedals: this.state.pedalsOnBoard
       })
     })
-      .then(res => {
-        alert('Build Configuration Saved')
-        res.json()
-      })
+      .then(res => res.json())
       .then(data => {
-        fetch('/api/userConfigs', {
-          method: 'GET'
-        })
-          .then(res => res.json())
-          .then(payload => {
-            this.setState({ buildHistory: payload })
-          })
+        const appendToHistory = [...this.state.buildHistory, data]
+        this.setState({ buildHistory: appendToHistory })
       })
       .catch(error => console.log(error))
   }

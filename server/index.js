@@ -83,7 +83,7 @@ MongoClient.connect(
 
     userConfigs
       .insertOne({ id, timeStamp: aggregate, pedalBoard, pedals })
-      .then(response => res.send(response))
+      .then(result => res.json(result.ops[0]))
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
