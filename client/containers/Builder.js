@@ -154,9 +154,20 @@ class Builder extends Component {
   }
 
   deleteBuild = id => {
-    fetch('/api/userConfigs', {
+    fetch('/api/userConfigs/' + id, {
       method: 'DELETE'
     })
+      .then(res => res.json())
+      .then(() => {
+        fetch('/api/userConfigs', {
+          method: 'GET'
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ buildHistory: data })
+          })
+      })
+      .catch(error => console.log(error))
   }
 
   render() {
