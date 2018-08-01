@@ -9,8 +9,7 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
       className="save-button"
       style={{
         margin: '10px 0'
-      }}
-    >
+      }}>
       <Icon
         style={{
           position: 'relative',
@@ -24,14 +23,13 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
       <span
         style={{
           color: '#2185d0'
-        }}
-      >
+        }}>
         Save Build
       </span>
     </Button>
   )
 
-  return buttonOutput
+  return buttonOutput;
 }
 
 export default BuilderSaveButton
