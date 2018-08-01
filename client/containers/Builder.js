@@ -138,6 +138,15 @@ class Builder extends Component {
       })
     })
       .then(res => res.json())
+      .then(data => {
+        fetch('/api/userConfigs', {
+          method: 'GET'
+        })
+          .then(res => res.json())
+          .then(payload => {
+            this.setState({ buildHistory: payload })
+          })
+      })
       .catch(error => console.log(error))
   }
 
