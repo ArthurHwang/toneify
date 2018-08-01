@@ -32,7 +32,8 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      }))
+      })
+  )
 
   app.get('/api/pedals', (req, res) =>
     pedals
@@ -44,7 +45,8 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      }))
+      })
+  )
 
   app.get('/api/userConfigs', (req, res) =>
     userConfigs
@@ -56,18 +58,32 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      }))
+      })
+  )
 
   app.post('/api/userConfigs', (req, res) => {
     const id = uuid()
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
+
     const date = new Date()
-    const utcDate = date.toUTCString()
-    const slicedDate = utcDate.slice(0, 25)
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    let ampm = hours >= 12 ? 'pm' : 'am'
+    hours = hours % 12
+    hours = hours || 12
+    minutes = minutes < 10 ? '0' + minutes : minutes
+
+    const dateOfMonth = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    const strTime = hours + ':' + minutes + ' ' + ampm
+    const strDate = month + '/' + dateOfMonth + '/' + year
+    const aggregate = strDate + ' ' + strTime
 
     userConfigs
-      .insertOne({ id, timeStamp: slicedDate, pedalBoard, pedals })
+      .insertOne({ id, timeStamp: aggregate, pedalBoard, pedals })
       .then(response => res.send(response))
       .catch(err => {
         console.log(err)
