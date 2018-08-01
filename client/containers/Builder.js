@@ -8,6 +8,7 @@ import DeleteAllPedalsButton from '../components/Builder/BuilderDeleteAllPedalsB
 import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
 import HistoryModal from '../components/Modal/HistoryModal'
 import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
+import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 
 class Builder extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Builder extends Component {
       pedalsOnBoard: [],
       showModal: false,
       buildHistory: null,
-      showHistoryModal: false
+      showHistoryModal: false,
+      showSaveCompleteModal: false
     }
   }
 
@@ -94,6 +96,10 @@ class Builder extends Component {
     this.setState({ showHistoryModal: false })
   }
 
+  closeSaveModal = () => {
+    this.setState({ showSaveCompleteModal: false })
+  }
+
   buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
@@ -139,7 +145,10 @@ class Builder extends Component {
       .then(res => res.json())
       .then(data => {
         const appendToHistory = [...this.state.buildHistory, data]
-        this.setState({ buildHistory: appendToHistory })
+        this.setState({
+          buildHistory: appendToHistory,
+          showSaveCompleteModal: true
+        })
       })
       .catch(error => console.log(error))
   }
@@ -190,6 +199,10 @@ class Builder extends Component {
           showModal={showHistoryModal}
           closeModalHandler={this.closeHistoryModalHandler}
           buildHistory={buildHistory}
+        />
+        <SaveCompleteModal
+          closeModal={this.closeSaveModal}
+          showModal={this.state.showSaveCompleteModal}
         />
       </Fragment>
     )
