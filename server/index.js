@@ -78,7 +78,7 @@ MongoClient.connect(
     const id = uuid()
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
-    const date = moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
+    const date = moment().format('DD/MM/YYYY h:mm:ss a')
     userConfigs
       .insertOne({ id, timeStamp: date, pedalBoard, pedals })
       .then(result => res.json(result.ops[0]))
