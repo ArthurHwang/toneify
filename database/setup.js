@@ -9,7 +9,7 @@ MongoClient.connect(
   { useNewUrlParser: true }
 )
   .then(client => {
-    const db = client.db('toneify')
+    const db = client.db()
     const collection = db.collection('pedalboards')
 
     return collection
@@ -28,7 +28,7 @@ MongoClient.connect(
   { useNewUrlParser: true }
 )
   .then(client => {
-    const db = client.db('toneify')
+    const db = client.db()
     const collection = db.collection('pedals')
 
     return collection
