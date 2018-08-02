@@ -1,5 +1,5 @@
 require('dotenv/config')
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongodb');
 
 const pedalBoards = require('./pedalboardsSeed')
 const pedals = require('./pedalsSeed')
