@@ -75,6 +75,19 @@ MongoClient.connect(
       })
   })
 
+  app.delete('/api/userConfigs/:id', (req, res) => {
+    const id = req.params.id
+    userConfigs
+      .findOneAndDelete({ id: id })
+      .then(response => {
+        res.json(response)
+      })
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  })
+
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'), err => {
       if (err) {

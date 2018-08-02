@@ -150,6 +150,22 @@ class Builder extends Component {
           showSaveCompleteModal: true
         })
       })
+      .catch(err => console.log(err))
+  }
+
+  deleteBuild = id => {
+    fetch('/api/userConfigs/' + id, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        const copy = [...this.state.buildHistory]
+        copy.forEach((elem, index, array) => {
+          if (elem.id === id) {
+            array.splice(index, 1)
+          }
+        })
+        this.setState({ buildHistory: copy })
+      })
       .catch(error => console.log(error))
   }
 
@@ -199,6 +215,7 @@ class Builder extends Component {
           showModal={showHistoryModal}
           closeModalHandler={this.closeHistoryModalHandler}
           buildHistory={buildHistory}
+          deleteBuild={this.deleteBuild}
         />
         <SaveCompleteModal
           closeModal={this.closeSaveModal}
