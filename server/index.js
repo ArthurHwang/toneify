@@ -17,7 +17,7 @@ MongoClient.connect(
   process.env.MONGODB_URI,
   { useNewUrlParser: true }
 ).then(client => {
-  const db = client.db('toneify')
+  const db = client.db('')
   const pedalboards = db.collection('pedalboards')
   const pedals = db.collection('pedals')
   const userConfigs = db.collection('userConfigs')
