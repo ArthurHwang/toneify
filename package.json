@@ -1,6 +1,9 @@
 {
   "name": "toneify",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.0.0"
+  }
   "description": "A web-app to help guitarists find their perfect tone",
   "main": "server/index.js",
   "scripts": {
@@ -11,7 +14,10 @@
     "watch:client": "watchify -vd -t babelify client/ -o server/public/main.js",
     "watch:public": "browser-sync start -c browser-sync.js",
     "watch": "npm-run-all --parallel watch:*",
-    "prewatch": "npm run seed"
+    "prewatch": "npm run seed",
+    "postinstall":
+      "browserify client/index.js -t babelify -o server/public/main.js",
+    "heroku-postbuild": "node database/setup.js"
   },
   "repository": {
     "type": "git",
