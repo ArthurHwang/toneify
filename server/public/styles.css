@@ -17,16 +17,16 @@
 .icon-rotate {
   z-index: 100;
   color: #bc003f;
-  position: absolute;
-  top: -5px;
+  position: relative;
+  top: 20px;
   left: 40%;
 }
 
 .icon-delete {
   z-index: 100;
   color: #bc003f;
-  position: absolute;
-  bottom: -9px;
+  position: relative;
+  bottom: 20px;
   left: 39%;
 }
 
@@ -41,8 +41,6 @@
 .pedal-on-board {
   height: 200px;
   width: 135px;
-  position: relative;
-  display: inline-block;
 }
 
 .pedal-add-button {
