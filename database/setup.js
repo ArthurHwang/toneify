@@ -4,10 +4,8 @@ const { MongoClient } = require('mongodb');
 const pedalBoards = require('./pedalboardsSeed')
 const pedals = require('./pedalsSeed')
 
-const MONGODB_URI = process.env.MONGODB_URI
-
 MongoClient.connect(
-  MONGODB_URI,
+  process.env.MONGODB_URI,
   { useNewUrlParser: true }
 )
   .then(client => {
@@ -26,7 +24,7 @@ MongoClient.connect(
   })
 
 MongoClient.connect(
-  MONGODB_URI,
+  process.env.MONGODB_URI,
   { useNewUrlParser: true }
 )
   .then(client => {
