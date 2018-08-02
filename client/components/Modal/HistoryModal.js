@@ -5,12 +5,16 @@ const HistoryModal = ({
   closeModalHandler,
   showModal,
   buildHistory,
-  deleteBuild
+  deleteBuild,
+  loadSavedBuild
 }) => {
   const styles = {
     modal: {
       position: 'absolute',
       top: '13%'
+    },
+    iconExchange: {
+      cursor: 'pointer'
     },
     iconDelete: {
       cursor: 'pointer'
@@ -55,7 +59,12 @@ const HistoryModal = ({
                   ))}
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="top">
-                  <Icon color="blue" name="exchange" />
+                  <Icon
+                    onClick={() => loadSavedBuild(elem.id)}
+                    style={styles.iconExchange}
+                    color="blue"
+                    name="exchange"
+                  />
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="top">
                   <Icon
