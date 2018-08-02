@@ -28,7 +28,7 @@ class Builder extends Component {
   componentDidMount() {
     fetch('/api/pedals', {
       method: 'GET'
-    });
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({ pedals: data })
