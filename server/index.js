@@ -48,6 +48,19 @@ MongoClient.connect(
       })
   )
 
+  app.get('/api/userConfigs/:id', (req, res) => {
+    const id = req.params.id
+    userConfigs
+      .findOne({ id: id })
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  })
+
   app.get('/api/userConfigs', (req, res) =>
     userConfigs
       .find()
