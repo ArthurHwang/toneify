@@ -20,7 +20,8 @@ class Builder extends Component {
       showModal: false,
       buildHistory: null,
       showHistoryModal: false,
-      showSaveCompleteModal: false
+      showSaveCompleteModal: false,
+      currentDraggedID: ''
     }
   }
 
@@ -51,6 +52,38 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
+  onControlledDrag = (e, position) => {
+    const { x, y } = position
+    const copy = [...this.state.pedalsOnBoard]
+    copy.forEach(elem => {
+      if (elem.id === this.state.currentDraggedID) {
+        elem['posX'] = x
+        elem['posY'] = y
+      }
+    })
+    this.setState({ pedalsOnBoard: copy })
+  }
+
+  loadSavedBuild = id => {
+    fetch('/api/userConfigs/' + id, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          currentPedalboard: data.pedalBoard,
+          pedalsOnBoard: data.pedals,
+          showHistoryModal: false
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  currentDraggedID = (e, id) => {
+    console.log(id)
+    this.setState({ currentDraggedID: id })
+  }
+
   addPedal = id => {
     const findPedal = this.state.pedals.find((elem, index) => {
       if (elem.id === id) {
@@ -61,14 +94,16 @@ class Builder extends Component {
     const withRotation = updatePedalsOnBoard.map((elem, index) => ({
       ...elem,
       rotation: elem.rotation || 0,
-      showButtons: elem.showButtons || false
+      showButtons: elem.showButtons || false,
+      posX: null,
+      posY: null
     }))
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
   deletePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.find((elem, index, array) => {
+    copy.forEach((elem, index, array) => {
       if (elem.id === id) {
         array.splice(index, 1)
       }
@@ -205,6 +240,8 @@ class Builder extends Component {
           <WarningMessage />
         )}
         <BuilderPedals
+          getId={this.currentDraggedID}
+          onDrag={this.onControlledDrag}
           deletePedal={this.deletePedal}
           mouseLeave={this.buttonHide}
           mouseOver={this.buttonShow}
@@ -212,6 +249,7 @@ class Builder extends Component {
           pedals={pedalsOnBoard}
         />
         <HistoryModal
+          loadSavedBuild={this.loadSavedBuild}
           showModal={showHistoryModal}
           closeModalHandler={this.closeHistoryModalHandler}
           buildHistory={buildHistory}

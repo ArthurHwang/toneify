@@ -8,12 +8,18 @@ const BuilderPedals = ({
   mouseOver,
   rotate,
   pedals,
-  deletePedal
+  deletePedal,
+  onDrag,
+  getId
 }) => {
   return (
     <div className="pedal-on-board-container">
       {pedals.map((elem, index) => (
-        <Draggable key={elem.id}>
+        <Draggable
+          defaultPosition={{ x: elem.posX, y: elem.posY }}
+          onMouseDown={e => getId(e, elem.id)}
+          onDrag={onDrag}
+          key={elem.id}>
           <div>
             {elem.showButtons && (
               <PedalButtons

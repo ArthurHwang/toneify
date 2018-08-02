@@ -5,12 +5,16 @@ const HistoryModal = ({
   closeModalHandler,
   showModal,
   buildHistory,
-  deleteBuild
+  deleteBuild,
+  loadSavedBuild
 }) => {
   const styles = {
     modal: {
       position: 'absolute',
       top: '13%'
+    },
+    iconExchange: {
+      cursor: 'pointer'
     },
     iconDelete: {
       cursor: 'pointer'
@@ -32,7 +36,7 @@ const HistoryModal = ({
               <Table.HeaderCell textAlign="center">PedalBoard</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">Pedals</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">
-                Exchange Build
+                Load Build
               </Table.HeaderCell>
               <Table.HeaderCell textAlign="center">
                 Delete Build
@@ -41,12 +45,12 @@ const HistoryModal = ({
           </Table.Header>
           <Table.Body>
             {buildHistory.map(elem => (
-              <Table.Row key={elem.id} textAlign="center" verticalAlign="top">
+              <Table.Row key={elem.id} textAlign="center" verticalAlign="middle">
                 <Table.Cell>{elem.timeStamp}</Table.Cell>
                 <Table.Cell>{`${elem.pedalBoard.brand} ${
                   elem.pedalBoard.model
                 }`}</Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
+                <Table.Cell textAlign="center" verticalAlign="middle">
                   {elem.pedals.map(pedal => (
                     <strong key={pedal.id}>
                       {`${pedal.brand} ${pedal.model}`}
@@ -54,10 +58,15 @@ const HistoryModal = ({
                     </strong>
                   ))}
                 </Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
-                  <Icon color="blue" name="exchange" />
+                <Table.Cell textAlign="center" verticalAlign="middle">
+                  <Icon
+                    onClick={() => loadSavedBuild(elem.id)}
+                    style={styles.iconExchange}
+                    color="blue"
+                    name="exchange"
+                  />
                 </Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
+                <Table.Cell textAlign="center" verticalAlign="middle">
                   <Icon
                     style={styles.iconDelete}
                     onClick={() => deleteBuild(elem.id)}
