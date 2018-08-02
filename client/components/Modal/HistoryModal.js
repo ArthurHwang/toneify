@@ -36,7 +36,7 @@ const HistoryModal = ({
               <Table.HeaderCell textAlign="center">PedalBoard</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">Pedals</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">
-                Exchange Build
+                Load Build
               </Table.HeaderCell>
               <Table.HeaderCell textAlign="center">
                 Delete Build
