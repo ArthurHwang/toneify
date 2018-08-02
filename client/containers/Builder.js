@@ -28,7 +28,7 @@ class Builder extends Component {
   componentDidMount() {
     fetch('/api/pedals', {
       method: 'GET'
-    });
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({ pedals: data })
@@ -204,10 +204,6 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
-  click = () => {
-    console.log(this.state.pedalsOnBoard)
-  }
-
   render() {
     const {
       buildHistory,
@@ -263,7 +259,6 @@ class Builder extends Component {
           closeModal={this.closeSaveModal}
           showModal={this.state.showSaveCompleteModal}
         />
-        <button onClick={this.click}>clikc</button>
       </Fragment>
     )
   }
