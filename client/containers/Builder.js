@@ -159,7 +159,7 @@ class Builder extends Component {
     })
       .then(() => {
         const copy = [...this.state.buildHistory]
-        copy.find((elem, index, array) => {
+        copy.forEach((elem, index, array) => {
           if (elem.id === id) {
             array.splice(index, 1)
           }
