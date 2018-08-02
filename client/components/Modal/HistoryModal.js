@@ -45,12 +45,12 @@ const HistoryModal = ({
           </Table.Header>
           <Table.Body>
             {buildHistory.map(elem => (
-              <Table.Row key={elem.id} textAlign="center" verticalAlign="top">
+              <Table.Row key={elem.id} textAlign="center" verticalAlign="middle">
                 <Table.Cell>{elem.timeStamp}</Table.Cell>
                 <Table.Cell>{`${elem.pedalBoard.brand} ${
                   elem.pedalBoard.model
                 }`}</Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
+                <Table.Cell textAlign="center" verticalAlign="middle">
                   {elem.pedals.map(pedal => (
                     <strong key={pedal.id}>
                       {`${pedal.brand} ${pedal.model}`}
@@ -58,7 +58,7 @@ const HistoryModal = ({
                     </strong>
                   ))}
                 </Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
+                <Table.Cell textAlign="center" verticalAlign="middle">
                   <Icon
                     onClick={() => loadSavedBuild(elem.id)}
                     style={styles.iconExchange}
@@ -66,7 +66,7 @@ const HistoryModal = ({
                     name="exchange"
                   />
                 </Table.Cell>
-                <Table.Cell textAlign="center" verticalAlign="top">
+                <Table.Cell textAlign="center" verticalAlign="middle">
                   <Icon
                     style={styles.iconDelete}
                     onClick={() => deleteBuild(elem.id)}
