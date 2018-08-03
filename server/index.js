@@ -17,7 +17,7 @@ MongoClient.connect(
   process.env.MONGODB_URI,
   { useNewUrlParser: true }
 ).then(client => {
-  const db = client.db('')
+  const db = client.db()
   const pedalboards = db.collection('pedalboards')
   const pedals = db.collection('pedals')
   const userConfigs = db.collection('userConfigs')
@@ -32,8 +32,7 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      })
-  )
+      }))
 
   app.get('/api/pedals', (req, res) =>
     pedals
@@ -45,13 +44,28 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
+      }))
+
+  app.put('/api/userConfigs/:id', (req, res) => {
+    const id = req.params.id
+    const date = moment().format('DD/MM/YYYY h:mm:ss a')
+
+    console.log(id)
+    const pedalBoard = req.body.pedalBoard
+    const pedals = req.body.pedals
+    userConfigs
+      .findOneAndUpdate({ id }, { $set: { timeStamp: date, pedalBoard, pedals } }, {returnOriginal: false})
+      .then(result => res.json(result.value))
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
       })
-  )
+  })
 
   app.get('/api/userConfigs/:id', (req, res) => {
     const id = req.params.id
     userConfigs
-      .findOne({ id: id })
+      .findOne({ id })
       .then(data => {
         res.json(data)
       })
@@ -71,8 +85,7 @@ MongoClient.connect(
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
-      })
-  )
+      }))
 
   app.post('/api/userConfigs', (req, res) => {
     const id = uuid()
@@ -91,7 +104,7 @@ MongoClient.connect(
   app.delete('/api/userConfigs/:id', (req, res) => {
     const id = req.params.id
     userConfigs
-      .findOneAndDelete({ id: id })
+      .findOneAndDelete({ id })
       .then(response => {
         res.json(response)
       })

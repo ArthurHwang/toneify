@@ -9,6 +9,8 @@ import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
 import HistoryModal from '../components/Modal/HistoryModal'
 import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
 import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
+import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
+import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
 
 class Builder extends Component {
   constructor(props) {
@@ -17,11 +19,15 @@ class Builder extends Component {
       currentPedalboard: null,
       pedals: [],
       pedalsOnBoard: [],
+      buildHistory: [],
       showModal: false,
-      buildHistory: null,
       showHistoryModal: false,
       showSaveCompleteModal: false,
-      currentDraggedID: ''
+      currentDraggedID: '',
+      isEditing: false,
+      buildToBeUpdated: false,
+      currentBuildID: null,
+      showUpdateModal: false
     }
   }
 
@@ -36,7 +42,8 @@ class Builder extends Component {
       .catch(err => console.log(err))
     if (!this.props.location.state) {
       this.setState({ currentPedalboard: null })
-    } else {
+    }
+    else {
       this.setState({
         currentPedalboard: this.props.location.state.currentPedalboard
       })
@@ -57,11 +64,14 @@ class Builder extends Component {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
       if (elem.id === this.state.currentDraggedID) {
-        elem['posX'] = x
-        elem['posY'] = y
+        elem.posX = x
+        elem.posY = y
       }
     })
-    this.setState({ pedalsOnBoard: copy })
+    if (this.state.isEditing) {
+      this.setState({ isEditing: true, buildToBeUpdated: true })
+    }
+    this.setState({  pedalsOnBoard: copy })
   }
 
   loadSavedBuild = id => {
@@ -73,14 +83,15 @@ class Builder extends Component {
         this.setState({
           currentPedalboard: data.pedalBoard,
           pedalsOnBoard: data.pedals,
-          showHistoryModal: false
+          showHistoryModal: false,
+          isEditing: true,
+          currentBuildID: id
         })
       })
       .catch(err => console.log(err))
   }
 
   currentDraggedID = (e, id) => {
-    console.log(id)
     this.setState({ currentDraggedID: id })
   }
 
@@ -135,6 +146,10 @@ class Builder extends Component {
     this.setState({ showSaveCompleteModal: false })
   }
 
+  closeUpdateModal = () => {
+    this.setState({ showUpdateModal: false })
+  }
+
   buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
@@ -169,7 +184,7 @@ class Builder extends Component {
     fetch('/api/userConfigs', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -188,6 +203,33 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
+  updateBuild = () => {
+    fetch('/api/userConfigs/' + this.state.currentBuildID, {
+      method: 'PUT',
+      headers: {
+         'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pedalBoard: this.state.currentPedalboard,
+        pedals: this.state.pedalsOnBoard
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const updatedBuildHistory = this.state.buildHistory.map((elem) => {
+          if (elem.id === this.state.currentBuildID) {
+            elem = data
+            return elem
+          } else {
+            return elem
+          }
+        })
+        this.setState({isEditing: false, buildToBeUpdated: false, buildHistory: updatedBuildHistory, showUpdateModal: true})
+      })
+      .catch(err => console.log(err))
+    }
+
   deleteBuild = id => {
     fetch('/api/userConfigs/' + id, {
       method: 'DELETE'
@@ -205,40 +247,26 @@ class Builder extends Component {
   }
 
   render() {
-    const {
-      buildHistory,
-      showHistoryModal,
-      pedals,
-      showModal,
-      currentPedalboard,
-      pedalsOnBoard
-    } = this.state
+    const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
     return (
       <Fragment>
-        <BuilderAddPedalButton
-          showButton={currentPedalboard}
-          showModal={this.openModalHandler}
+        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
+        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
+        <ShowHistoryButton showButton={this.state.buildHistory} showModal={this.openHistoryModalHandler} />
+        <UpdateBuildButton
+          updateBuild={this.updateBuild}
+          pedalsOnScreen={this.state.pedalsOnBoard}
+          isEditing={this.state.isEditing}
+          showButton={this.state.buildToBeUpdated}
         />
-        <DeleteAllPedalsButton
-          showButton={this.state.pedalsOnBoard}
-          deleteAllPedals={this.deleteAllPedals}
-        />
-        <BuilderSaveButton
-          saveBuild={this.saveBuild}
-          showButton={this.state.pedalsOnBoard}
-        />
-        <ShowHistoryButton showModal={this.openHistoryModalHandler} />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
           handleClick={this.addPedal}
         />
-        {currentPedalboard ? (
-          <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} />
-        ) : (
-          <WarningMessage />
-        )}
+        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
           getId={this.currentDraggedID}
           onDrag={this.onControlledDrag}
@@ -255,10 +283,8 @@ class Builder extends Component {
           buildHistory={buildHistory}
           deleteBuild={this.deleteBuild}
         />
-        <SaveCompleteModal
-          closeModal={this.closeSaveModal}
-          showModal={this.state.showSaveCompleteModal}
-        />
+        <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
+        <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal}/>
       </Fragment>
     )
   }
