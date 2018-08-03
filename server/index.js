@@ -48,15 +48,14 @@ MongoClient.connect(
 
   app.put('/api/userConfigs/:id', (req, res) => {
     const id = req.params.id
+    const date = moment().format('DD/MM/YYYY h:mm:ss a')
+
     console.log(id)
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
     userConfigs
-      .findOneAndUpdate({ id }, { $set: { pedalBoard, pedals } })
-
-      // .then(data => {
-      //   res.json(data)
-      // })
+      .findOneAndUpdate({ id }, { $set: { timeStamp: date, pedalBoard, pedals } }, {returnOriginal: false})
+      .then(result => res.json(result.value))
       .catch(err => {
         console.log(err)
         res.sendStatus(500)
