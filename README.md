@@ -13,7 +13,6 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - Semantic UI React
 - MomentJS
 
-
 ## Key Features
 
 ### Users can Dyamically Choose Pedalboards
@@ -28,7 +27,6 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - Node.js v10
 - NPM v6
 - MongoDB v4
-
 
 ### Getting Started
 
