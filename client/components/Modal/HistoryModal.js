@@ -1,13 +1,7 @@
 import React from 'react'
 import { Icon, Table, Modal } from 'semantic-ui-react'
 
-const HistoryModal = ({
-  closeModalHandler,
-  showModal,
-  buildHistory,
-  deleteBuild,
-  loadSavedBuild
-}) => {
+const HistoryModal = ({ closeModalHandler, showModal, buildHistory, deleteBuild, loadSavedBuild }) => {
   const styles = {
     modal: {
       position: 'absolute',
@@ -21,12 +15,7 @@ const HistoryModal = ({
     }
   }
   const modalOutput = showModal && (
-    <Modal
-      closeIcon
-      onClose={closeModalHandler}
-      open
-      dimmer="blurring"
-      style={styles.modal}>
+    <Modal closeIcon onClose={closeModalHandler} open dimmer="blurring" style={styles.modal}>
       <Modal.Header>Saved Builds</Modal.Header>
       <Modal.Content scrolling>
         <Table striped>
@@ -35,21 +24,15 @@ const HistoryModal = ({
               <Table.HeaderCell textAlign="center">Time</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">PedalBoard</Table.HeaderCell>
               <Table.HeaderCell textAlign="center">Pedals</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">
-                Load Build
-              </Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">
-                Delete Build
-              </Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Load Build</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Delete Build</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {buildHistory.map(elem => (
               <Table.Row key={elem.id} textAlign="center" verticalAlign="middle">
                 <Table.Cell>{elem.timeStamp}</Table.Cell>
-                <Table.Cell>{`${elem.pedalBoard.brand} ${
-                  elem.pedalBoard.model
-                }`}</Table.Cell>
+                <Table.Cell>{`${elem.pedalBoard.brand} ${elem.pedalBoard.model}`}</Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="middle">
                   {elem.pedals.map(pedal => (
                     <strong key={pedal.id}>
@@ -67,12 +50,7 @@ const HistoryModal = ({
                   />
                 </Table.Cell>
                 <Table.Cell textAlign="center" verticalAlign="middle">
-                  <Icon
-                    style={styles.iconDelete}
-                    onClick={() => deleteBuild(elem.id)}
-                    color="red"
-                    name="delete"
-                  />
+                  <Icon style={styles.iconDelete} onClick={() => deleteBuild(elem.id)} color="red" name="delete" />
                 </Table.Cell>
               </Table.Row>
             ))}

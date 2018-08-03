@@ -45,6 +45,24 @@ MongoClient.connect(
         console.log(err)
         res.sendStatus(500)
       }))
+
+  app.put('/api/userConfigs/:id', (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    const pedalBoard = req.body.pedalBoard
+    const pedals = req.body.pedals
+    userConfigs
+      .findOneAndUpdate({ id }, { $set: { pedalBoard, pedals } })
+
+      // .then(data => {
+      //   res.json(data)
+      // })
+      .catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  })
+
   app.get('/api/userConfigs/:id', (req, res) => {
     const id = req.params.id
     userConfigs

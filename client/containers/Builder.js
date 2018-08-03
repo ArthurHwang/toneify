@@ -24,7 +24,8 @@ class Builder extends Component {
       showSaveCompleteModal: false,
       currentDraggedID: '',
       isEditing: false,
-      buildToBeUpdated: false
+      buildToBeUpdated: false,
+      currentBuildID: null
     }
   }
 
@@ -68,7 +69,7 @@ class Builder extends Component {
     if (this.state.isEditing) {
       this.setState({ buildToBeUpdated: true })
     }
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ isEditing: true, pedalsOnBoard: copy })
   }
 
   loadSavedBuild = id => {
@@ -81,7 +82,8 @@ class Builder extends Component {
           currentPedalboard: data.pedalBoard,
           pedalsOnBoard: data.pedals,
           showHistoryModal: false,
-          isEditing: true
+          isEditing: true,
+          currentBuildID: id
         })
       })
       .catch(err => console.log(err))
@@ -195,6 +197,35 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
+  updateBuild = () => {
+    fetch('/api/userConfigs/' + this.state.currentBuildID, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pedalBoard: this.state.currentPedalboard,
+        pedals: this.state.pedalsOnBoard
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        updatedData = this.state.buildHistory.map((elem, index, array) => {
+          if (elem.id === this.state.currentBuildId) {
+            elem = data
+            return elem
+          }
+          else {
+            return elem
+          }
+        })
+
+        this.setStaet({ buildHistory: updatedData })
+        // .then(res => res.json())
+      })
+      .catch(err => console.log(err))
+  }
+
   deleteBuild = id => {
     fetch('/api/userConfigs/' + id, {
       method: 'DELETE'
@@ -224,6 +255,7 @@ class Builder extends Component {
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
         <ShowHistoryButton showButton={this.state.buildHistory} showModal={this.openHistoryModalHandler} />
         <UpdateBuildButton
+          updateBuild={this.updateBuild}
           pedalsOnScreen={this.state.pedalsOnBoard}
           isEditing={this.state.isEditing}
           showButton={this.state.buildToBeUpdated}
@@ -252,7 +284,6 @@ class Builder extends Component {
           deleteBuild={this.deleteBuild}
         />
         <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
-        <button onClick={this.click}>hi</button>
       </Fragment>
     )
   }

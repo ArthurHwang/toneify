@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const UpdateBuildButton = ({ pedalsOnScreen, isEditing, showButton }) => {
+const UpdateBuildButton = ({ updateBuild, pedalsOnScreen, isEditing, showButton }) => {
   const styles = {
     button: {
       margin: '10px 0',
@@ -25,7 +25,7 @@ const UpdateBuildButton = ({ pedalsOnScreen, isEditing, showButton }) => {
   const buttonOutput = isEditing &&
     showButton &&
     pedalsOnScreen.length > 0 && (
-    <Button color="black" style={styles.button}>
+    <Button onClick={updateBuild} color="black" style={styles.button}>
       <Icon style={styles.icon} size="large" color="yellow" name="edit" />
       <span style={styles.text}>Update</span>
     </Button>
