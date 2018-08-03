@@ -210,7 +210,7 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        updatedData = this.state.buildHistory.map((elem, index, array) => {
+        const updatedData = this.state.buildHistory.map((elem, index, array) => {
           if (elem.id === this.state.currentBuildId) {
             elem = data
             return elem
@@ -220,7 +220,7 @@ class Builder extends Component {
           }
         })
 
-        this.setStaet({ buildHistory: updatedData })
+        this.setState({ buildHistory: updatedData })
         // .then(res => res.json())
       })
       .catch(err => console.log(err))
