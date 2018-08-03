@@ -9,6 +9,7 @@ import BuilderSaveButton from '../components/Builder/BuilderSaveButton'
 import HistoryModal from '../components/Modal/HistoryModal'
 import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
 import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
+import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 
 class Builder extends Component {
   constructor(props) {
@@ -21,7 +22,9 @@ class Builder extends Component {
       buildHistory: [],
       showHistoryModal: false,
       showSaveCompleteModal: false,
-      currentDraggedID: ''
+      currentDraggedID: '',
+      isEditing: false,
+      buildToBeUpdated: false
     }
   }
 
@@ -62,6 +65,9 @@ class Builder extends Component {
         elem.posY = y
       }
     })
+    if (this.state.isEditing) {
+      this.setState({ buildToBeUpdated: true })
+    }
     this.setState({ pedalsOnBoard: copy })
   }
 
@@ -74,14 +80,14 @@ class Builder extends Component {
         this.setState({
           currentPedalboard: data.pedalBoard,
           pedalsOnBoard: data.pedals,
-          showHistoryModal: false
+          showHistoryModal: false,
+          isEditing: true
         })
       })
       .catch(err => console.log(err))
   }
 
   currentDraggedID = (e, id) => {
-    console.log(id)
     this.setState({ currentDraggedID: id })
   }
 
@@ -217,6 +223,11 @@ class Builder extends Component {
         <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
         <ShowHistoryButton showButton={this.state.buildHistory} showModal={this.openHistoryModalHandler} />
+        <UpdateBuildButton
+          pedalsOnScreen={this.state.pedalsOnBoard}
+          isEditing={this.state.isEditing}
+          showButton={this.state.buildToBeUpdated}
+        />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
