@@ -1,4 +1,4 @@
-# Toneify
+# toneify
 
 https://toneify-arthurhwang.herokuapp.com/
 
