@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 const WarningMessage = () => (
   <Container
     style={{
+      position: 'relative',
+      top: '350px',
+      // left: '0%',
       width: '25%'
     }}
   >
