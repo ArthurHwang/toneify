@@ -18,8 +18,8 @@ class Builder extends Component {
       currentPedalboard: null,
       pedals: [],
       pedalsOnBoard: [],
-      showModal: false,
       buildHistory: [],
+      showModal: false,
       showHistoryModal: false,
       showSaveCompleteModal: false,
       currentDraggedID: '',
@@ -67,9 +67,9 @@ class Builder extends Component {
       }
     })
     if (this.state.isEditing) {
-      this.setState({ buildToBeUpdated: true })
+      this.setState({ isEditing: true, buildToBeUpdated: true })
     }
-    this.setState({ isEditing: true, pedalsOnBoard: copy })
+    this.setState({  pedalsOnBoard: copy })
   }
 
   loadSavedBuild = id => {
@@ -201,6 +201,7 @@ class Builder extends Component {
     fetch('/api/userConfigs/' + this.state.currentBuildID, {
       method: 'PUT',
       headers: {
+         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -210,21 +211,17 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        const updatedData = this.state.buildHistory.map((elem, index, array) => {
-          if (elem.id === this.state.currentBuildId) {
+        const updatedBuildHistory = this.state.buildHistory.map((elem) => {
+          if (elem.id === this.state.currentBuildID) {
             elem = data
             return elem
-          }
-          else {
+          } else {
             return elem
           }
         })
-
-        this.setState({ buildHistory: updatedData })
-        // .then(res => res.json())
+        this.setState({isEditing: false, buildToBeUpdated: false, buildHistory: updatedBuildHistory})
       })
-      .catch(err => console.log(err))
-  }
+    }
 
   deleteBuild = id => {
     fetch('/api/userConfigs/' + id, {
@@ -240,10 +237,6 @@ class Builder extends Component {
         this.setState({ buildHistory: copy })
       })
       .catch(error => console.log(error))
-  }
-
-  click = () => {
-    console.log(this.state.buildHistory.length)
   }
 
   render() {
