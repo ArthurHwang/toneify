@@ -149,8 +149,7 @@ const pedals = [
     model: 'VCR',
     type: 'multi',
     price: 269.99,
-    image:
-      'https://media.musiciansfriend.com/is/image/MMGS7/The-VCR-Ryan-Adams-Signature-Pedal/J50975000000000-00-500x500.jpg',
+    image: './img/pedals/Ryan Adams VCR.png',
     description:
       'Who said bass guitar didn’t need distortion? We believe it definitely does - and there’s a growing number of bass players who agree with us. Alas, there are still few dedicated bass distortion pedals; for the most part, bass players have had to use either guitar stompboxes or no distortion pedals at all.  '
   },
