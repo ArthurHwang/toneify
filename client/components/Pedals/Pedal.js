@@ -1,16 +1,7 @@
 import React from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
 
-const Pedal = ({
-  id,
-  price,
-  brand,
-  model,
-  description,
-  image,
-  type,
-  handleClick
-}) => {
+const Pedal = ({ id, price, brand, model, description, image, type, handleClick }) => {
   const styles = {
     image: {
       height: '200px',
@@ -18,7 +9,8 @@ const Pedal = ({
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      margin: '10px auto'
+      margin: '10px auto',
+      background: 'none'
     }
   }
   return (

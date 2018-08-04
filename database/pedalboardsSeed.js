@@ -30,11 +30,10 @@ const pedalBoards = [
     model: 'PX-8 PLUS',
     size: 'large',
     price: 169.99,
-    image:
-      'https://cdn.shopify.com/s/files/1/2015/7205/products/VoodooLab_Dingbat_PX_PX8Plus_d6382811-a9b8-4f15-9569-f0b22bf66037_800x.jpg?v=1510326062',
-    topView: '/img/pedalboards/VoodooLab PX-8 PLUS.png',
+    image: 'https://www.americanmusical.com/Galleria/4/VOO%20DBMPXS_M3-Large.jpg',
+    topView: '/img/pedalboards/PX-8 PLUS.PNG',
     description:
-      'The BOSS BCB-60 Pedal Case makes setup, breakdown and storage simple. Its padded interior protects and holds your effects pedals in place. The BCB-60 holds a wide range of gear including Boss compact and Twin pedals and select stompbox models from other manufacturers. A convenient AC adapter supplies power for up to 7 devices.'
+      'Voodoo Lab PX-8 PLUS is a true bypass programmable pedal switcher that transforms any pedalboard into a powerful yet easy to use tool for organizing and optimizing the performance of your effects and MIDI devices. Equipped with 8 audio loops and 8 premium quality silent-operation footswitches, the PX-8 PLUS allows independent switching for effect pedals and other audio devices without touching your pedals. The PX-8 PLUS features 36 user-created preset audio loop combinations that can be accessed at the touch of a button, converting your pedalboard into a virtual multi-effects system.'
   },
 
   {
@@ -112,7 +111,7 @@ const pedalBoards = [
     topView: '/img/pedalboards/Temple trio 28.png',
 
     description:
-      'Amp guru Dave Friedman put 27 years of pedalboard-building experience into the Friedman Tour Pro 1530 Gold Pack pedalboard. This rugged two-tier pedalboard features a flat surface on the bottom tier and a slanted surface for the second tier, and guitarists at Sweetwater really like how this arrangement feels. Plenty of holes are available for routing patch cables and power supply lines. Best of all, the Tour Pro 1530 Gold Pack includes Friedmans Buffer Bay 6, a transparent-sounding buffer that maintains your core tone through long cable runs. Factor in the included padded carrying case, and the Friedman Tour Pro 1530 Gold Pack pedalboard is ready to rock.'
+      'The Temple TRIO 28 is a killer choice for those with a growing collection of large boutique pedals. The TRIO (16.5") depth leaves plenty of room for mounting bypass loopers and midi controllers. All TRIO series pedalboards feature one (1) micro module slot and three (3) mini module slots per side. Comes with the Temple Soft Case which provides an economical way to protect and transport your pedals. The durable yet lightweight design allows you to get your effects from gig to gig with peace of mind that your gear is well covered*. Each size come with a detachable shoulder strap and a deep front pouch for extra cable and accessory storage.'
   },
   {
     id: uuid(),
@@ -121,8 +120,8 @@ const pedalBoards = [
     price: 479.99,
     size: 'large',
 
-    image: 'http://friedmanamplification.com/images/FA_PedalBrd_Lrg_back_2000x2000.jpg',
-    topView: '/img/pedalboards/friedman tour pro 1530.PNG',
+    image: 'https://cdn.shopify.com/s/files/1/1661/9429/products/friedman-tour-pro-1520-pedalboards-2.jpg?v=1528294012',
+    topView: '/img/pedalboards/friedman tour pro top down.PNG',
 
     description:
       'Amp guru Dave Friedman put 27 years of pedalboard-building experience into the Friedman Tour Pro 1530 Gold Pack pedalboard. This rugged two-tier pedalboard features a flat surface on the bottom tier and a slanted surface for the second tier, and guitarists at Sweetwater really like how this arrangement feels. Plenty of holes are available for routing patch cables and power supply lines. Best of all, the Tour Pro 1530 Gold Pack includes Friedmans Buffer Bay 6, a transparent-sounding buffer that maintains your core tone through long cable runs. Factor in the included padded carrying case, and the Friedman Tour Pro 1530 Gold Pack pedalboard is ready to rock.'
@@ -149,7 +148,8 @@ const pedalBoards = [
     price: 119.99,
     size: 'small',
 
-    image: 'http://www.long-mcquade.com/files/61296/lg_faa30df9624ec2f59fafecb2887ab83d.jpg',
+    image:
+      'http://cdn3.bigcommerce.com/s-6kmlzlop/products/90/images/284/pt-jr-image1__85461.1419627021.386.513.jpg?c=2',
     topView: '/img/pedalboards/Pedaltrain Classic JR.PNG',
 
     description:
@@ -175,7 +175,7 @@ const pedalBoards = [
     size: 'medium',
 
     price: 199.99,
-    image: 'https://jimmyegypt.com/wp-content/uploads/2018/06/pedal-boards-classic-1-6_1024x1024-e1529929747883.jpg',
+    image: 'http://images.equipboard.com/uploads/item/image/10396/pedaltrain-1-l.jpg?v=1532162453',
     topView: '/img/pedalboards/Pedaltrain Classic 1.PNG',
 
     description:
@@ -188,8 +188,7 @@ const pedalBoards = [
     price: 229.99,
     size: 'large',
 
-    image:
-      'https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products968888-1200x1200--1903151945.jpg',
+    image: 'https://www.rainbowguitars.com/imagesproduct/pt/ptcl2sc-xl.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic 2.PNG',
 
     description:
@@ -202,8 +201,7 @@ const pedalBoards = [
     price: 189.99,
     size: 'medium',
 
-    image:
-      'https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products968888-1200x1200--1903151945.jpg',
+    image: 'https://www.rainbowguitars.com/imagesproduct/pt/ptclprotc-xl.jpg',
     topView: '/img/pedalboards/Pedaltrain Classic Pro.PNG',
 
     description:
@@ -258,7 +256,7 @@ const pedalBoards = [
     model: 'Novo18',
     size: 'medium',
     price: 129.99,
-    image: 'https://www.long-mcquade.com/files/61606/lg_78b2d3440174fa148662d965db612315.png',
+    image: '/img/pedalboards/Pedaltrain  novo18 gallery.PNG',
     topView: '/img/pedalboards/pedaltrain novoo18.PNG',
     description:
       'The Novo series is Pedaltrain’s new five-rail pedal board system. Novo means “a new beginning” in Latin. Pedaltrain’s new Novo Series is exactly that, a fresh redesign of their market-leading pedal board design. Thanks to Pedaltrain’s new modified rail system and open front design, mounting pedals and power supplies is easier than ever.  Even the smallest pedals make an incredibly strong bond with this new rail system. Novo 18’s five-rail design is perfect.'

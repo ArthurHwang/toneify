@@ -1,15 +1,7 @@
 import React from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
 
-const PedalBoard = ({
-  id,
-  handleClick,
-  price,
-  brand,
-  model,
-  description,
-  image
-}) => {
+const PedalBoard = ({ id, handleClick, price, brand, model, description, image }) => {
   const styles = {
     image: {
       height: '200px',
@@ -20,7 +12,7 @@ const PedalBoard = ({
     }
   }
   return (
-    <Card raised onClick={e => handleClick(id, e)}>
+    <Card fluid raised onClick={e => handleClick(id, e)}>
       <Image src={image} style={styles.image} />
       <Card.Content>
         <Card.Header>{brand}</Card.Header>
