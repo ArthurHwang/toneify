@@ -15,18 +15,31 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 
 ## Key Features
 
-### Users can add pedalboards to their builds
+- ### Users can view a list of pedalboards
 
-- ### Users can Dyamically Choose Pedalboards
+- ### Users can view a list of pedals
 
-### Users can Drag and Drop Pedals Wherever they choose
+- ### Users can view details of a pedalboard
 
-### Users can Rotate Pedals To Have a More Realistic Experience
+- ### Users can view details of a pedal
 
-### Users can Rotate Pedals To Have a More Realistic Experience
+- ### Users can pick and choose a pedalboard to build on
 
-### Users can Rotate Pedals To Have a More Realistic Experience
+- ### Users can pick and choose pedals to add to their pedalboard configuration
 
+- ### Users can drag and drop pedals
+
+- ### Users can rotate pedals to have a more realistic experience
+
+- ### Users can delete pedals from their build
+
+- ### Users can reset their build
+
+- ### Users can save their build, whilst retaining all pedal rotation values and positioning coordinates
+
+- ### Users can load their build from a build history.  Pedals' rotation and position will persist on load.
+
+- ### Users can update their build history
 
 ## Development
 
@@ -54,7 +67,13 @@ MONGODB_URI=mongodb://localhost:27017/toneify
 PORT=3000
 ```
 
-### Run the app.
+### Automatically run/restart server with `nodemon` and live reload page on update with `browser-sync`
 ```
 npm run watch
+```
+
+### ARun without `nodemon` and `browser-sync`
+```
+npm run build
+npm run start
 ```
