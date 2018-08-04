@@ -18,6 +18,8 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - ### Users can view a list of pedalboards
 <img src="https://media.giphy.com/media/2WhnFAfBILvXQrhsM1/giphy.gif" width="40" height="40" />
 
+![Alt Text](https://media.giphy.com/media/2WhnFAfBILvXQrhsM1/giphy.gi)
+
 
 
 - ### Users can view a list of pedals
