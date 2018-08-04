@@ -72,7 +72,7 @@ PORT=3000
 npm run watch
 ```
 
-### ARun without `nodemon` and `browser-sync`
+### Run without `nodemon` and `browser-sync`
 ```
 npm run build
 npm run start
