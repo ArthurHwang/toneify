@@ -40,8 +40,10 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/43680937-1781c6be-97fb-11e8-968c-afce1bc530b1.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can delete pedals from their build
+<img src="https://user-images.githubusercontent.com/18460401/43680995-7bf6d782-97fc-11e8-8672-77c5e30c07e2.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can reset their build
+<img src="https://user-images.githubusercontent.com/18460401/43680996-7cb1290c-97fc-11e8-87c9-a45f070ede7f.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can save their build, whilst retaining all pedal rotation values and positioning coordinates
 
