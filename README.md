@@ -81,13 +81,7 @@ MONGODB_URI=mongodb://localhost:27017/toneify
 PORT=3000
 ```
 
-### Automatically run/restart server with `nodemon` and live reload page on update with `browser-sync`
+### Compile and build
 ```
 npm run watch
-```
-
-### Run without `nodemon` and `browser-sync`
-```
-npm run build
-npm run start
 ```
