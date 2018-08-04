@@ -19,25 +19,25 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/43680812-a8a5543e-97f7-11e8-877f-52707c765ae2.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can view a list of pedals
-<img src="https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can view details of a pedalboard
-<img src="https://user-images.githubusercontent.com/18460401/43680830-1178c7d4-97f8-11e8-8a70-ec56bfa74891.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680830-1178c7d4-97f8-11e8-8a70-ec56bfa74891.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can view details of a pedal
-<img src="https://user-images.githubusercontent.com/18460401/43680803-62c4fd66-97f7-11e8-8bf4-7bcfc21dc409.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680803-62c4fd66-97f7-11e8-8bf4-7bcfc21dc409.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can pick and choose a pedalboard to build on
-<img src="https://user-images.githubusercontent.com/18460401/43680913-7a62bae6-97fa-11e8-8cd7-e11218e555f1.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680913-7a62bae6-97fa-11e8-8cd7-e11218e555f1.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can pick and choose pedals to add to their pedalboard configuration
-<img src="https://user-images.githubusercontent.com/18460401/43680914-7bc51690-97fa-11e8-8dce-0ff8cdde40f5.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680914-7bc51690-97fa-11e8-8dce-0ff8cdde40f5.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can drag and drop pedals
-<img src="https://user-images.githubusercontent.com/18460401/43680938-17972c52-97fb-11e8-8f26-3e44533e755e.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680938-17972c52-97fb-11e8-8f26-3e44533e755e.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can rotate pedals to have a more realistic experience
-<img src="https://user-images.githubusercontent.com/18460401/43680937-1781c6be-97fb-11e8-968c-afce1bc530b1.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/43680937-1781c6be-97fb-11e8-968c-afce1bc530b1.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can delete pedals from their build
 
