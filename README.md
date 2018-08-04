@@ -15,11 +15,18 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 
 ## Key Features
 
-### Users can Dyamically Choose Pedalboards
+### Users can add pedalboards to their builds
+
+- ### Users can Dyamically Choose Pedalboards
 
 ### Users can Drag and Drop Pedals Wherever they choose
 
 ### Users can Rotate Pedals To Have a More Realistic Experience
+
+### Users can Rotate Pedals To Have a More Realistic Experience
+
+### Users can Rotate Pedals To Have a More Realistic Experience
+
 
 ## Development
 
