@@ -20,7 +20,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - ### Users can view a list of pedals
 ![2](https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif)
 - ### Users can view details of a pedalboard
-![2](https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif)
+![3](https://user-images.githubusercontent.com/18460401/43680830-1178c7d4-97f8-11e8-8a70-ec56bfa74891.gif)
 - ### Users can view details of a pedal
 ![4](https://user-images.githubusercontent.com/18460401/43680803-62c4fd66-97f7-11e8-8bf4-7bcfc21dc409.gif)
 
