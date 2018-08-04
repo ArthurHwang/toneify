@@ -16,7 +16,8 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 ## Key Features
 
 - ### Users can view a list of pedalboards
-<img src="https://imgur.com/a/7ipBVrI" alt="alt text" width="950" height="458">
+[Imgur Image](https://imgur.com/a/7ipBVrID.jpg  width="950" height="458")
+
 
 - ### Users can view a list of pedals
 
