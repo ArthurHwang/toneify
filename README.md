@@ -16,16 +16,16 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 ## Key Features
 
 - ### Users can view a list of pedalboards
-<img src="https://user-images.githubusercontent.com/18460401/43680812-a8a5543e-97f7-11e8-877f-52707c765ae2.gif" alt="Oops...cant display" width="562" height="361">
+<img src="https://user-images.githubusercontent.com/18460401/43680812-a8a5543e-97f7-11e8-877f-52707c765ae2.gif" alt="Oops...cant display">
 
 - ### Users can view a list of pedals
-<img src="https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif" alt="Oops...cant display" width="562" height="361">
+<img src="https://user-images.githubusercontent.com/18460401/43680824-db9b7846-97f7-11e8-9b9c-988c3d743e70.gif" alt="Oops...cant display">
 
 - ### Users can view details of a pedalboard
-<img src="https://user-images.githubusercontent.com/18460401/43680830-1178c7d4-97f8-11e8-8a70-ec56bfa74891.gif" alt="Oops...cant display" width="562" height="361">
+<img src="https://user-images.githubusercontent.com/18460401/43680830-1178c7d4-97f8-11e8-8a70-ec56bfa74891.gif" alt="Oops...cant display">
 
 - ### Users can view details of a pedal
-<img src="https://user-images.githubusercontent.com/18460401/43680803-62c4fd66-97f7-11e8-8bf4-7bcfc21dc409.gif" alt="Oops...cant display" width="562" height="361">
+<img src="https://user-images.githubusercontent.com/18460401/43680803-62c4fd66-97f7-11e8-8bf4-7bcfc21dc409.gif" alt="Oops...cant display">
 
 
 
