@@ -4,7 +4,7 @@ import PedalBoard from './Pedalboard'
 
 const PedalBoards = ({ handleClick, pedalData }) => (
   <Container>
-    <Card.Group itemsPerRow={4} className="ui center aligned grid">
+    <Card.Group stackable itemsPerRow={4} className="ui center aligned grid">
       {pedalData.map((elem, index) => (
         <PedalBoard
           key={elem.model}
