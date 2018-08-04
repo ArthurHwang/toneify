@@ -46,10 +46,13 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/43680996-7cb1290c-97fc-11e8-87c9-a45f070ede7f.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can save their build, whilst retaining all pedal rotation values and positioning coordinates
+<img src="https://user-images.githubusercontent.com/18460401/43680996-7cb1290c-97fc-11e8-87c9-a45f070ede7f.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can load their build from a build history.  Pedals' rotation and position will persist on load.
+<img src="https://user-images.githubusercontent.com/18460401/43681035-715468c0-97fd-11e8-9cc3-5e531fa65089.gif" alt="Oops...cant display" width="674" height="433">
 
 - ### Users can update their build history
+<img src="https://user-images.githubusercontent.com/18460401/43681088-9821f214-97fe-11e8-946f-68d25309139f.gif" alt="Oops...cant display" width="674" height="433">
 
 ## Development
 
