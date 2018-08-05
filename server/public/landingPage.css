@@ -55,7 +55,7 @@ h1 {
   background-image: url(https://images.unsplash.com/photo-1530369843459-df3356d3bf8a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=530fb194341e0e8b7363a82da0e2a6db&w=1000&q=80);
 }
 .slideshow li:nth-child(2) {
-  background-image: url(https://images.unsplash.com/photo-1452722464566-db26e74a995b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=617aeb1299aab151244dcfa3abada91c&w=1000&q=80);
+  background-image: url(https://i.ytimg.com/vi/9WC8jrVahB0/maxresdefault.jpg);
   animation-delay: 7s;
 }
 .slideshow li:nth-child(3) {
