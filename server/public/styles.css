@@ -1,12 +1,16 @@
 .title-text {
   font-size: 1.4rem;
-  position: relative;
-  top: -11px;
+  position: absolute;
+  right: 9px;
+  top: 7px;
   color: #bc003f;
 }
 
 .logo {
-  height: 40px;
+  top: 7px;
+  height: 30px;
+  position: absolute;
+  left: 13px;
 }
 
 .react-draggable,
@@ -33,8 +37,8 @@
 .pedal-on-board-container {
   display: flex;
   flex-direction: row;
-  position: relative;
-  top: 20%;
+  position: absolute;
+  top: 40%;
   left: 29%;
 }
 

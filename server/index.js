@@ -54,7 +54,7 @@ MongoClient.connect(
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
     userConfigs
-      .findOneAndUpdate({ id }, { $set: { timeStamp: date, pedalBoard, pedals } }, {returnOriginal: false})
+      .findOneAndUpdate({ id }, { $set: { timeStamp: date, pedalBoard, pedals } }, { returnOriginal: false })
       .then(result => res.json(result.value))
       .catch(err => {
         console.log(err)

@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout'
 import Builder from './containers/Builder'
 import PedalBoards from './containers/PedalboardsView'
 import Pedals from './containers/PedalsView'
+import LandingPage from './containers/LandingPage'
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
             <Route path="/pedals" component={Pedals} />
             <Route path="/builder" component={Builder} />
             <Route path="/pedalboards/" component={PedalBoards} />
-            <Route path="/" render={() => <h1>Ready to get hella crunch tones?</h1>} />
+            <Route path="/" component={LandingPage} />
           </Switch>
         </Layout>
       </Fragment>
