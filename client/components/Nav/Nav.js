@@ -11,35 +11,20 @@ class Nav extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu style={{ borderRadius: '0' }} size="large" inverted stackable>
-        <Menu.Item
-          onClick={this.handleItemClick}
-          active={activeItem === '/'}
-          name="/">
+      <Menu style={{ borderRadius: '0', marginBottom: '0' }} size="large" inverted stackable>
+        <Menu.Item onClick={this.handleItemClick} active={activeItem === '/'} name="/">
           <Link to="/">
-            <img
-              className="logo"
-              src="https://image.flaticon.com/icons/svg/199/199449.svg"
-            />
+            <img className="logo" src="https://image.flaticon.com/icons/svg/199/199449.svg" />
             <span className="title-text">toneify</span>
           </Link>
         </Menu.Item>
-        <Menu.Item
-          onClick={this.handleItemClick}
-          active={activeItem === 'pedalboards'}
-          name="pedalboards">
+        <Menu.Item onClick={this.handleItemClick} active={activeItem === 'pedalboards'} name="pedalboards">
           <Link to="/pedalboards">Pedalboards</Link>
         </Menu.Item>
-        <Menu.Item
-          onClick={this.handleItemClick}
-          active={activeItem === 'pedals'}
-          name="pedals">
+        <Menu.Item onClick={this.handleItemClick} active={activeItem === 'pedals'} name="pedals">
           <Link to="/pedals">Pedals</Link>
         </Menu.Item>
-        <Menu.Item
-          onClick={this.handleItemClick}
-          active={activeItem === 'builder'}
-          name="builder">
+        <Menu.Item onClick={this.handleItemClick} active={activeItem === 'builder'} name="builder">
           <Link to="/builder">Builder</Link>
         </Menu.Item>
       </Menu>
