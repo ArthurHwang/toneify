@@ -1,16 +1,17 @@
-import React, { Component, Fragment } from 'react'
-import { Button, Container } from 'semantic-ui-react'
+import React, { Fragment } from 'react'
+import { Container, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const LandingPage = () => (
   <Fragment>
-    <div className="landing-header">
+    <Container className="landing-header">
       <h1>toneify</h1>
-      <p style={{ color: 'white' }} />
-      <Button>
-        <Link to="/pedalboards">Start</Link>
-      </Button>
-    </div>
+      <Link style={{ color: 'white' }} to="/pedalboards">
+        <Button className="landing-button" color="black">
+          Start
+        </Button>
+      </Link>
+    </Container>
 
     <ul className="slideshow">
       <li />

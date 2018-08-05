@@ -11,7 +11,7 @@ class Nav extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu style={{ borderRadius: '0', marginBottom: '0' }} size="large" inverted stackable>
+      <Menu style={{ borderRadius: '0' }} size="large" inverted stackable>
         <Menu.Item onClick={this.handleItemClick} active={activeItem === '/'} name="/">
           <Link to="/">
             <img className="logo" src="https://image.flaticon.com/icons/svg/199/199449.svg" />
