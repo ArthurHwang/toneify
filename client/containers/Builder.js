@@ -61,6 +61,7 @@ class Builder extends Component {
 
   onControlledDrag = (e, position) => {
     const { x, y } = position
+
     const copy = [...this.state.pedalsOnBoard]
     copy.forEach(elem => {
       if (elem.id === this.state.currentDraggedID) {
@@ -71,7 +72,7 @@ class Builder extends Component {
     if (this.state.isEditing) {
       this.setState({ isEditing: true, buildToBeUpdated: true })
     }
-    this.setState({  pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard: copy })
   }
 
   loadSavedBuild = id => {
@@ -91,7 +92,7 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
-  currentDraggedID = (e, id) => {
+  currentDraggedID = id => {
     this.setState({ currentDraggedID: id })
   }
 
@@ -207,7 +208,7 @@ class Builder extends Component {
     fetch('/api/userConfigs/' + this.state.currentBuildID, {
       method: 'PUT',
       headers: {
-         'Accept': 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -217,18 +218,24 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        const updatedBuildHistory = this.state.buildHistory.map((elem) => {
+        const updatedBuildHistory = this.state.buildHistory.map(elem => {
           if (elem.id === this.state.currentBuildID) {
             elem = data
             return elem
-          } else {
+          }
+          else {
             return elem
           }
         })
-        this.setState({isEditing: false, buildToBeUpdated: false, buildHistory: updatedBuildHistory, showUpdateModal: true})
+        this.setState({
+          isEditing: false,
+          buildToBeUpdated: false,
+          buildHistory: updatedBuildHistory,
+          showUpdateModal: true
+        })
       })
       .catch(err => console.log(err))
-    }
+  }
 
   deleteBuild = id => {
     fetch('/api/userConfigs/' + id, {
@@ -284,7 +291,7 @@ class Builder extends Component {
           deleteBuild={this.deleteBuild}
         />
         <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
-        <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal}/>
+        <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
       </Fragment>
     )
   }
