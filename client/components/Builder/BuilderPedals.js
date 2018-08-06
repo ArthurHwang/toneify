@@ -8,11 +8,11 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onD
     {pedals.map((elem, index) => (
       <Draggable
         defaultPosition={{ x: elem.posX, y: elem.posY }}
-        onMouseDown={e => getId(e, elem.id)}
+        onMouseDown={() => getId(elem.id)}
         onDrag={onDrag}
         key={elem.id}
       >
-        <div>
+        <div style={{position: 'relative'}}>
           {elem.showButtons && (
             <PedalButtons
               mouseEnter={() => mouseOver(elem.id)}

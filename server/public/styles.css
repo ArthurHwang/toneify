@@ -21,7 +21,7 @@
 .icon-rotate {
   z-index: 100;
   color: #bc003f;
-  position: relative;
+  position: absolute;
   top: 20px;
   left: 40%;
 }
@@ -29,7 +29,7 @@
 .icon-delete {
   z-index: 100;
   color: #bc003f;
-  position: relative;
+  position: absolute;
   bottom: 20px;
   left: 39%;
 }

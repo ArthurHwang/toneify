@@ -52,22 +52,26 @@ h1 {
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url(https://images.unsplash.com/photo-1530369843459-df3356d3bf8a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=530fb194341e0e8b7363a82da0e2a6db&w=1000&q=80);
+  background-image: url(http://www.roland.co.uk/blog/wp-content/uploads/2013/07/gr-d_stage_gal.jpg);
 }
+
 .slideshow li:nth-child(2) {
-  background-image: url(https://i.ytimg.com/vi/9WC8jrVahB0/maxresdefault.jpg);
+  background-image: url(http://wallpapercraze.com/images/wallpapers/tuningamps-737880.jpeg);
   animation-delay: 7s;
 }
+
 .slideshow li:nth-child(3) {
-  background-image: url(https://images.unsplash.com/photo-1452722464566-db26e74a995b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=617aeb1299aab151244dcfa3abada91c&w=1000&q=80);
+  background-image: url(https://static.keymusic.com/products/217698/XL/boss-me-80-multi-effect-10.jpg);
   animation-delay: 14s;
 }
+
 .slideshow li:nth-child(4) {
-  background-image: url(https://shop.musix.ch/images/products/orig/Boss-ME-80_T2.jpg);
+  background-image: url(https://www.wallpapersin4k.org/wp-content/uploads/2017/04/Guitar-Pedals-Wallpaper-5.jpg);
   animation-delay: 21s;
 }
+
 .slideshow li:nth-child(5) {
-  background-image: url(https://origineffects.com/wp-content/uploads/2018/01/Revelator-Guitar-Jazzcaster-pedalboard-Origin-Effects-Cali76-Greer-Amps-Lightspeed-Chase-Bliss-Warped-Vinyl-Tonal-Recall-Gravitas-1024x768.jpg?1c7440&1c7440);
+  background-image: url(https://images.unsplash.com/photo-1530369843459-df3356d3bf8a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=530fb194341e0e8b7363a82da0e2a6db&w=1000&q=80);
   animation-delay: 28s;
 }
 

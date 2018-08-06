@@ -15,7 +15,7 @@ const HistoryModal = ({ closeModalHandler, showModal, buildHistory, deleteBuild,
     }
   }
   const modalOutput = showModal && (
-    <Modal closeIcon onClose={closeModalHandler} open dimmer="blurring" style={styles.modal}>
+    <Modal closeIcon onClose={closeModalHandler} open style={styles.modal}>
       <Modal.Header>Saved Builds</Modal.Header>
       <Modal.Content scrolling>
         <Table striped>
