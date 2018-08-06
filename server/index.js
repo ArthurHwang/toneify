@@ -49,8 +49,6 @@ MongoClient.connect(
   app.put('/api/userConfigs/:id', (req, res) => {
     const id = req.params.id
     const date = moment().format('DD/MM/YYYY h:mm:ss a')
-
-    console.log(id)
     const pedalBoard = req.body.pedalBoard
     const pedals = req.body.pedals
     userConfigs
