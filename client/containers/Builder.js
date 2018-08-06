@@ -63,7 +63,7 @@ class Builder extends Component {
     const { x, y } = position
 
     const pedalsOnBoard = [...this.state.pedalsOnBoard]
-    pedalsOnBoard.find(elem => {
+    pedalsOnBoard.forEach(elem => {
       if (elem.id === this.state.currentDraggedID) {
         elem.posX = x
         elem.posY = y
@@ -86,11 +86,11 @@ class Builder extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          currentPedalboard: data.pedalBoard,
-          pedalsOnBoard: data.pedals,
           showHistoryModal: false,
           isEditing: true,
-          currentBuildID: id
+          currentBuildID: id,
+          currentPedalboard: data.pedalBoard,
+          pedalsOnBoard: data.pedals
         })
       })
       .catch(err => console.log(err))
@@ -108,8 +108,8 @@ class Builder extends Component {
       ...elem,
       rotation: elem.rotation || 0,
       showButtons: elem.showButtons || false,
-      posX: null,
-      posY: null
+      posX: 0,
+      posY: 0
     }))
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
@@ -123,7 +123,7 @@ class Builder extends Component {
   }
 
   deleteAllPedals = () => {
-    this.setState({ pedalsOnBoard: [] })
+    this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false })
   }
 
   openModalHandler = () => {
