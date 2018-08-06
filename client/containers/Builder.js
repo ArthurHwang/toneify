@@ -62,8 +62,8 @@ class Builder extends Component {
   onControlledDrag = (e, position) => {
     const { x, y } = position
 
-    const copy = [...this.state.pedalsOnBoard]
-    copy.find(elem => {
+    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    pedalsOnBoard.find(elem => {
       if (elem.id === this.state.currentDraggedID) {
         elem.posX = x
         elem.posY = y
@@ -72,7 +72,7 @@ class Builder extends Component {
     if (this.state.isEditing) {
       this.setState({ isEditing: true, buildToBeUpdated: true })
     }
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard })
   }
 
   currentDraggedID = id => {
@@ -97,12 +97,13 @@ class Builder extends Component {
   }
 
   addPedal = id => {
-    const findPedal = this.state.pedals.find((elem, index) => {
+    const { pedals, pedalsOnBoard } = this.state
+    const findPedal = pedals.find((elem, index) => {
       if (elem.id === id) {
         return elem
       }
     })
-    const updatePedalsOnBoard = [...this.state.pedalsOnBoard, findPedal]
+    const updatePedalsOnBoard = [...pedalsOnBoard, findPedal]
     const withRotation = updatePedalsOnBoard.map((elem, index) => ({
       ...elem,
       rotation: elem.rotation || 0,
@@ -114,13 +115,13 @@ class Builder extends Component {
   }
 
   deletePedal = id => {
-    const copy = [...this.state.pedalsOnBoard]
-    copy.find((elem, index, array) => {
+    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    pedalsOnBoard.find((elem, index, array) => {
       if (elem.id === id) {
         array.splice(index, 1)
       }
     })
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard })
   }
 
   deleteAllPedals = () => {
@@ -152,33 +153,33 @@ class Builder extends Component {
   }
 
   buttonShow = id => {
-    const copy = [...this.state.pedalsOnBoard]
-    copy.find(elem => {
+    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.showButtons = true
       }
     })
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard })
   }
 
   buttonHide = id => {
-    const copy = [...this.state.pedalsOnBoard]
-    copy.find(elem => {
+    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.showButtons = false
       }
     })
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard })
   }
 
   rotatePedal = id => {
-    const copy = [...this.state.pedalsOnBoard]
-    copy.find(elem => {
+    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
       }
     })
-    this.setState({ pedalsOnBoard: copy })
+    this.setState({ pedalsOnBoard })
   }
 
   saveBuild = () => {
@@ -242,13 +243,10 @@ class Builder extends Component {
       method: 'DELETE'
     })
       .then(() => {
-        const copy = [...this.state.buildHistory]
-        copy.find((elem, index, array) => {
-          if (elem.id === id) {
-            array.splice(index, 1)
-          }
-        })
-        this.setState({ buildHistory: copy })
+        const buildHistory = [...this.state.buildHistory]
+        const buildIndex = buildHistory.findIndex(elem => elem.id === id)
+        buildHistory.splice(buildIndex, 1)
+        this.setState({ buildHistory })
       })
       .catch(error => console.log(error))
   }
