@@ -63,7 +63,7 @@ class Builder extends Component {
     const { x, y } = position
 
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach(elem => {
+    copy.find(elem => {
       if (elem.id === this.state.currentDraggedID) {
         elem.posX = x
         elem.posY = y
@@ -73,6 +73,10 @@ class Builder extends Component {
       this.setState({ isEditing: true, buildToBeUpdated: true })
     }
     this.setState({ pedalsOnBoard: copy })
+  }
+
+  currentDraggedID = id => {
+    this.setState({ currentDraggedID: id })
   }
 
   loadSavedBuild = id => {
@@ -90,10 +94,6 @@ class Builder extends Component {
         })
       })
       .catch(err => console.log(err))
-  }
-
-  currentDraggedID = id => {
-    this.setState({ currentDraggedID: id })
   }
 
   addPedal = id => {
@@ -115,7 +115,7 @@ class Builder extends Component {
 
   deletePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach((elem, index, array) => {
+    copy.find((elem, index, array) => {
       if (elem.id === id) {
         array.splice(index, 1)
       }
@@ -153,7 +153,7 @@ class Builder extends Component {
 
   buttonShow = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach(elem => {
+    copy.find(elem => {
       if (elem.id === id) {
         elem.showButtons = true
       }
@@ -163,7 +163,7 @@ class Builder extends Component {
 
   buttonHide = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach(elem => {
+    copy.find(elem => {
       if (elem.id === id) {
         elem.showButtons = false
       }
@@ -173,7 +173,7 @@ class Builder extends Component {
 
   rotatePedal = id => {
     const copy = [...this.state.pedalsOnBoard]
-    copy.forEach(elem => {
+    copy.find(elem => {
       if (elem.id === id) {
         elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
       }
@@ -243,7 +243,7 @@ class Builder extends Component {
     })
       .then(() => {
         const copy = [...this.state.buildHistory]
-        copy.forEach((elem, index, array) => {
+        copy.find((elem, index, array) => {
           if (elem.id === id) {
             array.splice(index, 1)
           }
