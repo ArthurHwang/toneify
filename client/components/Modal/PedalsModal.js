@@ -1,20 +1,9 @@
 import React from 'react'
 import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
 
-const PedalsModal = ({
-  handleBuildClick,
-  handleClick,
-  pedalData,
-  modalOpen
-}) => {
+const PedalsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
   let ModalOutput = modalOpen && (
-    <Modal
-      style={{ top: '38%' }}
-      // dimmer="blurring"
-      open
-      size="large"
-      onClick={handleClick}
-      closeIcon>
+    <Modal style={{ top: '38%' }} open size="large" onClick={handleClick} closeIcon>
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>

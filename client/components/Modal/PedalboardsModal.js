@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Icon, Button, Header, Image, Modal, Table, Divider } from 'semantic-ui-react'
 
 const PedalboardsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {

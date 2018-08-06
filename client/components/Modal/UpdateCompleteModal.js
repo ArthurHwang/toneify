@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
 const UpdateCompleteModal = ({ showModal, closeModal }) => {
