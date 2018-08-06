@@ -18,7 +18,7 @@ const BuilderModal = ({
     <Modal
       onClick={closeModalHandler}
       open
-      dimmer="blurring"
+      // dimmer="blurring"
       style={styles.modal}>
       <Modal.Header>Click a Pedal to Add to Pedalboard</Modal.Header>
       <Modal.Content image scrolling>

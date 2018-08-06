@@ -10,7 +10,7 @@ const PedalsModal = ({
   let ModalOutput = modalOpen && (
     <Modal
       style={{ top: '38%' }}
-      dimmer="blurring"
+      // dimmer="blurring"
       open
       size="large"
       onClick={handleClick}
