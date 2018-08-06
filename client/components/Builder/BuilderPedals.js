@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Icon } from 'semantic-ui-react'
+import { Image, Container } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 import PedalButtons from './PedalButtons'
 
@@ -12,7 +12,7 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onD
         onDrag={onDrag}
         key={elem.id}
       >
-        <div style={{position: 'relative'}}>
+        <span style={{ position: 'relative' }}>
           {elem.showButtons && (
             <PedalButtons
               mouseEnter={() => mouseOver(elem.id)}
@@ -39,7 +39,7 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onD
               type="delete"
             />
           )}
-        </div>
+        </span>
       </Draggable>
     ))}
   </div>

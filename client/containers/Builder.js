@@ -115,13 +115,11 @@ class Builder extends Component {
   }
 
   deletePedal = id => {
-    const pedalsOnBoard = [...this.state.pedalsOnBoard]
-    pedalsOnBoard.find((elem, index, array) => {
-      if (elem.id === id) {
-        array.splice(index, 1)
-      }
-    })
-    this.setState({ pedalsOnBoard })
+    const { pedalsOnBoard } = this.state
+    const pedalsToDelete = [...pedalsOnBoard]
+    const buildIndex = pedalsToDelete.findIndex(elem => elem.id === id)
+    pedalsToDelete.splice(buildIndex, 1)
+    this.setState({ pedalsOnBoard: pedalsToDelete })
   }
 
   deleteAllPedals = () => {

@@ -15,7 +15,7 @@
     "watch:public": "browser-sync start -c browser-sync.js",
     "watch": "npm-run-all --parallel watch:*",
     "prewatch": "npm run seed",
-    "postinstall": "browserify -g uglifyify -t babelify client/ -o server/public/main.js",
+    "postinstall": "browserify client/index.js -t babelify -o server/public/main.js",
     "heroku-postbuild": "node database/setup.js"
   },
   "repository": {
