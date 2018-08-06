@@ -3,14 +3,14 @@ import { Icon, Button, Header, Image, Modal, Table, Divider } from 'semantic-ui-
 
 const PedalboardsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) => {
   const modalOutput = modalOpen && (
-    <Modal style={{ top: '22%' }} open size="large" onClick={handleClick} closeIcon>
+    <Modal style={{ top: '15%' }} open size="large" onClick={handleClick} closeIcon>
       <Modal.Header>
         {pedalData.brand}
         <Button onClick={handleBuildClick} compact floated="right" primary>
           Build
         </Button>
       </Modal.Header>
-      <Modal.Content image>
+      <Modal.Content scrolling image>
         <Image className="pedalboard-modal-image" wrapped size="massive" src={pedalData.image} />
         <Modal.Description>
           <Header>
@@ -27,7 +27,7 @@ const PedalboardsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen 
       </Modal.Content>
       <Divider />
       <Modal.Content style={{ paddingTop: '0' }}>
-        <Table striped>
+        <Table compact striped>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell colSpan="2">Technical Specifications</Table.HeaderCell>
