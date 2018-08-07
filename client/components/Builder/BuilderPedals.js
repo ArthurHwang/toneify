@@ -5,7 +5,7 @@ import PedalButtons from './PedalButtons'
 
 const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onDrag, getId }) => (
   <div className="pedal-on-board-container">
-    {pedals.map((elem, index) => (
+    {pedals.map(elem => (
       <Draggable
         handle=".handle"
         defaultPosition={{ x: elem.posX, y: elem.posY }}
@@ -32,7 +32,6 @@ const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onD
             className="pedal-on-board"
             onMouseEnter={() => mouseOver(elem.id)}
             onMouseLeave={() => mouseLeave(elem.id)}
-            item={elem}
             src={elem.image}
             style={{
               transform: `rotate(${elem.rotation}deg)`

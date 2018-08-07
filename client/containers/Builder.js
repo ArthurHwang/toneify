@@ -54,7 +54,7 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ buildHistory: data }, console.log(data))
+        this.setState({ buildHistory: data })
       })
       .catch(err => console.log(err))
   }
@@ -75,7 +75,6 @@ class Builder extends Component {
   }
 
   currentDraggedID = id => {
-    console.log(id)
     this.setState({ currentDraggedID: id })
   }
 
@@ -83,19 +82,18 @@ class Builder extends Component {
     fetch('/api/userConfigs/' + id, {
       method: 'GET'
     })
-      .then(res => res.json())
+      .then(res => {
+        this.setState({ pedalsOnBoard: [] })
+        return res.json()
+      })
       .then(data => {
-        console.log(data)
-        this.setState(
-          {
-            showHistoryModal: false,
-            isEditing: true,
-            currentBuildID: id,
-            currentPedalboard: data.pedalBoard,
-            pedalsOnBoard: data.pedals
-          },
-          console.log(data.pedals)
-        )
+        this.setState({
+          currentPedalboard: data.pedalBoard,
+          pedalsOnBoard: data.pedals,
+          showHistoryModal: false,
+          isEditing: true,
+          currentBuildID: id
+        })
       })
       .catch(err => console.log(err))
   }
@@ -112,8 +110,8 @@ class Builder extends Component {
       ...elem,
       rotation: elem.rotation || 0,
       showButtons: elem.showButtons || false,
-      posX: null,
-      posY: null
+      posX: elem.posX || null,
+      posY: elem.posY || null
     }))
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
@@ -199,12 +197,11 @@ class Builder extends Component {
       .then(res => res.json())
       .then(data => {
         const appendToHistory = [...this.state.buildHistory, data]
-        this.setState(
-          {
-            buildHistory: appendToHistory,
-            showSaveCompleteModal: true
-          }
-        )
+        this.setState({
+          pedalsOnBoard: [],
+          buildHistory: appendToHistory,
+          showSaveCompleteModal: true
+        })
       })
       .catch(err => console.log(err))
   }
@@ -253,10 +250,6 @@ class Builder extends Component {
         this.setState({ buildHistory })
       })
       .catch(error => console.log(error))
-  }
-
-  click = () => {
-    console.log(this.state)
   }
 
   render() {
