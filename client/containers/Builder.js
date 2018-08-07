@@ -113,6 +113,10 @@ class Builder extends Component {
       posX: elem.posX || null,
       posY: elem.posY || null
     }))
+
+    if (this.state.isEditing) {
+      this.setState({ buildToBeUpdated: true })
+    }
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
 
@@ -198,7 +202,6 @@ class Builder extends Component {
       .then(data => {
         const appendToHistory = [...this.state.buildHistory, data]
         this.setState({
-          pedalsOnBoard: [],
           buildHistory: appendToHistory,
           showSaveCompleteModal: true
         })
