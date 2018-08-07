@@ -54,14 +54,13 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ buildHistory: data })
+        this.setState({ buildHistory: data }, console.log(data))
       })
       .catch(err => console.log(err))
   }
 
   onControlledDrag = (e, position) => {
     const { x, y } = position
-
     const pedalsOnBoard = [...this.state.pedalsOnBoard]
     pedalsOnBoard.forEach(elem => {
       if (elem.id === this.state.currentDraggedID) {
@@ -76,6 +75,7 @@ class Builder extends Component {
   }
 
   currentDraggedID = id => {
+    console.log(id)
     this.setState({ currentDraggedID: id })
   }
 
@@ -85,13 +85,17 @@ class Builder extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          showHistoryModal: false,
-          isEditing: true,
-          currentBuildID: id,
-          currentPedalboard: data.pedalBoard,
-          pedalsOnBoard: data.pedals
-        })
+        console.log(data)
+        this.setState(
+          {
+            showHistoryModal: false,
+            isEditing: true,
+            currentBuildID: id,
+            currentPedalboard: data.pedalBoard,
+            pedalsOnBoard: data.pedals
+          },
+          console.log(data.pedals)
+        )
       })
       .catch(err => console.log(err))
   }
@@ -108,8 +112,8 @@ class Builder extends Component {
       ...elem,
       rotation: elem.rotation || 0,
       showButtons: elem.showButtons || false,
-      posX: 0,
-      posY: 0
+      posX: null,
+      posY: null
     }))
     this.setState({ showModal: false, pedalsOnBoard: withRotation })
   }
@@ -181,6 +185,7 @@ class Builder extends Component {
   }
 
   saveBuild = () => {
+    console.log(this.state.pedalsOnBoard)
     fetch('/api/userConfigs', {
       method: 'POST',
       headers: {
@@ -195,10 +200,13 @@ class Builder extends Component {
       .then(res => res.json())
       .then(data => {
         const appendToHistory = [...this.state.buildHistory, data]
-        this.setState({
-          buildHistory: appendToHistory,
-          showSaveCompleteModal: true
-        })
+        this.setState(
+          {
+            buildHistory: appendToHistory,
+            showSaveCompleteModal: true
+          },
+          console.log(appendToHistory)
+        )
       })
       .catch(err => console.log(err))
   }
@@ -249,6 +257,10 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
+  click = () => {
+    console.log(this.state)
+  }
+
   render() {
     const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
     return (
@@ -288,6 +300,7 @@ class Builder extends Component {
         />
         <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
+        <button onClick={this.click}>cljasd</button>
       </Fragment>
     )
   }

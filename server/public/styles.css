@@ -22,15 +22,24 @@
   z-index: 100;
   color: #bc003f;
   position: absolute;
-  top: 20px;
-  left: 40%;
+  bottom: 50%;
+  left: 6%;
 }
 
 .icon-delete {
+  font-size: 500px;
   z-index: 100;
   color: #bc003f;
   position: absolute;
-  bottom: 20px;
+  bottom: 48.5%;
+  right: 0%;
+}
+
+.icon-drag {
+  z-index: 100;
+  color: #bc003f;
+  position: absolute;
+  bottom: 49%;
   left: 39%;
 }
 
