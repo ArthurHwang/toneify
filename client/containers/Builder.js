@@ -185,7 +185,6 @@ class Builder extends Component {
   }
 
   saveBuild = () => {
-    console.log(this.state.pedalsOnBoard)
     fetch('/api/userConfigs', {
       method: 'POST',
       headers: {
@@ -204,8 +203,7 @@ class Builder extends Component {
           {
             buildHistory: appendToHistory,
             showSaveCompleteModal: true
-          },
-          console.log(appendToHistory)
+          }
         )
       })
       .catch(err => console.log(err))
@@ -300,7 +298,6 @@ class Builder extends Component {
         />
         <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
-        <button onClick={this.click}>cljasd</button>
       </Fragment>
     )
   }
