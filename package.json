@@ -78,6 +78,7 @@
     "semantic-ui-react": "^0.82.1",
     "uglifyify": "5.0.1",
     "uuid": "^3.3.2",
-    "watchify": "3.11.0"
+    "watchify": "3.11.0",
+    "youtube-search": "^1.1.1"
   }
 }
