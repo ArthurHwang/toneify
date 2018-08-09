@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import YoutubeSearch from 'youtube-search'
-import YoutubeFrame from 'react-youtube'
 import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
 import WarningMessage from '../components/Builder/WarningMessage'
 import BuilderModal from '../components/Modal/BuilderModal'
@@ -13,6 +12,7 @@ import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
 import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
+import YoutubePedalsOutput from '../components/Builder/YoutubePedalsOutput'
 
 require('dotenv/config')
 
@@ -261,23 +261,36 @@ class Builder extends Component {
   }
 
   doubleClickHandler = (brand, model) => {
+    this.setState({youtubePedalResults: []})
     const opts = {
-      maxResults: 5,
+      maxResults: 6,
       key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
     }
-    const query = brand + ' ' + model
+    const query = brand + ' ' + model + ' sound demo'
 
     YoutubeSearch(query, opts, (err, results) => {
       if (err) {
         return console.log(err)
       }
       console.dir(results)
-      this.setState({youtubePedalResults: results}, console.log(this.state.youtubePedalResults))
+      this.setState({ youtubePedalResults: results }, console.log(this.state.youtubePedalResults))
     })
   }
 
+  click = () => {
+    console.log(this.state.youtubePedalResults)
+  }
+
   render() {
-    const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
+    const {
+      youtubePedalResults,
+      buildHistory,
+      showHistoryModal,
+      pedals,
+      showModal,
+      currentPedalboard,
+      pedalsOnBoard
+    } = this.state
     return (
       <Fragment>
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
@@ -307,6 +320,7 @@ class Builder extends Component {
           rotate={this.rotatePedal}
           pedals={pedalsOnBoard}
         />
+        <YoutubePedalsOutput searchResults={youtubePedalResults} />
         <HistoryModal
           loadSavedBuild={this.loadSavedBuild}
           showModal={showHistoryModal}

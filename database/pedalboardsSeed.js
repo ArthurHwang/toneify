@@ -29,7 +29,7 @@ const pedalBoards = [
     price: 169.99,
     image:
       'https://media.sweetwater.com/api/i/q-82__ha-9eab6e2635087263__hmac-be016dc3a34f115f2f11cffb15a296ec6f8ce8a0/images/items/750/BCB60-large.jpg',
-    topView: '/img/pedalboards/BCB60.jpg',
+    topView: '/img/pedalboards/BCB60.png',
     specs: {
       length: '22.44"',
       depth: '14.636"',
