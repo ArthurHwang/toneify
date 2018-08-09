@@ -29,7 +29,7 @@ const pedalBoards = [
     price: 169.99,
     image:
       'https://media.sweetwater.com/api/i/q-82__ha-9eab6e2635087263__hmac-be016dc3a34f115f2f11cffb15a296ec6f8ce8a0/images/items/750/BCB60-large.jpg',
-    topView: '/img/pedalboards/BCB60.jpg',
+    topView: '/img/pedalboards/BCB60.png',
     specs: {
       length: '22.44"',
       depth: '14.636"',
@@ -111,7 +111,7 @@ const pedalBoards = [
     size: 'small',
 
     image: 'https://www.thomann.de/pics/bdb/428335/12826677_800.jpg',
-    topView: '/img/pedalboards/Mono Small.PNG',
+    topView: '/img/pedalboards/Mono Small.png',
     specs: {
       length: '18"',
       depth: '12.3"',
@@ -131,7 +131,7 @@ const pedalBoards = [
     size: 'small',
     price: 169.99,
     image: 'https://www.thomann.de/pics/bdb/365471/9983026_800.jpg',
-    topView: '/img/pedalboards/Pedaltrain metro 20.PNG',
+    topView: '/img/pedalboards/Pedaltrain metro 20.png',
     specs: {
       length: '20"',
       depth: '8"',
@@ -152,7 +152,7 @@ const pedalBoards = [
     price: 99.99,
     image:
       'https://c1.zzounds.com/media/productmedia/fit,2018by3200/quality,85/dga-3107364e469ef5e5378990bcd0384264.jpg',
-    topView: '/img/pedalboards/Pedaltrain metro24.PNG',
+    topView: '/img/pedalboards/Pedaltrain Metro24.png',
     specs: {
       length: '24"',
       depth: '8"',
@@ -213,7 +213,7 @@ const pedalBoards = [
     size: 'large',
     image:
       'https://images.reverb.com/image/upload/s--5vlFAUKK--/a_exif,c_limit,e_unsharp_mask:80,f_auto,fl_progressive,g_south,h_620,q_90,w_620/v1474921942/i4jtgpy392ind2yxkhwq.jpg',
-    topView: '/img/pedalboards/Gator Aluminum Large.PNG',
+    topView: '/img/pedalboards/Gator Aluminum Large.png',
     specs: {
       length: '23.75"',
       depth: '10.66"',
@@ -255,7 +255,7 @@ const pedalBoards = [
     size: 'small',
     price: 89.99,
     image: 'https://cdn.shopify.com/s/files/1/0747/1009/products/SOLO_18_White_Side_1024x1024.JPG?v=1421706141',
-    topView: '/img/pedalboards/Templeboards Solo 18.PNG',
+    topView: '/img/pedalboards/Templeboards Solo 18.png',
     specs: {
       length: '18"',
       depth: '8.5"',

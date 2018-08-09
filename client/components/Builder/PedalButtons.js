@@ -25,7 +25,18 @@ class PedalButtons extends Component {
             onMouseEnter={this.props.mouseEnter}
             onMouseLeave={this.props.mouseLeave}
             onClick={this.props.deletePedal}
-            name="delete"
+            name="x"
+          />
+        )
+        break
+      case 'drag':
+        pedalButton = (
+          <Icon
+            size="big"
+            className="icon-drag"
+            onMouseEnter={this.props.mouseEnter}
+            onMouseLeave={this.props.mouseLeave}
+            name="hand paper"
           />
         )
         break
