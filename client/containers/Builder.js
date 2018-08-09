@@ -97,7 +97,8 @@ class Builder extends Component {
           pedalsOnBoard: data.pedals,
           showHistoryModal: false,
           isEditing: true,
-          currentBuildID: id
+          currentBuildID: id,
+          youtubePedalResults: []
         })
       })
       .catch(err => console.log(err))
