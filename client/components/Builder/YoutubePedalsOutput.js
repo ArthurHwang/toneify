@@ -17,7 +17,7 @@ const YoutubePedalsOutput = ({ searchResults }) => {
   return (
     searchResults.length > 0 && (
       <Container fluid style={styles.container} textAlign="center">
-          {searchResults.map(video => <YoutubeFrame  key={video.id} opts={opts} videoId={video.id} />)}
+        {searchResults.map(video => <YoutubeFrame key={video.id} opts={opts} videoId={video.id} />)}
       </Container>
     )
   )

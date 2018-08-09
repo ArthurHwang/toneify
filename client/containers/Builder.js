@@ -134,7 +134,7 @@ class Builder extends Component {
   }
 
   deleteAllPedals = () => {
-    this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false })
+    this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
   }
 
   openModalHandler = () => {
@@ -261,7 +261,7 @@ class Builder extends Component {
   }
 
   doubleClickHandler = (brand, model) => {
-    this.setState({youtubePedalResults: []})
+    this.setState({ youtubePedalResults: [] })
     const opts = {
       maxResults: 6,
       key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
