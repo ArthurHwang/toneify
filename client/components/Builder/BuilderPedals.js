@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 import PedalButtons from './PedalButtons'
 
-const BuilderPedals = ({  mouseLeave, mouseOver, rotate, pedals, deletePedal, onDrag, getId }) => (
+const BuilderPedals = ({ doubleClick, mouseLeave, mouseOver, rotate, pedals, deletePedal, onDrag, getId }) => (
   <div className="pedal-on-board-container">
     {pedals.map(elem => (
       <Draggable
@@ -30,6 +30,7 @@ const BuilderPedals = ({  mouseLeave, mouseOver, rotate, pedals, deletePedal, on
 
           <Image
             className="pedal-on-board"
+            onDoubleClick={doubleClick}
             onMouseEnter={() => mouseOver(elem.id)}
             onMouseLeave={() => mouseLeave(elem.id)}
             src={elem.image}
