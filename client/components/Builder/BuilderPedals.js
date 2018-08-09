@@ -30,7 +30,7 @@ const BuilderPedals = ({ doubleClick, mouseLeave, mouseOver, rotate, pedals, del
 
           <Image
             className="pedal-on-board"
-            onDoubleClick={doubleClick}
+            onDoubleClick={() => doubleClick(elem.brand, elem.model)}
             onMouseEnter={() => mouseOver(elem.id)}
             onMouseLeave={() => mouseLeave(elem.id)}
             src={elem.image}

@@ -255,8 +255,9 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
-  doubleClickHandler = id  => {
-    alert('double clicked!')
+  doubleClickHandler = (brand, model) => {
+    console.log(brand, model)
+    // alert('double clicked!')
   }
 
   render() {
