@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import YoutubeSearch from 'youtube-search'
+import YoutubeFrame from 'react-youtube'
 import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
 import WarningMessage from '../components/Builder/WarningMessage'
 import BuilderModal from '../components/Modal/BuilderModal'
@@ -11,6 +13,7 @@ import ShowHistoryButton from '../components/Builder/ShowHistoryButton'
 import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
+
 
 class Builder extends Component {
   constructor(props) {
@@ -256,8 +259,6 @@ class Builder extends Component {
   }
 
   doubleClickHandler = (brand, model) => {
-    console.log(brand, model)
-    // alert('double clicked!')
   }
 
   render() {
