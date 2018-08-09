@@ -14,6 +14,7 @@ import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
 
+require('dotenv/config')
 
 class Builder extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class Builder extends Component {
       isEditing: false,
       buildToBeUpdated: false,
       currentBuildID: null,
-      showUpdateModal: false
+      showUpdateModal: false,
+      youtubePedalResults: []
     }
   }
 
@@ -259,6 +261,19 @@ class Builder extends Component {
   }
 
   doubleClickHandler = (brand, model) => {
+    const opts = {
+      maxResults: 5,
+      key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+    }
+    const query = brand + ' ' + model
+
+    YoutubeSearch(query, opts, (err, results) => {
+      if (err) {
+        return console.log(err)
+      }
+      console.dir(results)
+      this.setState({youtubePedalResults: results}, console.log(this.state.youtubePedalResults))
+    })
   }
 
   render() {
