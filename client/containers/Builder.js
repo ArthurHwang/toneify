@@ -98,7 +98,7 @@ class Builder extends Component {
         return console.log(err)
       }
       console.dir(results)
-      this.setState({ youtubePedalResults: results }, console.log(this.state.youtubePedalResults))
+      this.setState({ youtubePedalResults: results })
     })
   }
 
