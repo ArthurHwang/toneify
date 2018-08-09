@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
 import PedalButtons from './PedalButtons'
 
-const BuilderPedals = ({ mouseLeave, mouseOver, rotate, pedals, deletePedal, onDrag, getId }) => (
+const BuilderPedals = ({  mouseLeave, mouseOver, rotate, pedals, deletePedal, onDrag, getId }) => (
   <div className="pedal-on-board-container">
     {pedals.map(elem => (
       <Draggable

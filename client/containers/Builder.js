@@ -255,6 +255,10 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
+  doubleClickHandler = id  => {
+    alert('double clicked!')
+  }
+
   render() {
     const { buildHistory, showHistoryModal, pedals, showModal, currentPedalboard, pedalsOnBoard } = this.state
     return (
@@ -277,6 +281,7 @@ class Builder extends Component {
         />
         {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
+          doubleClick={this.doubleClickHandler}
           getId={this.currentDraggedID}
           onDrag={this.onControlledDrag}
           deletePedal={this.deletePedal}
