@@ -73,6 +73,7 @@
     "react-dom": "^16.4.1",
     "react-draggable": "^3.0.5",
     "react-router-dom": "^4.3.1",
+    "react-youtube": "^7.6.0",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.1",
     "uglifyify": "5.0.1",
