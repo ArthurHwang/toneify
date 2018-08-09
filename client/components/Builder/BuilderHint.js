@@ -9,6 +9,8 @@ const BuilderHint = ({ showHint, currentPedalboard }) => {
       margin: 'auto',
       height: '30px',
       width: '300px',
+      top: '4px',
+      borderRadius: '5px',
       position: 'absolute',
       backgroundColor: '#bc003f',
       zIndex: '1'
