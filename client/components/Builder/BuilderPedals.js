@@ -27,7 +27,6 @@ const BuilderPedals = ({ doubleClick, mouseLeave, mouseOver, rotate, pedals, del
               <PedalButtons mouseEnter={() => mouseOver(elem.id)} mouseLeave={() => mouseLeave(elem.id)} type="drag" />
             )}
           </div>
-
           <Image
             className="pedal-on-board"
             onDoubleClick={() => doubleClick(elem.brand, elem.model)}

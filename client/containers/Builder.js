@@ -13,6 +13,7 @@ import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
 import YoutubePedalsOutput from '../components/Builder/YoutubePedalsOutput'
+import BuilderHint from '../components/Builder/BuilderHint'
 
 require('dotenv/config')
 
@@ -32,7 +33,8 @@ class Builder extends Component {
       buildToBeUpdated: false,
       currentBuildID: null,
       showUpdateModal: false,
-      youtubePedalResults: []
+      youtubePedalResults: [],
+      showHint: true
     }
   }
 
@@ -80,7 +82,24 @@ class Builder extends Component {
   }
 
   currentDraggedID = id => {
-    this.setState({ currentDraggedID: id })
+    this.setState({ showHint: false, currentDraggedID: id })
+  }
+
+  doubleClickHandler = (brand, model) => {
+    this.setState({ youtubePedalResults: [] })
+    const opts = {
+      maxResults: 6,
+      key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+    }
+    const query = brand + ' ' + model + ' sound demo'
+
+    YoutubeSearch(query, opts, (err, results) => {
+      if (err) {
+        return console.log(err)
+      }
+      console.dir(results)
+      this.setState({ youtubePedalResults: results }, console.log(this.state.youtubePedalResults))
+    })
   }
 
   loadSavedBuild = id => {
@@ -136,30 +155,6 @@ class Builder extends Component {
 
   deleteAllPedals = () => {
     this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
-  }
-
-  openModalHandler = () => {
-    this.setState({ showModal: true })
-  }
-
-  closeModalHandler = () => {
-    this.setState({ showModal: false })
-  }
-
-  openHistoryModalHandler = () => {
-    this.setState({ showHistoryModal: true })
-  }
-
-  closeHistoryModalHandler = () => {
-    this.setState({ showHistoryModal: false })
-  }
-
-  closeSaveModal = () => {
-    this.setState({ showSaveCompleteModal: false })
-  }
-
-  closeUpdateModal = () => {
-    this.setState({ showUpdateModal: false })
   }
 
   buttonShow = id => {
@@ -261,25 +256,28 @@ class Builder extends Component {
       .catch(error => console.log(error))
   }
 
-  doubleClickHandler = (brand, model) => {
-    this.setState({ youtubePedalResults: [] })
-    const opts = {
-      maxResults: 6,
-      key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
-    }
-    const query = brand + ' ' + model + ' sound demo'
-
-    YoutubeSearch(query, opts, (err, results) => {
-      if (err) {
-        return console.log(err)
-      }
-      console.dir(results)
-      this.setState({ youtubePedalResults: results }, console.log(this.state.youtubePedalResults))
-    })
+  openModalHandler = () => {
+    this.setState({ showModal: true })
   }
 
-  click = () => {
-    console.log(this.state.youtubePedalResults)
+  closeModalHandler = () => {
+    this.setState({ showModal: false })
+  }
+
+  openHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: true })
+  }
+
+  closeHistoryModalHandler = () => {
+    this.setState({ showHistoryModal: false })
+  }
+
+  closeSaveModal = () => {
+    this.setState({ showSaveCompleteModal: false })
+  }
+
+  closeUpdateModal = () => {
+    this.setState({ showUpdateModal: false })
   }
 
   render() {
@@ -294,6 +292,7 @@ class Builder extends Component {
     } = this.state
     return (
       <Fragment>
+        <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.state.showHint} />
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
         <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
