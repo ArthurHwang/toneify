@@ -37,11 +37,9 @@ class PedalboardsView extends Component {
   }
 
   handleBuildClick = event => {
+    sessionStorage.setItem('data', JSON.stringify(this.state.currentPedalboard))
     this.props.history.push({
-      pathname: '/builder',
-      state: {
-        currentPedalboard: this.state.currentPedalboard
-      }
+      pathname: '/builder'
     })
   }
 
