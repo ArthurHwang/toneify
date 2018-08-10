@@ -21,10 +21,11 @@ class Builder extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentPedalboard: null,
+      currentPedalboard: JSON.parse(sessionStorage.getItem('data')),
       pedals: [],
       pedalsOnBoard: [],
       buildHistory: [],
+      youtubePedalResults: [],
       showModal: false,
       showHistoryModal: false,
       showSaveCompleteModal: false,
@@ -33,7 +34,6 @@ class Builder extends Component {
       buildToBeUpdated: false,
       currentBuildID: null,
       showUpdateModal: false,
-      youtubePedalResults: [],
       showHint: true
     }
   }
@@ -47,15 +47,6 @@ class Builder extends Component {
         this.setState({ pedals: data })
       })
       .catch(err => console.log(err))
-    if (!this.props.location.state) {
-      this.setState({ currentPedalboard: null })
-    }
-    else {
-      this.setState({
-        currentPedalboard: this.props.location.state.currentPedalboard
-      })
-    }
-
     fetch('/api/userConfigs', {
       method: 'GET'
     })
