@@ -23,9 +23,9 @@ class Builder extends Component {
     this.state = {
       currentPedalboard: JSON.parse(sessionStorage.getItem('data')),
       pedals: [],
-      pedalsOnBoard: [],
+      pedalsOnBoard: JSON.parse(sessionStorage.getItem('pedals')) || [],
       buildHistory: [],
-      youtubePedalResults: [],
+      youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
       showHistoryModal: false,
       showSaveCompleteModal: false,
@@ -55,6 +55,16 @@ class Builder extends Component {
         this.setState({ buildHistory: data })
       })
       .catch(err => console.log(err))
+  }
+
+  componentWillUnmount() {
+    if (this.state.pedalsOnBoard.length) {
+      sessionStorage.setItem('pedals', JSON.stringify(this.state.pedalsOnBoard))
+    }
+
+    if (this.state.youtubePedalResults.length) {
+      sessionStorage.setItem('youtube', JSON.stringify(this.state.youtubePedalResults))
+    }
   }
 
   onControlledDrag = (e, position) => {
