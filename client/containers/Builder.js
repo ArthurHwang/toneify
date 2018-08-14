@@ -24,9 +24,9 @@ class Builder extends Component {
     super(props)
     this.state = {
       currentPedalboard: JSON.parse(sessionStorage.getItem('data')),
-      pedals: [],
+      // pedals: [],
       pedalsOnBoard: JSON.parse(sessionStorage.getItem('pedals')) || [],
-      buildHistory: [],
+      // buildHistory: [],
       youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
       showHistoryModal: false,
@@ -41,24 +41,8 @@ class Builder extends Component {
   }
 
   componentDidMount() {
-    // fetch('/api/pedals', {
-    //   method: 'GET'
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.setState({ pedals: data })
-    //   })
-    //   .catch(err => console.log(err))
-    // fetch('/api/userConfigs', {
-    //   method: 'GET'
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.setState({ buildHistory: data })
-    //   })
-    //   .catch(err => console.log(err))
+    this.props.initBuildHistory()
     this.props.initPedals()
-    // this.props.initBuildHistory()
   }
 
   componentWillUnmount() {
@@ -301,7 +285,7 @@ class Builder extends Component {
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
         <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
-        <ShowHistoryButton showButton={this.state.buildHistory} showModal={this.openHistoryModalHandler} />
+        <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.openHistoryModalHandler} />
         <UpdateBuildButton
           updateBuild={this.updateBuild}
           pedalsOnScreen={this.state.pedalsOnBoard}
@@ -312,7 +296,7 @@ class Builder extends Component {
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={this.props.pedals}
-          handleClick={this.addPedal}
+          handleClick={this.props.addPedal}
         />
         {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
@@ -323,14 +307,14 @@ class Builder extends Component {
           mouseLeave={this.buttonHide}
           mouseOver={this.buttonShow}
           rotate={this.rotatePedal}
-          pedals={pedalsOnBoard}
+          pedals={this.props.pedalsOnBoard}
         />
         <YoutubePedalsOutput searchResults={youtubePedalResults} />
         <HistoryModal
           loadSavedBuild={this.loadSavedBuild}
           showModal={showHistoryModal}
           closeModalHandler={this.closeHistoryModalHandler}
-          buildHistory={buildHistory}
+          buildHistory={this.props.buildHistory}
           deleteBuild={this.deleteBuild}
         />
         <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
@@ -340,25 +324,20 @@ class Builder extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    // pedals: state.pedals
-    pedals: state.builder.pedals,
-    buildHistory: state.builder.buildHistory
-  }
-  // pedalboards: state.builder.pedalboards,
-  // currentPedalboard: state.builder.currentPedalboard
-}
+const mapStateToProps = state => ({
+  // pedals: state.pedals
+  pedals: state.builder.pedals,
+  buildHistory: state.builder.buildHistory,
+  pedalsOnBoard: state.builder.pedalsOnBoard
+})
+// pedalboards: state.builder.pedalboards,
+// currentPedalboard: state.builder.currentPedalboard
 
-const mapDispatchToProps = dispatch => {
-  return {
-    initPedals: () => dispatch(actions.initPedals()),
-    initBuildHistory: () => dispatch(actions.initBuildHistory())
-
-  }
-  // initPedals: () => dispatch(actions.initPedals),
-  // addPedal: id => dispatch(actions.addPedal(id))
-}
+const mapDispatchToProps = dispatch => ({
+  addPedal: (id) => dispatch(actions.addPedal(id)),
+  initPedals: () => dispatch(actions.initPedals()),
+  initBuildHistory: () => dispatch(actions.initBuildHistory())
+})
 
 export default connect(
   mapStateToProps,

@@ -1,1 +1,1 @@
-export { setPedals, initPedals, setBuildHistory, initBuildHistory } from './builder'
+export { addPedal, setPedals, initPedals, setBuildHistory, initBuildHistory } from './builder'
