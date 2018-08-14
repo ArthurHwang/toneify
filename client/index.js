@@ -11,6 +11,8 @@ const rootReducer = combineReducers({
   builder: builderReducer
 })
 
+const store = createStore(rootReducer, composeEnhancers(applyMiddleWare(thunk)))
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
