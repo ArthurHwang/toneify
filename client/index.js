@@ -7,6 +7,10 @@ import thunk from 'redux-thunk'
 import { builderReducer } from './store/reducers/builder'
 import App from './app'
 
+const rootReducer = combineReducers({
+  builder: builderReducer
+})
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
