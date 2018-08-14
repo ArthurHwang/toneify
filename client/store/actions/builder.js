@@ -41,3 +41,29 @@ export const initBuildHistory = () => dispatch => {
     })
     .catch(err => console.log(err))
 }
+
+export const showButtons = id => ({
+  type: actionTypes.SHOW_BUTTONS,
+  id
+})
+
+export const hideButtons = id => ({
+  type: actionTypes.HIDE_BUTTONS,
+  id
+})
+
+export const rotatePedal = id => ({
+  type: actionTypes.ROTATE_PEDAL,
+  id
+})
+
+export const onControlledDrag = (event, position) => ({
+  type: actionTypes.ON_CONTROLLED_DRAG,
+  event,
+  position
+})
+
+export const currentDraggedId = id => ({
+  type: actionTypes.CURRENT_DRAGGED_ID,
+  id
+})

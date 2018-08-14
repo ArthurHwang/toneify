@@ -28,12 +28,8 @@ class Builder extends Component {
       showModal: false,
       showHistoryModal: false,
       showSaveCompleteModal: false,
-      currentDraggedID: '',
-      isEditing: false,
-      buildToBeUpdated: false,
       currentBuildID: null,
-      showUpdateModal: false,
-      showHint: true
+      showUpdateModal: false
     }
   }
 
@@ -50,27 +46,6 @@ class Builder extends Component {
     if (this.state.youtubePedalResults.length) {
       sessionStorage.setItem('youtube', JSON.stringify(this.state.youtubePedalResults))
     }
-  }
-
-  onControlledDrag = (e, position) => {
-    const { x, y } = position
-    const pedalsOnBoard = [...this.props.pedalsOnBoard]
-    pedalsOnBoard.forEach(elem => {
-      if (elem.id === this.state.currentDraggedID) {
-        elem.posX = x
-        elem.posY = y
-      }
-    })
-
-    console.log(pedalsOnBoard)
-    if (this.state.isEditing) {
-      this.setState({ isEditing: true, buildToBeUpdated: true })
-    }
-    this.setState({ pedalsOnBoard })
-  }
-
-  currentDraggedID = id => {
-    this.setState({ showHint: false, currentDraggedID: id })
   }
 
   doubleClickHandler = (brand, model) => {
@@ -113,36 +88,6 @@ class Builder extends Component {
 
   deleteAllPedals = () => {
     this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
-  }
-
-  buttonShow = id => {
-    const pedalsOnBoard = [...this.props.pedalsOnBoard]
-    pedalsOnBoard.find(elem => {
-      if (elem.id === id) {
-        elem.showButtons = true
-      }
-    })
-    this.setState({ pedalsOnBoard })
-  }
-
-  buttonHide = id => {
-    const pedalsOnBoard = [...this.props.pedalsOnBoard]
-    pedalsOnBoard.find(elem => {
-      if (elem.id === id) {
-        elem.showButtons = false
-      }
-    })
-    this.setState({ pedalsOnBoard })
-  }
-
-  rotatePedal = id => {
-    const pedalsOnBoard = [...this.props.pedalsOnBoard]
-    pedalsOnBoard.find(elem => {
-      if (elem.id === id) {
-        elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
-      }
-    })
-    this.setState({ pedalsOnBoard })
   }
 
   saveBuild = () => {
@@ -239,15 +184,10 @@ class Builder extends Component {
   }
 
   render() {
-    const {
-      youtubePedalResults,
-      showHistoryModal,
-      showModal,
-      currentPedalboard
-    } = this.state
+    const { youtubePedalResults, showHistoryModal, showModal, currentPedalboard } = this.state
     return (
       <Fragment>
-        <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.state.showHint} />
+        <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.props.showHint} />
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
         <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.props.pedalsOnBoard} />
@@ -255,8 +195,8 @@ class Builder extends Component {
         <UpdateBuildButton
           updateBuild={this.updateBuild}
           pedalsOnScreen={this.props.pedalsOnBoard}
-          isEditing={this.state.isEditing}
-          showButton={this.state.buildToBeUpdated}
+          isEditing={this.props.isEditing}
+          showButton={this.props.buildToBeUpdated}
         />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
@@ -267,12 +207,12 @@ class Builder extends Component {
         {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
           doubleClick={this.doubleClickHandler}
-          getId={this.currentDraggedID}
-          onDrag={this.onControlledDrag}
+          getId={this.props.currentDraggedId}
+          onDrag={this.props.onControlledDrag}
           deletePedal={this.props.removePedal}
-          mouseLeave={this.buttonHide}
-          mouseOver={this.buttonShow}
-          rotate={this.rotatePedal}
+          mouseLeave={this.props.hideButtons}
+          mouseOver={this.props.showButtons}
+          rotate={this.props.rotatePedal}
           pedals={this.props.pedalsOnBoard}
         />
         <YoutubePedalsOutput searchResults={youtubePedalResults} />
@@ -293,12 +233,21 @@ class Builder extends Component {
 const mapStateToProps = state => ({
   pedals: state.builder.pedals,
   buildHistory: state.builder.buildHistory,
-  pedalsOnBoard: state.builder.pedalsOnBoard
+  pedalsOnBoard: state.builder.pedalsOnBoard,
+  currentDraggedId: state.builder.currentDraggedId,
+  showHint: state.builder.showHint,
+  isEditing: state.builder.isEditing,
+  buildToBeUpdated: state.builder.buildToBeUpdated
 })
 
 const mapDispatchToProps = dispatch => ({
-  addPedal: (id) => dispatch(actions.addPedal(id)),
-  removePedal: (id) => dispatch(actions.removePedal(id)),
+  currentDraggedId: id => dispatch(actions.currentDraggedId(id)),
+  onControlledDrag: (event, position) => dispatch(actions.onControlledDrag(event, position)),
+  showButtons: id => dispatch(actions.showButtons(id)),
+  hideButtons: id => dispatch(actions.hideButtons(id)),
+  rotatePedal: id => dispatch(actions.rotatePedal(id)),
+  addPedal: id => dispatch(actions.addPedal(id)),
+  removePedal: id => dispatch(actions.removePedal(id)),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })

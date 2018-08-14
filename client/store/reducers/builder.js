@@ -5,7 +5,12 @@ const initialState = {
   pedals: [],
   buildHistory: [],
   pedalsOnBoard: [],
-  currentPedalboard: null
+  currentDraggedId: null,
+  showHint: false,
+  currentPedalboard: null,
+  isEditing: false,
+  buildToBeUpdated: false,
+  showButtons: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -20,12 +25,67 @@ const reducer = (state = initialState, action) => {
       }
 
     case actionTypes.REMOVE_PEDAL:
-      const stateCopy = [...state.pedalsOnBoard]
-      const deleteIndex = stateCopy.findIndex(pedal => pedal.id === action.id)
-      stateCopy.splice(deleteIndex, 1)
+      const stateCopyRemove = [...state.pedalsOnBoard]
+      const deleteIndex = stateCopyRemove.findIndex(pedal => pedal.id === action.id)
+      stateCopyRemove.splice(deleteIndex, 1)
       return {
         ...state,
-        pedalsOnBoard: stateCopy
+        pedalsOnBoard: stateCopyRemove
+      }
+
+    case actionTypes.SHOW_BUTTONS:
+      const stateCopyShow = [...state.pedalsOnBoard]
+      stateCopyShow.find(pedal => {
+        if (pedal.id === action.id) {
+          pedal.showButtons = true
+        }
+      })
+      return {
+        ...state,
+        pedalsOnBoard: stateCopyShow
+      }
+    case actionTypes.HIDE_BUTTONS:
+      const stateCopyHide = [...state.pedalsOnBoard]
+      stateCopyHide.find(pedal => {
+        if (pedal.id === action.id) {
+          pedal.showButtons = false
+        }
+      })
+      return {
+        ...state,
+        pedalsOnBoard: stateCopyHide
+      }
+    case actionTypes.ROTATE_PEDAL:
+      const stateCopyRotate = [...state.pedalsOnBoard]
+      stateCopyRotate.find(pedal => {
+        if (pedal.id === action.id) {
+          pedal.rotation >= 360 ? (pedal.rotation = 0) : (pedal.rotation += 90)
+        }
+      })
+      return {
+        ...state,
+        pedalsOnBoard: stateCopyRotate
+      }
+    case actionTypes.CURRENT_DRAGGED_ID:
+      return {
+        ...state,
+        currentDraggedId: action.id
+      }
+
+    case actionTypes.ON_CONTROLLED_DRAG:
+      const { x, y } = action.position
+      const stateCopyDrag = [...state.pedalsOnBoard]
+      stateCopyDrag.find(elem => {
+        if (elem.id === state.currentDraggedId) {
+          elem.posX = x
+          elem.posY = y
+        }
+      })
+      return {
+        ...state,
+        pedalsOnBoard: stateCopyDrag,
+        isEditing: true,
+        buildToBeUpdated: true
       }
 
     case actionTypes.SET_PEDALS:
