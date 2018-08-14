@@ -13,6 +13,7 @@
     "array-callback-return": 0,
     "jsx-a11y/mouse-events-have-key-events": 0,
     "react/no-deprecated": 0,
+    "no-case-declarations": 0,
     "space-before-function-paren": ["error", {
       "anonymous": "always",
       "named": "never",

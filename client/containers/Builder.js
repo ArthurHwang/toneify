@@ -24,9 +24,6 @@ class Builder extends Component {
     super(props)
     this.state = {
       currentPedalboard: JSON.parse(sessionStorage.getItem('data')),
-      // pedals: [],
-      pedalsOnBoard: JSON.parse(sessionStorage.getItem('pedals')) || [],
-      // buildHistory: [],
       youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
       showHistoryModal: false,
@@ -46,8 +43,8 @@ class Builder extends Component {
   }
 
   componentWillUnmount() {
-    if (this.state.pedalsOnBoard.length) {
-      sessionStorage.setItem('pedals', JSON.stringify(this.state.pedalsOnBoard))
+    if (this.props.pedalsOnBoard.length) {
+      sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
     }
 
     if (this.state.youtubePedalResults.length) {
@@ -57,13 +54,15 @@ class Builder extends Component {
 
   onControlledDrag = (e, position) => {
     const { x, y } = position
-    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    const pedalsOnBoard = [...this.props.pedalsOnBoard]
     pedalsOnBoard.forEach(elem => {
       if (elem.id === this.state.currentDraggedID) {
         elem.posX = x
         elem.posY = y
       }
     })
+
+    console.log(pedalsOnBoard)
     if (this.state.isEditing) {
       this.setState({ isEditing: true, buildToBeUpdated: true })
     }
@@ -112,42 +111,12 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
-  addPedal = id => {
-    const { pedals, pedalsOnBoard } = this.state
-    const findPedal = pedals.find((elem, index) => {
-      if (elem.id === id) {
-        return elem
-      }
-    })
-    const updatePedalsOnBoard = [...pedalsOnBoard, findPedal]
-    const withRotation = updatePedalsOnBoard.map((elem, index) => ({
-      ...elem,
-      rotation: elem.rotation || 0,
-      showButtons: elem.showButtons || false,
-      posX: elem.posX || null,
-      posY: elem.posY || null
-    }))
-
-    if (this.state.isEditing) {
-      this.setState({ buildToBeUpdated: true })
-    }
-    this.setState({ showModal: false, pedalsOnBoard: withRotation })
-  }
-
-  deletePedal = id => {
-    const { pedalsOnBoard } = this.state
-    const pedalsToDelete = [...pedalsOnBoard]
-    const buildIndex = pedalsToDelete.findIndex(elem => elem.id === id)
-    pedalsToDelete.splice(buildIndex, 1)
-    this.setState({ pedalsOnBoard: pedalsToDelete })
-  }
-
   deleteAllPedals = () => {
     this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
   }
 
   buttonShow = id => {
-    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    const pedalsOnBoard = [...this.props.pedalsOnBoard]
     pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.showButtons = true
@@ -157,7 +126,7 @@ class Builder extends Component {
   }
 
   buttonHide = id => {
-    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    const pedalsOnBoard = [...this.props.pedalsOnBoard]
     pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.showButtons = false
@@ -167,7 +136,7 @@ class Builder extends Component {
   }
 
   rotatePedal = id => {
-    const pedalsOnBoard = [...this.state.pedalsOnBoard]
+    const pedalsOnBoard = [...this.props.pedalsOnBoard]
     pedalsOnBoard.find(elem => {
       if (elem.id === id) {
         elem.rotation >= 360 ? (elem.rotation = 0) : (elem.rotation += 90)
@@ -185,7 +154,7 @@ class Builder extends Component {
       },
       body: JSON.stringify({
         pedalBoard: this.state.currentPedalboard,
-        pedals: this.state.pedalsOnBoard
+        pedals: this.props.pedalsOnBoard
       })
     })
       .then(res => res.json())
@@ -208,7 +177,7 @@ class Builder extends Component {
       },
       body: JSON.stringify({
         pedalBoard: this.state.currentPedalboard,
-        pedals: this.state.pedalsOnBoard
+        pedals: this.props.pedalsOnBoard
       })
     })
       .then(res => res.json())
@@ -272,23 +241,20 @@ class Builder extends Component {
   render() {
     const {
       youtubePedalResults,
-      buildHistory,
       showHistoryModal,
-      pedals,
       showModal,
-      currentPedalboard,
-      pedalsOnBoard
+      currentPedalboard
     } = this.state
     return (
       <Fragment>
         <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.state.showHint} />
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
-        <DeleteAllPedalsButton showButton={this.state.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
-        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.state.pedalsOnBoard} />
+        <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
+        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.props.pedalsOnBoard} />
         <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.openHistoryModalHandler} />
         <UpdateBuildButton
           updateBuild={this.updateBuild}
-          pedalsOnScreen={this.state.pedalsOnBoard}
+          pedalsOnScreen={this.props.pedalsOnBoard}
           isEditing={this.state.isEditing}
           showButton={this.state.buildToBeUpdated}
         />
@@ -303,7 +269,7 @@ class Builder extends Component {
           doubleClick={this.doubleClickHandler}
           getId={this.currentDraggedID}
           onDrag={this.onControlledDrag}
-          deletePedal={this.deletePedal}
+          deletePedal={this.props.removePedal}
           mouseLeave={this.buttonHide}
           mouseOver={this.buttonShow}
           rotate={this.rotatePedal}
@@ -325,16 +291,14 @@ class Builder extends Component {
 }
 
 const mapStateToProps = state => ({
-  // pedals: state.pedals
   pedals: state.builder.pedals,
   buildHistory: state.builder.buildHistory,
   pedalsOnBoard: state.builder.pedalsOnBoard
 })
-// pedalboards: state.builder.pedalboards,
-// currentPedalboard: state.builder.currentPedalboard
 
 const mapDispatchToProps = dispatch => ({
   addPedal: (id) => dispatch(actions.addPedal(id)),
+  removePedal: (id) => dispatch(actions.removePedal(id)),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })
