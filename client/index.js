@@ -14,8 +14,10 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, composeEnhancers(applyMiddleWare(thunk)))
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )
