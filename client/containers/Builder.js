@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import YoutubeSearch from 'youtube-search'
+import { connect } from 'react-redux'
 import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
 import WarningMessage from '../components/Builder/WarningMessage'
 import BuilderModal from '../components/Modal/BuilderModal'
@@ -14,6 +15,7 @@ import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
 import YoutubePedalsOutput from '../components/Builder/YoutubePedalsOutput'
 import BuilderHint from '../components/Builder/BuilderHint'
+import * as actions from '../store/actions/index'
 
 require('dotenv/config')
 
@@ -39,22 +41,24 @@ class Builder extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/pedals', {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ pedals: data })
-      })
-      .catch(err => console.log(err))
-    fetch('/api/userConfigs', {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ buildHistory: data })
-      })
-      .catch(err => console.log(err))
+    // fetch('/api/pedals', {
+    //   method: 'GET'
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ pedals: data })
+    //   })
+    //   .catch(err => console.log(err))
+    // fetch('/api/userConfigs', {
+    //   method: 'GET'
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ buildHistory: data })
+    //   })
+    //   .catch(err => console.log(err))
+    this.props.initPedals()
+    // this.props.initBuildHistory()
   }
 
   componentWillUnmount() {
@@ -307,7 +311,7 @@ class Builder extends Component {
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
-          pedalData={pedals}
+          pedalData={this.props.pedals}
           handleClick={this.addPedal}
         />
         {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
@@ -335,4 +339,28 @@ class Builder extends Component {
     )
   }
 }
-export default Builder
+
+const mapStateToProps = state => {
+  return {
+    // pedals: state.pedals
+    pedals: state.builder.pedals,
+    buildHistory: state.builder.buildHistory
+  }
+  // pedalboards: state.builder.pedalboards,
+  // currentPedalboard: state.builder.currentPedalboard
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    initPedals: () => dispatch(actions.initPedals()),
+    initBuildHistory: () => dispatch(actions.initBuildHistory())
+
+  }
+  // initPedals: () => dispatch(actions.initPedals),
+  // addPedal: id => dispatch(actions.addPedal(id))
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Builder)
