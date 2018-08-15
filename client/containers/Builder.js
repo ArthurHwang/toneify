@@ -23,17 +23,17 @@ class Builder extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentPedalboard: JSON.parse(sessionStorage.getItem('data')),
       youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
       showHistoryModal: false,
       showSaveCompleteModal: false,
-      currentBuildID: null,
+      // currentBuildID: null,
       showUpdateModal: false
     }
   }
 
   componentDidMount() {
+    this.props.initCurrentPedalboard()
     this.props.initBuildHistory()
     this.props.initPedals()
   }
@@ -42,7 +42,6 @@ class Builder extends Component {
     if (this.props.pedalsOnBoard.length) {
       sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
     }
-
     if (this.state.youtubePedalResults.length) {
       sessionStorage.setItem('youtube', JSON.stringify(this.state.youtubePedalResults))
     }
@@ -57,39 +56,32 @@ class Builder extends Component {
     const query = brand + ' ' + model + ' sound demo'
 
     YoutubeSearch(query, opts, (err, results) => {
-      if (err) {
-        return console.log(err)
-      }
-      console.dir(results)
+      if (err) console.log(err)
       this.setState({ youtubePedalResults: results })
     })
   }
 
-  loadSavedBuild = id => {
-    fetch('/api/userConfigs/' + id, {
-      method: 'GET'
-    })
-      .then(res => {
-        this.setState({ pedalsOnBoard: [] })
-        return res.json()
-      })
-      .then(data => {
-        this.setState({
-          currentPedalboard: data.pedalBoard,
-          pedalsOnBoard: data.pedals,
-          showHistoryModal: false,
-          isEditing: true,
-          currentBuildID: id,
-          youtubePedalResults: []
-        })
-      })
-      .catch(err => console.log(err))
-  }
-
-  // deleteAllPedals = () => {
-  //   this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
+  // loadSavedBuild = id => {
+  //   fetch('/api/userConfigs/' + id, {
+  //     method: 'GET'
+  //   })
+  //     .then(res => {
+  //       this.setState({ pedalsOnBoard: [] })
+  //       return res.json()
+  //     })
+  //     .then(data => {
+  //       this.setState({
+  //         currentPedalboard: data.pedalBoard,
+  //         pedalsOnBoard: data.pedals,
+  //         showHistoryModal: false,
+  //         isEditing: true,
+  //         currentBuildID: id,
+  //         youtubePedalResults: []
+  //       })
+  //     })
+  //     .catch(err => console.log(err))
   // }
-
+  //
   saveBuild = () => {
     fetch('/api/userConfigs', {
       method: 'POST',
@@ -112,52 +104,52 @@ class Builder extends Component {
       })
       .catch(err => console.log(err))
   }
-
-  updateBuild = () => {
-    fetch('/api/userConfigs/' + this.state.currentBuildID, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        pedalBoard: this.state.currentPedalboard,
-        pedals: this.props.pedalsOnBoard
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        const updatedBuildHistory = this.state.buildHistory.map(elem => {
-          if (elem.id === this.state.currentBuildID) {
-            elem = data
-            return elem
-          }
-          else {
-            return elem
-          }
-        })
-        this.setState({
-          isEditing: false,
-          buildToBeUpdated: false,
-          buildHistory: updatedBuildHistory,
-          showUpdateModal: true
-        })
-      })
-      .catch(err => console.log(err))
-  }
-
-  deleteBuild = id => {
-    fetch('/api/userConfigs/' + id, {
-      method: 'DELETE'
-    })
-      .then(() => {
-        const buildHistory = [...this.state.buildHistory]
-        const buildIndex = buildHistory.findIndex(elem => elem.id === id)
-        buildHistory.splice(buildIndex, 1)
-        this.setState({ buildHistory })
-      })
-      .catch(error => console.log(error))
-  }
+  //
+  // updateBuild = () => {
+  //   fetch('/api/userConfigs/' + this.state.currentBuildID, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       pedalBoard: this.state.currentPedalboard,
+  //       pedals: this.props.pedalsOnBoard
+  //     })
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       const updatedBuildHistory = this.state.buildHistory.map(elem => {
+  //         if (elem.id === this.state.currentBuildID) {
+  //           elem = data
+  //           return elem
+  //         }
+  //         else {
+  //           return elem
+  //         }
+  //       })
+  //       this.setState({
+  //         isEditing: false,
+  //         buildToBeUpdated: false,
+  //         buildHistory: updatedBuildHistory,
+  //         showUpdateModal: true
+  //       })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  //
+  // deleteBuild = id => {
+  //   fetch('/api/userConfigs/' + id, {
+  //     method: 'DELETE'
+  //   })
+  //     .then(() => {
+  //       const buildHistory = [...this.state.buildHistory]
+  //       const buildIndex = buildHistory.findIndex(elem => elem.id === id)
+  //       buildHistory.splice(buildIndex, 1)
+  //       this.setState({ buildHistory })
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
   openModalHandler = () => {
     this.setState({ showModal: true })
@@ -187,10 +179,10 @@ class Builder extends Component {
     const { youtubePedalResults, showHistoryModal, showModal, currentPedalboard } = this.state
     return (
       <Fragment>
-        <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.props.showHint} />
-        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <BuilderHint currentPedalboard={this.props.currentPedalboard} showHint={this.props.showHint} />
+        <BuilderAddPedalButton showButton={this.props.currentPedalboard} showModal={this.openModalHandler} />
         <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.props.removeAllPedals} />
-        <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.props.pedalsOnBoard} />
+        <BuilderSaveButton saveBuild={this.props.saveBuild} showButton={this.props.pedalsOnBoard} />
         <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.openHistoryModalHandler} />
         <UpdateBuildButton
           updateBuild={this.updateBuild}
@@ -204,7 +196,7 @@ class Builder extends Component {
           pedalData={this.props.pedals}
           handleClick={this.props.addPedal}
         />
-        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
+        {this.props.currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={this.props.currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
           doubleClick={this.doubleClickHandler}
           getId={this.props.currentDraggedId}
@@ -215,7 +207,7 @@ class Builder extends Component {
           rotate={this.props.rotatePedal}
           pedals={this.props.pedalsOnBoard}
         />
-        <YoutubePedalsOutput searchResults={youtubePedalResults} />
+        <YoutubePedalsOutput searchResults={youtubePedalResults} pedalsOnBoard={this.props.pedalsOnBoard} />
         <HistoryModal
           loadSavedBuild={this.loadSavedBuild}
           showModal={showHistoryModal}
@@ -230,14 +222,15 @@ class Builder extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  pedals: state.builder.pedals,
-  buildHistory: state.builder.buildHistory,
-  pedalsOnBoard: state.builder.pedalsOnBoard,
-  currentDraggedId: state.builder.currentDraggedId,
-  showHint: state.builder.showHint,
-  isEditing: state.builder.isEditing,
-  buildToBeUpdated: state.builder.buildToBeUpdated
+const mapStateToProps = ({ builder }) => ({
+  pedals: builder.pedals,
+  buildHistory: builder.buildHistory,
+  pedalsOnBoard: builder.pedalsOnBoard,
+  currentDraggedId: builder.currentDraggedId,
+  showHint: builder.showHint,
+  isEditing: builder.isEditing,
+  buildToBeUpdated: builder.buildToBeUpdated,
+  currentPedalboard: builder.currentPedalboard
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -249,6 +242,8 @@ const mapDispatchToProps = dispatch => ({
   addPedal: id => dispatch(actions.addPedal(id)),
   removePedal: id => dispatch(actions.removePedal(id)),
   removeAllPedals: () => dispatch(actions.removeAllPedals()),
+  saveBuild: () => dispatch(actions.saveBuild()),
+  initCurrentPedalboard: (pedalboard) => dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })

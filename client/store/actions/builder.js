@@ -14,6 +14,32 @@ export const removeAllPedals = () => ({
   type: actionTypes.REMOVE_ALL_PEDALS
 })
 
+export const showButtons = id => ({
+  type: actionTypes.SHOW_BUTTONS,
+  id
+})
+
+export const hideButtons = id => ({
+  type: actionTypes.HIDE_BUTTONS,
+  id
+})
+
+export const rotatePedal = id => ({
+  type: actionTypes.ROTATE_PEDAL,
+  id
+})
+
+export const onControlledDrag = (event, position) => ({
+  type: actionTypes.ON_CONTROLLED_DRAG,
+  event,
+  position
+})
+
+export const currentDraggedId = id => ({
+  type: actionTypes.CURRENT_DRAGGED_ID,
+  id
+})
+
 export const setPedals = pedals => ({
   type: actionTypes.SET_PEDALS,
   pedals
@@ -46,28 +72,38 @@ export const initBuildHistory = () => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const showButtons = id => ({
-  type: actionTypes.SHOW_BUTTONS,
-  id
+export const setSaveBuild = build => ({
+  type: actionTypes.SAVE_BUILD,
+  build
 })
 
-export const hideButtons = id => ({
-  type: actionTypes.HIDE_BUTTONS,
-  id
-})
+export const saveBuild = (currentPedalboard, pedalsOnBoard) => (dispatch, getState) => {
+  const { currentPedalboard, pedalsOnBoard } = getState().builder
+  console.log(currentPedalboard, pedalsOnBoard)
+  fetch('/api/userConfigs', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      pedalBoard: currentPedalboard,
+      pedals: pedalsOnBoard
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setSaveBuild(data))
+      // const appendToHistory = [...this.state.buildHistory, data]
+      // this.setState({
+      //   buildHistory: appendToHistory,
+      //   showSaveCompleteModal: true
+      // })
+    })
+    .catch(err => console.log(err))
+}
 
-export const rotatePedal = id => ({
-  type: actionTypes.ROTATE_PEDAL,
-  id
-})
-
-export const onControlledDrag = (event, position) => ({
-  type: actionTypes.ON_CONTROLLED_DRAG,
-  event,
-  position
-})
-
-export const currentDraggedId = id => ({
-  type: actionTypes.CURRENT_DRAGGED_ID,
-  id
+export const initCurrentPedalboard = (pedalboard) => ({
+  type: actionTypes.INIT_CURRENT_PEDALBOARD,
+  pedalboard
 })

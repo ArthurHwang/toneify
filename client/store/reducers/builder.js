@@ -77,7 +77,6 @@ const currentDraggedId = (state, action) => {
 }
 
 const onControlledDrag = (state, action) => {
-
   const { x, y } = action.position
   const stateCopy = [...state.pedalsOnBoard]
   stateCopy.find(pedal => {
@@ -91,6 +90,28 @@ const onControlledDrag = (state, action) => {
     isEditing: true,
     buildToBeUpdated: true
   }
+  return updateObject(state, updatedState)
+}
+
+const setSaveBuild = (state, action) => {
+  const updatedState = { buildHistory: state.buildHistory.concat(action.build) }
+  return updateObject(state, updatedState)
+}
+
+// const deleteBuild = (state, action) => {
+//
+// }
+//
+// const loadBuild = (state, action) => {
+//
+// }
+//
+// const updateBuild = (state, action) => {
+//
+// }
+
+const setCurrentPedalboard = (state, action) => {
+  const updatedState = { currentPedalboard: action.pedalboard }
   return updateObject(state, updatedState)
 }
 
@@ -114,8 +135,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ROTATE_PEDAL: return rotatePedal(state, action)
     case actionTypes.CURRENT_DRAGGED_ID: return currentDraggedId(state, action)
     case actionTypes.ON_CONTROLLED_DRAG: return onControlledDrag(state, action)
+    case actionTypes.SAVE_BUILD: return setSaveBuild(state, action)
     case actionTypes.SET_PEDALS: return setPedals(state, action)
     case actionTypes.SET_BUILD_HISTORY: return setBuildHistory(state, action)
+    case actionTypes.INIT_CURRENT_PEDALBOARD: return setCurrentPedalboard(state, action)
     default:
       return state
   }

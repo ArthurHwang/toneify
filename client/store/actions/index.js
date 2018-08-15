@@ -7,8 +7,8 @@ export {
   addPedal,
   removePedal,
   removeAllPedals,
-  setPedals,
   initPedals,
-  setBuildHistory,
-  initBuildHistory
+  initBuildHistory,
+  initCurrentPedalboard,
+  saveBuild
 } from './builder'
