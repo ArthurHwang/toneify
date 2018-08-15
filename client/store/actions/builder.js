@@ -10,6 +10,10 @@ export const removePedal = id => ({
   id
 })
 
+export const removeAllPedals = () => ({
+  type: actionTypes.REMOVE_ALL_PEDALS
+})
+
 export const setPedals = pedals => ({
   type: actionTypes.SET_PEDALS,
   pedals

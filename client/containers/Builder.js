@@ -86,9 +86,9 @@ class Builder extends Component {
       .catch(err => console.log(err))
   }
 
-  deleteAllPedals = () => {
-    this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
-  }
+  // deleteAllPedals = () => {
+  //   this.setState({ isEditing: false, pedalsOnBoard: [], buildToBeUpdated: false, youtubePedalResults: [] })
+  // }
 
   saveBuild = () => {
     fetch('/api/userConfigs', {
@@ -189,7 +189,7 @@ class Builder extends Component {
       <Fragment>
         <BuilderHint currentPedalboard={this.state.currentPedalboard} showHint={this.props.showHint} />
         <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
-        <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.deleteAllPedals} />
+        <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.props.removeAllPedals} />
         <BuilderSaveButton saveBuild={this.saveBuild} showButton={this.props.pedalsOnBoard} />
         <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.openHistoryModalHandler} />
         <UpdateBuildButton
@@ -248,6 +248,7 @@ const mapDispatchToProps = dispatch => ({
   rotatePedal: id => dispatch(actions.rotatePedal(id)),
   addPedal: id => dispatch(actions.addPedal(id)),
   removePedal: id => dispatch(actions.removePedal(id)),
+  removeAllPedals: () => dispatch(actions.removeAllPedals()),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })

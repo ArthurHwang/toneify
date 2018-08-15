@@ -6,6 +6,7 @@ export {
   rotatePedal,
   addPedal,
   removePedal,
+  removeAllPedals,
   setPedals,
   initPedals,
   setBuildHistory,
