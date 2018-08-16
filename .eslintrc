@@ -8,10 +8,10 @@
   "rules": {
     "padded-blocks": 0,
     "curly": ["error", "multi-line"],
-    "brace-style": ["error", "stroustrup"],
     "react/prop-types": 0,
     "array-callback-return": 0,
     "no-redeclare": 0,
+    "brace-style" : 0,
     "no-shadow": 0,
     "jsx-a11y/mouse-events-have-key-events": 0,
     "react/no-deprecated": 0,

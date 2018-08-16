@@ -22,8 +22,7 @@ class Builder extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showModal: false,
-      showUpdateModal: false
+      showModal: false
     }
   }
 
@@ -42,41 +41,6 @@ class Builder extends Component {
     }
   }
 
-  //
-  // updateBuild = () => {
-  //   fetch('/api/userConfigs/' + this.state.currentBuildID, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       pedalBoard: this.state.currentPedalboard,
-  //       pedals: this.props.pedalsOnBoard
-  //     })
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       const updatedBuildHistory = this.state.buildHistory.map(elem => {
-  //         if (elem.id === this.state.currentBuildID) {
-  //           elem = data
-  //           return elem
-  //         }
-  //         else {
-  //           return elem
-  //         }
-  //       })
-  //       this.setState({
-  //         isEditing: false,
-  //         buildToBeUpdated: false,
-  //         buildHistory: updatedBuildHistory,
-  //         showUpdateModal: true
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
-
   openModalHandler = () => {
     this.setState({ showModal: true })
   }
@@ -85,61 +49,78 @@ class Builder extends Component {
     this.setState({ showModal: false })
   }
 
-  openHistoryModalHandler = () => {
-    this.setState({ showHistoryModal: true })
-  }
-
-  closeHistoryModalHandler = () => {
-    this.setState({ showHistoryModal: false })
-  }
-
-  closeUpdateModal = () => {
-    this.setState({ showUpdateModal: false })
-  }
-
   render() {
-    const { showHistoryModal, showModal } = this.state
-
+    const { showModal } = this.state
+    const {
+      closeSaveModal,
+      showSaveCompleteModal,
+      closeUpdateModal,
+      showUpdateModal,
+      loadBuild,
+      showHistoryModal,
+      closeHistoryModal,
+      deleteBuild,
+      youtubePedalResults,
+      currentPedalboard,
+      pedalsOnBoard,
+      removeAllPedals,
+      saveBuild,
+      buildHistory,
+      openHistoryModal,
+      updateBuild,
+      isEditing,
+      pedals,
+      addPedal,
+      doubleClickHandler,
+      currentDraggedId,
+      onControlledDrag,
+      removePedal,
+      hideButtons,
+      showButtons,
+      rotatePedal,
+      buildToBeUpdated,
+      showHint
+    } = this.props
     return (
       <Fragment>
-        <BuilderHint currentPedalboard={this.props.currentPedalboard} showHint={this.props.showHint} />
-        <BuilderAddPedalButton showButton={this.props.currentPedalboard} showModal={this.openModalHandler} />
-        <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.props.removeAllPedals} />
-        <BuilderSaveButton saveBuild={this.props.saveBuild} showButton={this.props.pedalsOnBoard} />
-        <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.props.openHistoryModal} />
+        <BuilderHint currentPedalboard={currentPedalboard} showHint={showHint} />
+        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+        <DeleteAllPedalsButton showButton={pedalsOnBoard} deleteAllPedals={removeAllPedals} />
+        <BuilderSaveButton saveBuild={saveBuild} showButton={pedalsOnBoard} />
+        <ShowHistoryButton showButton={buildHistory} showModal={openHistoryModal} />
         <UpdateBuildButton
-          updateBuild={this.updateBuild}
-          pedalsOnScreen={this.props.pedalsOnBoard}
-          isEditing={this.props.isEditing}
-          showButton={this.props.buildToBeUpdated}
+          updateBuild={updateBuild}
+          pedalsOnScreen={pedalsOnBoard}
+          isEditing={isEditing}
+          showButton={buildToBeUpdated}
         />
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
-          pedalData={this.props.pedals}
-          handleClick={this.props.addPedal}
+          pedalData={pedals}
+          handleClick={addPedal}
         />
-        {this.props.currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={this.props.currentPedalboard} /> : <WarningMessage />}
+        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
-          doubleClick={this.props.doubleClickHandler}
-          getId={this.props.currentDraggedId}
-          onDrag={this.props.onControlledDrag}
-          deletePedal={this.props.removePedal}
-          mouseLeave={this.props.hideButtons}
-          mouseOver={this.props.showButtons}
-          rotate={this.props.rotatePedal}
-          pedals={this.props.pedalsOnBoard}
+          doubleClick={doubleClickHandler}
+          getId={currentDraggedId}
+          onDrag={onControlledDrag}
+          deletePedal={removePedal}
+          mouseLeave={hideButtons}
+          mouseOver={showButtons}
+          rotate={rotatePedal}
+          pedals={pedalsOnBoard}
         />
-        <YoutubePedalsOutput searchResults={this.props.youtubePedalResults} pedalsOnBoard={this.props.pedalsOnBoard} />
+        <YoutubePedalsOutput searchResults={youtubePedalResults} pedalsOnBoard={pedalsOnBoard} />
         <HistoryModal
-          loadSavedBuild={this.props.loadBuild}
-          showModal={this.props.showHistoryModal}
-          closeModalHandler={this.props.closeHistoryModal}
-          buildHistory={this.props.buildHistory}
-          deleteBuild={this.props.deleteBuild}
+          loadSavedBuild={loadBuild}
+          showModal={showHistoryModal}
+          closeModalHandler={closeHistoryModal}
+          buildHistory={buildHistory}
+          deleteBuild={deleteBuild}
         />
-        <SaveCompleteModal closeModal={this.props.closeSaveModal} showModal={this.props.showSaveCompleteModal} />
-        <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
+        <SaveCompleteModal closeModal={closeSaveModal} showModal={showSaveCompleteModal} />
+        <UpdateCompleteModal closeModal={closeUpdateModal} showModal={showUpdateModal} />
       </Fragment>
     )
   }
@@ -156,10 +137,13 @@ const mapStateToProps = ({ builder }) => ({
   currentPedalboard: builder.currentPedalboard,
   showSaveCompleteModal: builder.showSaveCompleteModal,
   youtubePedalResults: builder.youtubePedalResults,
-  showHistoryModal: builder.showHistoryModal
+  showHistoryModal: builder.showHistoryModal,
+  showUpdateModal: builder.showUpdateModal
 })
 
 const mapDispatchToProps = dispatch => ({
+  openUpdateModal: () => dispatch(actions.openUpdateModal()),
+  closeUpdateModal: () => dispatch(actions.closeUpdateModal()),
   openHistoryModal: () => dispatch(actions.openHistoryModal()),
   closeHistoryModal: () => dispatch(actions.closeHistoryModal()),
   doubleClickHandler: (brand, model) => dispatch(actions.doubleClickHandler(brand, model)),
@@ -174,9 +158,10 @@ const mapDispatchToProps = dispatch => ({
   removeAllPedals: () => dispatch(actions.removeAllPedals()),
   deleteBuild: id => dispatch(actions.deleteBuild(id)),
   saveBuild: () => dispatch(actions.saveBuild()),
-  loadBuild: (id) => dispatch(actions.loadBuild(id)),
+  loadBuild: id => dispatch(actions.loadBuild(id)),
   updateBuild: () => dispatch(actions.updateBuild()),
-  initCurrentPedalboard: pedalboard => dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
+  initCurrentPedalboard: pedalboard =>
+    dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })

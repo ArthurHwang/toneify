@@ -147,7 +147,6 @@ export const setLoadBuild = build => ({
 })
 
 export const loadBuild = id => dispatch => {
-  console.log('hi')
   fetch('/api/userConfigs/' + id, {
     method: 'GET'
   })
@@ -158,9 +157,31 @@ export const loadBuild = id => dispatch => {
     .catch(err => console.log(err))
 }
 
-// export const setUpdateBuild = () => ({})
-//
-// export const updateBuild = id => dispatch => {}
+export const setUpdateBuild = build => ({
+  type: actionTypes.SET_UPDATE_BUILD,
+  build
+})
+
+export const updateBuild = () => (dispatch, getState) => {
+  const { currentBuildId, currentPedalboard, pedalsOnBoard } = getState().builder
+  fetch('/api/userConfigs/' + currentBuildId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      pedalBoard: currentPedalboard,
+      pedals: pedalsOnBoard
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data)
+      dispatch(setUpdateBuild(data))
+    })
+    .catch(err => console.log(err))
+}
 
 export const openHistoryModal = () => ({
   type: actionTypes.OPEN_HISTORY_MODAL
@@ -168,4 +189,12 @@ export const openHistoryModal = () => ({
 
 export const closeHistoryModal = () => ({
   type: actionTypes.CLOSE_HISTORY_MODAL
+})
+
+export const openUpdateModal = () => ({
+  type: actionTypes.OPEN_UPDATE_MODAL
+})
+
+export const closeUpdateModal = () => ({
+  type: actionTypes.CLOSE_UPDATE_MODAL
 })

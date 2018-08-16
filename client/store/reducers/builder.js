@@ -1,27 +1,44 @@
 import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../utility'
 
-
 const initialState = {
   pedals: [],
   buildHistory: [],
   pedalsOnBoard: [],
   youtubePedalResults: [],
   currentDraggedId: null,
-  showHint: false,
+  showHint: true,
   currentPedalboard: null,
   isEditing: false,
   buildToBeUpdated: false,
   showButtons: false,
   showSaveCompleteModal: false,
-  showHistoryModal: false
+  showHistoryModal: false,
+  currentBuildId: null,
+  showUpdateModal: false
 }
 
 const addPedal = (state, action) => {
   const findPedal = state.pedals.find(pedal => pedal.id === action.id)
   const newPedalProperties = { rotation: 0, showButtons: false, posX: null, posY: null }
   const transformedPedal = Object.assign(findPedal, newPedalProperties)
-  const updatedState = { pedalsOnBoard: state.pedalsOnBoard.concat(transformedPedal) }
+  let updatedState = null
+
+  if (state.currentBuildId) {
+    updatedState = {
+      pedalsOnBoard: state.pedalsOnBoard.concat(transformedPedal),
+      isEditing: true,
+      buildToBeUpdated: true,
+      showHint: false
+    }
+  } else {
+    updatedState = {
+      pedalsOnBoard: state.pedalsOnBoard.concat(transformedPedal),
+      isEditing: false,
+      buildToBeUpdated: false,
+      showHint: false
+    }
+  }
   return updateObject(state, updatedState)
 }
 
@@ -37,7 +54,9 @@ const removeAllPedals = (state, action) => {
   const updatedState = {
     pedalsOnBoard: [],
     buildToBeUpdated: false,
-    isEditing: false
+    isEditing: false,
+    youtubePedalResults: [],
+    currentBuildId: null
   }
   return updateObject(state, updatedState)
 }
@@ -82,6 +101,7 @@ const currentDraggedId = (state, action) => {
 
 const onControlledDrag = (state, action) => {
   const { x, y } = action.position
+  let updatedState = null
   const stateCopy = [...state.pedalsOnBoard]
   stateCopy.find(pedal => {
     if (pedal.id === state.currentDraggedId) {
@@ -89,11 +109,20 @@ const onControlledDrag = (state, action) => {
       pedal.posY = y
     }
   })
-  const updatedState = {
-    pedalsOnBoard: stateCopy,
-    isEditing: true,
-    buildToBeUpdated: true
+  if (state.currentBuildId) {
+    updatedState = {
+      pedalsOnBoard: stateCopy,
+      isEditing: true,
+      buildToBeUpdated: true
+    }
+  } else {
+    updatedState = {
+      pedalsOnBoard: stateCopy,
+      isEditing: false,
+      buildToBeUpdated: false
+    }
   }
+
   return updateObject(state, updatedState)
 }
 
@@ -105,13 +134,29 @@ const setSaveBuild = (state, action) => {
   return updateObject(state, updatedState)
 }
 
+const setUpdateBuild = (state, action) => {
+  const stateCopy = [...state.buildHistory]
+  const newBuildHistory = stateCopy.map(build => {
+    if (build.id === state.currentBuildId) {
+      build = action.build
+      return build
+    } else {
+      return build
+    }
+  })
+  const updatedState = {
+    buildHistory: newBuildHistory,
+    isEditing: false,
+    buildToBeUpdated: false,
+    showUpdateModal: true
+  }
+  return updateObject(state, updatedState)
+}
+
 const setYoutubeResults = (state, action) => {
   const updatedState = { youtubePedalResults: action.videos }
   return updateObject(state, updatedState)
 }
-// const updateBuild = (state, action) => {
-//
-// }
 
 const setCurrentPedalboard = (state, action) => {
   const updatedState = { currentPedalboard: action.pedalboard }
@@ -150,7 +195,6 @@ const setLoadBuild = (state, action) => {
     currentBuildId: action.build.id,
     youtubePedalResults: []
   }
-
   return updateObject(state, updatedState)
 }
 
@@ -168,6 +212,19 @@ const closeHistoryModal = (state, action) => {
   return updateObject(state, updatedState)
 }
 
+const openUpdateModal = (state, action) => {
+  const updatedState = {
+    showUpdateModal: true
+  }
+  return updateObject(state, updatedState)
+}
+
+const closeUpdateModal = (state, action) => {
+  const updatedState = {
+    showUpdateModal: false
+  }
+  return updateObject(state, updatedState)
+}
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PEDAL: return addPedal(state, action)
@@ -188,6 +245,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_LOAD_BUILD: return setLoadBuild(state, action)
     case actionTypes.OPEN_HISTORY_MODAL: return openHistoryModal(state, action)
     case actionTypes.CLOSE_HISTORY_MODAL: return closeHistoryModal(state, action)
+    case actionTypes.SET_UPDATE_BUILD: return setUpdateBuild(state, action)
+    case actionTypes.OPEN_UPDATE_MODAL: return openUpdateModal(state, action)
+    case actionTypes.CLOSE_UPDATE_MODAL: return closeUpdateModal(state, action)
     default:
       return state
   }

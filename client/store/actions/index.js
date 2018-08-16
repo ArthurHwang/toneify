@@ -21,5 +21,7 @@ export {
   setUpdateBuild,
   updateBuild,
   openHistoryModal,
-  closeHistoryModal
+  closeHistoryModal,
+  openUpdateModal,
+  closeUpdateModal
 } from './builder'
