@@ -1,16 +1,20 @@
 import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../utility'
+import YoutubeSearch from 'youtube-search'
+
 
 const initialState = {
   pedals: [],
   buildHistory: [],
   pedalsOnBoard: [],
+  youtubePedalResults: [],
   currentDraggedId: null,
   showHint: false,
   currentPedalboard: null,
   isEditing: false,
   buildToBeUpdated: false,
-  showButtons: false
+  showButtons: false,
+  showSaveCompleteModal: false
 }
 
 const addPedal = (state, action) => {
@@ -94,10 +98,26 @@ const onControlledDrag = (state, action) => {
 }
 
 const setSaveBuild = (state, action) => {
-  const updatedState = { buildHistory: state.buildHistory.concat(action.build) }
+  const updatedState = {
+    buildHistory: state.buildHistory.concat(action.build),
+    showSaveCompleteModal: true
+   }
   return updateObject(state, updatedState)
 }
 
+const doubleClickHandler = (state, action) => {
+  console.log('hi')
+  const opts = {
+    maxResults: 6,
+    key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+  }
+  const query = action.brand + ' ' + action.model + ' sound demo'
+
+  return YoutubeSearch(query, opts, (err, results) => {
+    const updatedState = {youtubePedalResults: results}
+    if (err) console.log(err)
+    return updateObject({ state, updatedState })
+  })}
 // const deleteBuild = (state, action) => {
 //
 // }
@@ -125,6 +145,11 @@ const setBuildHistory = (state, action) => {
   return updateObject(state, updatedState)
 }
 
+const closeSaveModal = (state, action) => {
+  const updatedState = {showSaveCompleteModal: false}
+  return updateObject(state, updatedState)
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PEDAL: return addPedal(state, action)
@@ -137,8 +162,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ON_CONTROLLED_DRAG: return onControlledDrag(state, action)
     case actionTypes.SAVE_BUILD: return setSaveBuild(state, action)
     case actionTypes.SET_PEDALS: return setPedals(state, action)
+    case actionTypes.CLOSE_SAVE_MODAL: return closeSaveModal(state, action)
     case actionTypes.SET_BUILD_HISTORY: return setBuildHistory(state, action)
     case actionTypes.INIT_CURRENT_PEDALBOARD: return setCurrentPedalboard(state, action)
+    case actionTypes.DOUBE_CLICK_HANDLER: return doubleClickHandler(state, action)
     default:
       return state
   }

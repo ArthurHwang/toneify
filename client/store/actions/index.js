@@ -1,6 +1,7 @@
 export {
   currentDraggedId,
   onControlledDrag,
+  closeSaveModal,
   showButtons,
   hideButtons,
   rotatePedal,
@@ -10,5 +11,6 @@ export {
   initPedals,
   initBuildHistory,
   initCurrentPedalboard,
-  saveBuild
+  saveBuild,
+  doubleClickHandler
 } from './builder'

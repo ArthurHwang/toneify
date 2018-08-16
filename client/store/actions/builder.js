@@ -79,7 +79,6 @@ export const setSaveBuild = build => ({
 
 export const saveBuild = (currentPedalboard, pedalsOnBoard) => (dispatch, getState) => {
   const { currentPedalboard, pedalsOnBoard } = getState().builder
-  console.log(currentPedalboard, pedalsOnBoard)
   fetch('/api/userConfigs', {
     method: 'POST',
     headers: {
@@ -94,16 +93,21 @@ export const saveBuild = (currentPedalboard, pedalsOnBoard) => (dispatch, getSta
     .then(res => res.json())
     .then(data => {
       dispatch(setSaveBuild(data))
-      // const appendToHistory = [...this.state.buildHistory, data]
-      // this.setState({
-      //   buildHistory: appendToHistory,
-      //   showSaveCompleteModal: true
-      // })
     })
     .catch(err => console.log(err))
 }
 
+export const doubleClickHandler = (brand, model) => ({
+  type: actionTypes.DOUBLE_CLICK_HANDLER,
+  brand,
+  model,
+})
+
 export const initCurrentPedalboard = (pedalboard) => ({
   type: actionTypes.INIT_CURRENT_PEDALBOARD,
   pedalboard
+})
+
+export const closeSaveModal = () => ({
+  type: actionTypes.CLOSE_SAVE_MODAL
 })

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import YoutubeSearch from 'youtube-search'
+// import YoutubeSearch from 'youtube-search'
 import { connect } from 'react-redux'
 import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
 import WarningMessage from '../components/Builder/WarningMessage'
@@ -23,10 +23,9 @@ class Builder extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
+      // youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
       showHistoryModal: false,
-      showSaveCompleteModal: false,
       // currentBuildID: null,
       showUpdateModal: false
     }
@@ -42,24 +41,24 @@ class Builder extends Component {
     if (this.props.pedalsOnBoard.length) {
       sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
     }
-    if (this.state.youtubePedalResults.length) {
-      sessionStorage.setItem('youtube', JSON.stringify(this.state.youtubePedalResults))
+    if (this.props.youtubePedalResults.length) {
+      sessionStorage.setItem('youtube', JSON.stringify(this.props.youtubePedalResults))
     }
   }
 
-  doubleClickHandler = (brand, model) => {
-    this.setState({ youtubePedalResults: [] })
-    const opts = {
-      maxResults: 6,
-      key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
-    }
-    const query = brand + ' ' + model + ' sound demo'
-
-    YoutubeSearch(query, opts, (err, results) => {
-      if (err) console.log(err)
-      this.setState({ youtubePedalResults: results })
-    })
-  }
+  // doubleClickHandler = (brand, model) => {
+  //   this.setState({ youtubePedalResults: [] })
+  //   const opts = {
+  //     maxResults: 6,
+  //     key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+  //   }
+  //   const query = brand + ' ' + model + ' sound demo'
+  //
+  //   YoutubeSearch(query, opts, (err, results) => {
+  //     if (err) console.log(err)
+  //     this.setState({ youtubePedalResults: results })
+  //   })
+  // }
 
   // loadSavedBuild = id => {
   //   fetch('/api/userConfigs/' + id, {
@@ -167,10 +166,6 @@ class Builder extends Component {
     this.setState({ showHistoryModal: false })
   }
 
-  closeSaveModal = () => {
-    this.setState({ showSaveCompleteModal: false })
-  }
-
   closeUpdateModal = () => {
     this.setState({ showUpdateModal: false })
   }
@@ -198,7 +193,7 @@ class Builder extends Component {
         />
         {this.props.currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={this.props.currentPedalboard} /> : <WarningMessage />}
         <BuilderPedals
-          doubleClick={this.doubleClickHandler}
+          doubleClick={this.props.doubleClickHandler}
           getId={this.props.currentDraggedId}
           onDrag={this.props.onControlledDrag}
           deletePedal={this.props.removePedal}
@@ -207,7 +202,7 @@ class Builder extends Component {
           rotate={this.props.rotatePedal}
           pedals={this.props.pedalsOnBoard}
         />
-        <YoutubePedalsOutput searchResults={youtubePedalResults} pedalsOnBoard={this.props.pedalsOnBoard} />
+        <YoutubePedalsOutput searchResults={this.props.youtubePedalResults} pedalsOnBoard={this.props.pedalsOnBoard} />
         <HistoryModal
           loadSavedBuild={this.loadSavedBuild}
           showModal={showHistoryModal}
@@ -215,7 +210,7 @@ class Builder extends Component {
           buildHistory={this.props.buildHistory}
           deleteBuild={this.deleteBuild}
         />
-        <SaveCompleteModal closeModal={this.closeSaveModal} showModal={this.state.showSaveCompleteModal} />
+        <SaveCompleteModal closeModal={this.props.closeSaveModal} showModal={this.props.showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
       </Fragment>
     )
@@ -230,10 +225,14 @@ const mapStateToProps = ({ builder }) => ({
   showHint: builder.showHint,
   isEditing: builder.isEditing,
   buildToBeUpdated: builder.buildToBeUpdated,
-  currentPedalboard: builder.currentPedalboard
+  currentPedalboard: builder.currentPedalboard,
+  showSaveCompleteModal: builder.showSaveCompleteModal,
+  youtubePedalResults: builder.youtubePedalResults
 })
 
 const mapDispatchToProps = dispatch => ({
+  doubleClickHandler: (brand, model) => dispatch(actions.doubleClickHandler(brand, model)),
+  closeSaveModal: () => dispatch(actions.closeSaveModal()),
   currentDraggedId: id => dispatch(actions.currentDraggedId(id)),
   onControlledDrag: (event, position) => dispatch(actions.onControlledDrag(event, position)),
   showButtons: id => dispatch(actions.showButtons(id)),
@@ -243,7 +242,7 @@ const mapDispatchToProps = dispatch => ({
   removePedal: id => dispatch(actions.removePedal(id)),
   removeAllPedals: () => dispatch(actions.removeAllPedals()),
   saveBuild: () => dispatch(actions.saveBuild()),
-  initCurrentPedalboard: (pedalboard) => dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
+  initCurrentPedalboard: pedalboard => dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
 })
