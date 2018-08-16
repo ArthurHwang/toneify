@@ -13,7 +13,8 @@ const initialState = {
   isEditing: false,
   buildToBeUpdated: false,
   showButtons: false,
-  showSaveCompleteModal: false
+  showSaveCompleteModal: false,
+  showHistoryModal: false
 }
 
 const addPedal = (state, action) => {
@@ -108,14 +109,6 @@ const setYoutubeResults = (state, action) => {
   const updatedState = { youtubePedalResults: action.videos }
   return updateObject(state, updatedState)
 }
-// const deleteBuild = (state, action) => {
-//
-// }
-//
-// const loadBuild = (state, action) => {
-//
-// }
-//
 // const updateBuild = (state, action) => {
 //
 // }
@@ -140,6 +133,41 @@ const closeSaveModal = (state, action) => {
   return updateObject(state, updatedState)
 }
 
+const setDeleteBuild = (state, action) => {
+  const stateCopy = [...state.buildHistory]
+  const buildIndex = stateCopy.findIndex(build => build.id === action.id)
+  stateCopy.splice(buildIndex, 1)
+  const updatedState = { buildHistory: stateCopy }
+  return updateObject(state, updatedState)
+}
+
+const setLoadBuild = (state, action) => {
+  const updatedState = {
+    currentPedalboard: action.build.pedalBoard,
+    pedalsOnBoard: action.build.pedals,
+    showHistoryModal: false,
+    isEditing: true,
+    currentBuildId: action.build.id,
+    youtubePedalResults: []
+  }
+
+  return updateObject(state, updatedState)
+}
+
+const openHistoryModal = (state, action) => {
+  const updatedState = {
+    showHistoryModal: true
+  }
+  return updateObject(state, updatedState)
+}
+
+const closeHistoryModal = (state, action) => {
+  const updatedState = {
+    showHistoryModal: false
+  }
+  return updateObject(state, updatedState)
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PEDAL: return addPedal(state, action)
@@ -156,6 +184,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_BUILD_HISTORY: return setBuildHistory(state, action)
     case actionTypes.INIT_CURRENT_PEDALBOARD: return setCurrentPedalboard(state, action)
     case actionTypes.SET_YOUTUBE_RESULTS: return setYoutubeResults(state, action)
+    case actionTypes.SET_DELETE_BUILD: return setDeleteBuild(state, action)
+    case actionTypes.SET_LOAD_BUILD: return setLoadBuild(state, action)
+    case actionTypes.OPEN_HISTORY_MODAL: return openHistoryModal(state, action)
+    case actionTypes.CLOSE_HISTORY_MODAL: return closeHistoryModal(state, action)
     default:
       return state
   }

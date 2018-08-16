@@ -1,7 +1,6 @@
 import YoutubeSearch from 'youtube-search'
 import * as actionTypes from './actionTypes'
 
-
 export const addPedal = id => ({
   type: actionTypes.ADD_PEDAL,
   id
@@ -99,7 +98,7 @@ export const saveBuild = (currentPedalboard, pedalsOnBoard) => (dispatch, getSta
     .catch(err => console.log(err))
 }
 
-export const setYoutubeResults = (videos) => ({
+export const setYoutubeResults = videos => ({
   type: actionTypes.SET_YOUTUBE_RESULTS,
   videos
 })
@@ -117,11 +116,56 @@ export const doubleClickHandler = (brand, model) => dispatch => {
   })
 }
 
-export const initCurrentPedalboard = (pedalboard) => ({
+export const initCurrentPedalboard = pedalboard => ({
   type: actionTypes.INIT_CURRENT_PEDALBOARD,
   pedalboard
 })
 
 export const closeSaveModal = () => ({
   type: actionTypes.CLOSE_SAVE_MODAL
+})
+
+export const setDeleteBuild = id => ({
+  type: actionTypes.SET_DELETE_BUILD,
+  id
+})
+
+export const deleteBuild = id => dispatch => {
+  console.log(id)
+  fetch('/api/userConfigs/' + id, {
+    method: 'DELETE'
+  })
+    .then(() => {
+      dispatch(setDeleteBuild(id))
+    })
+    .catch(error => console.log(error))
+}
+
+export const setLoadBuild = build => ({
+  type: actionTypes.SET_LOAD_BUILD,
+  build
+})
+
+export const loadBuild = id => dispatch => {
+  console.log('hi')
+  fetch('/api/userConfigs/' + id, {
+    method: 'GET'
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setLoadBuild(data))
+    })
+    .catch(err => console.log(err))
+}
+
+// export const setUpdateBuild = () => ({})
+//
+// export const updateBuild = id => dispatch => {}
+
+export const openHistoryModal = () => ({
+  type: actionTypes.OPEN_HISTORY_MODAL
+})
+
+export const closeHistoryModal = () => ({
+  type: actionTypes.CLOSE_HISTORY_MODAL
 })

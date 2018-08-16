@@ -13,5 +13,13 @@ export {
   initCurrentPedalboard,
   saveBuild,
   doubleClickHandler,
-  setYoutubeResults
+  setYoutubeResults,
+  setDeleteBuild,
+  deleteBuild,
+  setLoadBuild,
+  loadBuild,
+  setUpdateBuild,
+  updateBuild,
+  openHistoryModal,
+  closeHistoryModal
 } from './builder'

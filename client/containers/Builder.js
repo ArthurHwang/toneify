@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-// import YoutubeSearch from 'youtube-search'
 import { connect } from 'react-redux'
 import PedalboardBuilderDisplay from '../components/Builder/PedalboardBuilderDisplay'
 import WarningMessage from '../components/Builder/WarningMessage'
@@ -23,10 +22,7 @@ class Builder extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // youtubePedalResults: JSON.parse(sessionStorage.getItem('youtube')) || [],
       showModal: false,
-      showHistoryModal: false,
-      // currentBuildID: null,
       showUpdateModal: false
     }
   }
@@ -46,63 +42,6 @@ class Builder extends Component {
     }
   }
 
-  // doubleClickHandler = (brand, model) => {
-  //   this.setState({ youtubePedalResults: [] })
-  //   const opts = {
-  //     maxResults: 6,
-  //     key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
-  //   }
-  //   const query = brand + ' ' + model + ' sound demo'
-  //
-  //   YoutubeSearch(query, opts, (err, results) => {
-  //     if (err) console.log(err)
-  //     this.setState({ youtubePedalResults: results })
-  //   })
-  // }
-
-  // loadSavedBuild = id => {
-  //   fetch('/api/userConfigs/' + id, {
-  //     method: 'GET'
-  //   })
-  //     .then(res => {
-  //       this.setState({ pedalsOnBoard: [] })
-  //       return res.json()
-  //     })
-  //     .then(data => {
-  //       this.setState({
-  //         currentPedalboard: data.pedalBoard,
-  //         pedalsOnBoard: data.pedals,
-  //         showHistoryModal: false,
-  //         isEditing: true,
-  //         currentBuildID: id,
-  //         youtubePedalResults: []
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-  //
-  saveBuild = () => {
-    fetch('/api/userConfigs', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        pedalBoard: this.state.currentPedalboard,
-        pedals: this.props.pedalsOnBoard
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        const appendToHistory = [...this.state.buildHistory, data]
-        this.setState({
-          buildHistory: appendToHistory,
-          showSaveCompleteModal: true
-        })
-      })
-      .catch(err => console.log(err))
-  }
   //
   // updateBuild = () => {
   //   fetch('/api/userConfigs/' + this.state.currentBuildID, {
@@ -136,19 +75,7 @@ class Builder extends Component {
   //     })
   //     .catch(err => console.log(err))
   // }
-  //
-  // deleteBuild = id => {
-  //   fetch('/api/userConfigs/' + id, {
-  //     method: 'DELETE'
-  //   })
-  //     .then(() => {
-  //       const buildHistory = [...this.state.buildHistory]
-  //       const buildIndex = buildHistory.findIndex(elem => elem.id === id)
-  //       buildHistory.splice(buildIndex, 1)
-  //       this.setState({ buildHistory })
-  //     })
-  //     .catch(error => console.log(error))
-  // }
+
 
   openModalHandler = () => {
     this.setState({ showModal: true })
@@ -171,14 +98,15 @@ class Builder extends Component {
   }
 
   render() {
-    const { youtubePedalResults, showHistoryModal, showModal, currentPedalboard } = this.state
+    const { showHistoryModal, showModal } = this.state
+
     return (
       <Fragment>
         <BuilderHint currentPedalboard={this.props.currentPedalboard} showHint={this.props.showHint} />
         <BuilderAddPedalButton showButton={this.props.currentPedalboard} showModal={this.openModalHandler} />
         <DeleteAllPedalsButton showButton={this.props.pedalsOnBoard} deleteAllPedals={this.props.removeAllPedals} />
         <BuilderSaveButton saveBuild={this.props.saveBuild} showButton={this.props.pedalsOnBoard} />
-        <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.openHistoryModalHandler} />
+        <ShowHistoryButton showButton={this.props.buildHistory} showModal={this.props.openHistoryModal} />
         <UpdateBuildButton
           updateBuild={this.updateBuild}
           pedalsOnScreen={this.props.pedalsOnBoard}
@@ -204,11 +132,11 @@ class Builder extends Component {
         />
         <YoutubePedalsOutput searchResults={this.props.youtubePedalResults} pedalsOnBoard={this.props.pedalsOnBoard} />
         <HistoryModal
-          loadSavedBuild={this.loadSavedBuild}
-          showModal={showHistoryModal}
-          closeModalHandler={this.closeHistoryModalHandler}
+          loadSavedBuild={this.props.loadBuild}
+          showModal={this.props.showHistoryModal}
+          closeModalHandler={this.props.closeHistoryModal}
           buildHistory={this.props.buildHistory}
-          deleteBuild={this.deleteBuild}
+          deleteBuild={this.props.deleteBuild}
         />
         <SaveCompleteModal closeModal={this.props.closeSaveModal} showModal={this.props.showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={this.closeUpdateModal} showModal={this.state.showUpdateModal} />
@@ -227,10 +155,13 @@ const mapStateToProps = ({ builder }) => ({
   buildToBeUpdated: builder.buildToBeUpdated,
   currentPedalboard: builder.currentPedalboard,
   showSaveCompleteModal: builder.showSaveCompleteModal,
-  youtubePedalResults: builder.youtubePedalResults
+  youtubePedalResults: builder.youtubePedalResults,
+  showHistoryModal: builder.showHistoryModal
 })
 
 const mapDispatchToProps = dispatch => ({
+  openHistoryModal: () => dispatch(actions.openHistoryModal()),
+  closeHistoryModal: () => dispatch(actions.closeHistoryModal()),
   doubleClickHandler: (brand, model) => dispatch(actions.doubleClickHandler(brand, model)),
   closeSaveModal: () => dispatch(actions.closeSaveModal()),
   currentDraggedId: id => dispatch(actions.currentDraggedId(id)),
@@ -241,7 +172,10 @@ const mapDispatchToProps = dispatch => ({
   addPedal: id => dispatch(actions.addPedal(id)),
   removePedal: id => dispatch(actions.removePedal(id)),
   removeAllPedals: () => dispatch(actions.removeAllPedals()),
+  deleteBuild: id => dispatch(actions.deleteBuild(id)),
   saveBuild: () => dispatch(actions.saveBuild()),
+  loadBuild: (id) => dispatch(actions.loadBuild(id)),
+  updateBuild: () => dispatch(actions.updateBuild()),
   initCurrentPedalboard: pedalboard => dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
   initPedals: () => dispatch(actions.initPedals()),
   initBuildHistory: () => dispatch(actions.initBuildHistory())
