@@ -131,7 +131,6 @@ export const setDeleteBuild = id => ({
 })
 
 export const deleteBuild = id => dispatch => {
-  console.log(id)
   fetch('/api/userConfigs/' + id, {
     method: 'DELETE'
   })
@@ -177,7 +176,6 @@ export const updateBuild = () => (dispatch, getState) => {
   })
     .then(res => res.json())
     .then(data => {
-      // console.log(data)
       dispatch(setUpdateBuild(data))
     })
     .catch(err => console.log(err))
