@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../utility'
-import YoutubeSearch from 'youtube-search'
 
 
 const initialState = {
@@ -101,23 +100,14 @@ const setSaveBuild = (state, action) => {
   const updatedState = {
     buildHistory: state.buildHistory.concat(action.build),
     showSaveCompleteModal: true
-   }
+  }
   return updateObject(state, updatedState)
 }
 
-const doubleClickHandler = (state, action) => {
-  console.log('hi')
-  const opts = {
-    maxResults: 6,
-    key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
-  }
-  const query = action.brand + ' ' + action.model + ' sound demo'
-
-  return YoutubeSearch(query, opts, (err, results) => {
-    const updatedState = {youtubePedalResults: results}
-    if (err) console.log(err)
-    return updateObject({ state, updatedState })
-  })}
+const setYoutubeResults = (state, action) => {
+  const updatedState = { youtubePedalResults: action.videos }
+  return updateObject(state, updatedState)
+}
 // const deleteBuild = (state, action) => {
 //
 // }
@@ -146,7 +136,7 @@ const setBuildHistory = (state, action) => {
 }
 
 const closeSaveModal = (state, action) => {
-  const updatedState = {showSaveCompleteModal: false}
+  const updatedState = { showSaveCompleteModal: false }
   return updateObject(state, updatedState)
 }
 
@@ -165,7 +155,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CLOSE_SAVE_MODAL: return closeSaveModal(state, action)
     case actionTypes.SET_BUILD_HISTORY: return setBuildHistory(state, action)
     case actionTypes.INIT_CURRENT_PEDALBOARD: return setCurrentPedalboard(state, action)
-    case actionTypes.DOUBE_CLICK_HANDLER: return doubleClickHandler(state, action)
+    case actionTypes.SET_YOUTUBE_RESULTS: return setYoutubeResults(state, action)
     default:
       return state
   }

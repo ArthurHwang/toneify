@@ -12,5 +12,6 @@ export {
   initBuildHistory,
   initCurrentPedalboard,
   saveBuild,
-  doubleClickHandler
+  doubleClickHandler,
+  setYoutubeResults
 } from './builder'

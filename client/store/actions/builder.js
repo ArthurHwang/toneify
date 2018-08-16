@@ -1,4 +1,6 @@
+import YoutubeSearch from 'youtube-search'
 import * as actionTypes from './actionTypes'
+
 
 export const addPedal = id => ({
   type: actionTypes.ADD_PEDAL,
@@ -97,11 +99,23 @@ export const saveBuild = (currentPedalboard, pedalsOnBoard) => (dispatch, getSta
     .catch(err => console.log(err))
 }
 
-export const doubleClickHandler = (brand, model) => ({
-  type: actionTypes.DOUBLE_CLICK_HANDLER,
-  brand,
-  model,
+export const setYoutubeResults = (videos) => ({
+  type: actionTypes.SET_YOUTUBE_RESULTS,
+  videos
 })
+
+export const doubleClickHandler = (brand, model) => dispatch => {
+  const opts = {
+    maxResults: 6,
+    key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+  }
+  const query = brand + ' ' + model + ' sound demo'
+
+  YoutubeSearch(query, opts, (err, results) => {
+    if (err) console.log(err)
+    dispatch(setYoutubeResults(results))
+  })
+}
 
 export const initCurrentPedalboard = (pedalboard) => ({
   type: actionTypes.INIT_CURRENT_PEDALBOARD,
