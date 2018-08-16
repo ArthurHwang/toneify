@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'semantic-ui-react'
 import YoutubeFrame from 'react-youtube'
 
-const YoutubePedalsOutput = ({ searchResults }) => {
+const YoutubePedalsOutput = ({ searchResults, pedalsOnBoard }) => {
   const opts = {
     width: '300',
     height: '200'
@@ -15,7 +15,7 @@ const YoutubePedalsOutput = ({ searchResults }) => {
     }
   }
   return (
-    searchResults.length > 0 && (
+    pedalsOnBoard.length > 0 && searchResults.length > 0 && (
       <Container fluid style={styles.container} textAlign="center">
         {searchResults.map(video => <YoutubeFrame key={video.id} opts={opts} videoId={video.id} />)}
       </Container>
