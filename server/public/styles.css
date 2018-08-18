@@ -57,12 +57,6 @@
   width: 135px;
 }
 
-.pedal-add-button {
-  position: absolute;
-  right: 0;
-  height: 48px;
-  width: 150px;
-}
 
 .pedalboard-modal-image {
   height: 100%;
@@ -79,30 +73,6 @@
   background-repeat: no-repeat;
 }
 
-.pedal-delete-button {
-  z-index: 100;
-  position: absolute;
-  right: 0;
-  top: 299px;
-  height: 48px;
-  width: 150px;
-}
-
-.save-button {
-  z-index: 100;
-  position: absolute;
-  right: 0;
-  top: 193px;
-  height: 48px;
-  width: 150px;
-}
-
-.show-history-button {
-  z-index: 100;
-  float: right;
-  position: absolute;
-  right: 0;
-  top: 140px;
-  height: 48px;
-  width: 150px;
+.builder-actions {
+  text-align: center;
 }

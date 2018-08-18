@@ -11,7 +11,7 @@ class Nav extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu style={{ borderRadius: '0', height: '10px' }} size="small" inverted>
+      <Menu style={{ borderRadius: '0', height: '10px' }} size="small" inverted >
         <Link to="/">
           <Menu.Item
             style={{ width: '120px', height: '40px' }}
