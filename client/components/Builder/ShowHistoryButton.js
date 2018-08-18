@@ -4,7 +4,8 @@ import { Button, Icon } from 'semantic-ui-react'
 const ShowHistoryButton = ({ showButton, showModal }) => {
   const styles = {
     button: {
-      margin: '10px 0'
+      height: '48px',
+      width: '150px'
     },
     icon: {
       position: 'relative',
@@ -16,7 +17,7 @@ const ShowHistoryButton = ({ showButton, showModal }) => {
     }
   }
   const buttonOutput = showButton.length > 0 && (
-    <Button onClick={showModal} color="black" className="show-history-button" style={styles.button}>
+    <Button onClick={showModal} className="show-history-button" style={styles.button}>
       <Icon style={styles.icon} size="large" color="orange" name="history" />
       <span style={styles.text}>History</span>
     </Button>

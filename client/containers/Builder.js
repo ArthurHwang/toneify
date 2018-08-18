@@ -84,23 +84,32 @@ class Builder extends Component {
     return (
       <Fragment>
         <BuilderHint currentPedalboard={currentPedalboard} showHint={showHint} />
-        <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
-        <DeleteAllPedalsButton showButton={pedalsOnBoard} deleteAllPedals={removeAllPedals} />
-        <BuilderSaveButton saveBuild={saveBuild} showButton={pedalsOnBoard} />
-        <ShowHistoryButton showButton={buildHistory} showModal={openHistoryModal} />
-        <UpdateBuildButton
-          updateBuild={updateBuild}
-          pedalsOnScreen={pedalsOnBoard}
-          isEditing={isEditing}
-          showButton={buildToBeUpdated}
-        />
+
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}
           pedalData={pedals}
           handleClick={addPedal}
         />
-        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
+        {currentPedalboard ? (
+          <PedalboardBuilderDisplay
+            currentPedalboard={currentPedalboard}
+          />
+        ) : (
+          <WarningMessage />
+        )}
+        <div className="builder-actions">
+          <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
+          <DeleteAllPedalsButton showButton={pedalsOnBoard} deleteAllPedals={removeAllPedals} />
+          <BuilderSaveButton saveBuild={saveBuild} showButton={pedalsOnBoard} />
+          <ShowHistoryButton showButton={buildHistory} showModal={openHistoryModal} />
+          <UpdateBuildButton
+            updateBuild={updateBuild}
+            pedalsOnScreen={pedalsOnBoard}
+            isEditing={isEditing}
+            showButton={buildToBeUpdated}
+          />
+        </div>
         <BuilderPedals
           doubleClick={doubleClickHandler}
           getId={currentDraggedId}
@@ -119,6 +128,7 @@ class Builder extends Component {
           buildHistory={buildHistory}
           deleteBuild={deleteBuild}
         />
+
         <SaveCompleteModal closeModal={closeSaveModal} showModal={showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={closeUpdateModal} showModal={showUpdateModal} />
       </Fragment>

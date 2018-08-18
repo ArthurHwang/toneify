@@ -78,7 +78,7 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.3.3",
-    "semantic-ui-react": "^0.82.1",
+    "semantic-ui-react": "^0.82.2",
     "uglifyify": "5.0.1",
     "uuid": "^3.3.2",
     "watchify": "3.11.0",

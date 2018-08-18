@@ -4,7 +4,9 @@ import { Button, Icon } from 'semantic-ui-react'
 const BuilderSaveButton = ({ showButton, saveBuild }) => {
   const styles = {
     button: {
-      margin: '10px 0'
+      height: '48px',
+      width: '150px',
+      marginRight: '3.5px'
     },
     icon: {
       position: 'relative',
@@ -16,11 +18,7 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
     }
   }
   const buttonOutput = showButton.length > 0 && (
-    <Button
-      onClick={saveBuild}
-      color="black"
-      className="save-button"
-      style={styles.button}>
+    <Button onClick={saveBuild} className="save-button" style={styles.button}>
       <Icon style={styles.icon} size="large" color="blue" name="save outline" />
       <span style={styles.text}>Save Build</span>
     </Button>
