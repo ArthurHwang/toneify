@@ -1,5 +1,6 @@
 require('dotenv/config')
 require('./services/passport')
+require('./models/User')
 const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb')
