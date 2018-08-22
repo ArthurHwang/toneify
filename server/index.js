@@ -1,145 +1,51 @@
 require('dotenv/config')
-const uuid = require('uuid')
+require('./services/passport')
 const express = require('express')
-const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
+const bodyParser = require('body-parser')
 const path = require('path')
-const moment = require('moment')
 const morgan = require('morgan')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth20').Strategy
-const keys = require('./config/keys')
-// const users = require('./api/users')
-// const pedalboards = require('./api/pedalboards')
-// const pedals = require('./api/pedals')
-// const router = require('./router')
+
+const authRouter = require('./routes/authRoutes')
+const userConfigsRouter = require('./routes/userConfigs')
+const pedalboardsRouter = require('./routes/pedalboards')
+const pedalsRouter = require('./routes/pedals')
 
 const app = express()
-const port = process.env.PORT || 3000
-
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientID,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: '/auth/google/callback'
-}, (accessToken) => {
-  console.log(accessToken)
-}))
-
-app.use(morgan('combined'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, 'public')))
+const PORT = process.env.PORT || 3000
 
 MongoClient.connect(
   process.env.MONGODB_URI,
   { useNewUrlParser: true }
-).then(client => {
-  const db = client.db()
-  const pedalboards = db.collection('pedalboards')
-  const pedals = db.collection('pedals')
-  const userConfigs = db.collection('userConfigs')
-
-  app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
-  }))
-
-  app.get('/api/pedalboards', (req, res) =>
-    pedalboards
-      .find()
-      .toArray()
-      .then(data => {
-        res.json(data)
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      }))
-
-  app.get('/api/pedals', (req, res) =>
-    pedals
-      .find()
-      .toArray()
-      .then(data => {
-        res.json(data)
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      }))
-
-  app.put('/api/userConfigs/:id', (req, res) => {
-    const id = req.params.id
-    const date = moment().format('DD/MM/YYYY h:mm:ss a')
-    const pedalBoard = req.body.pedalBoard
-    const pedals = req.body.pedals
-    userConfigs
-      .findOneAndUpdate({ id }, { $set: { timeStamp: date, pedalBoard, pedals } }, { returnOriginal: false })
-      .then(result => res.json(result.value))
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      })
+)
+  .catch(err => {
+    console.error(err)
+    process.exit(1)
   })
+  .then(client => {
+    const db = client.db()
+    const pedalboards = db.collection('pedalboards')
+    const pedals = db.collection('pedals')
+    const userConfigs = db.collection('userConfigs')
+    const publicPath = path.join(__dirname, 'public')
 
-  app.get('/api/userConfigs/:id', (req, res) => {
-    const id = req.params.id
-    userConfigs
-      .findOne({ id })
-      .then(data => {
-        res.json(data)
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      })
-  })
+    app.use(morgan('combined'))
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(express.static(publicPath))
 
-  app.get('/api/userConfigs', (req, res) =>
-    userConfigs
-      .find()
-      .toArray()
-      .then(data => {
-        res.json(data)
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      }))
+    app.use('/auth', authRouter)
+    app.use('/api/pedalboards', pedalboardsRouter(pedalboards))
+    app.use('/api/pedals', pedalsRouter(pedals))
+    app.use('/api/userConfigs', userConfigsRouter(userConfigs))
 
-  app.post('/api/userConfigs', (req, res) => {
-    const id = uuid()
-    const pedalBoard = req.body.pedalBoard
-    const pedals = req.body.pedals
-    const date = moment().format('DD/MM/YYYY h:mm:ss a')
-    userConfigs
-      .insertOne({ id, timeStamp: date, pedalBoard, pedals })
-      .then(result => res.json(result.ops[0]))
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
+    app.get('/*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'public/index.html'), err => {
+        if (err) {
+          res.status(500).send(err)
+        }
       })
-  })
-
-  app.delete('/api/userConfigs/:id', (req, res) => {
-    const id = req.params.id
-    userConfigs
-      .findOneAndDelete({ id })
-      .then(response => {
-        res.json(response)
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(500)
-      })
-  })
-
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'), err => {
-      if (err) {
-        res.status(500).send(err)
-      }
     })
-  })
 
-  app.listen(port, () => console.log(`Listening on port ${port}`))
-})
+    app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+  })
