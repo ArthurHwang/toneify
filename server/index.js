@@ -8,22 +8,22 @@ const moment = require('moment')
 const morgan = require('morgan')
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const keys = require('./config/keys')
 // const users = require('./api/users')
 // const pedalboards = require('./api/pedalboards')
 // const pedals = require('./api/pedals')
-
-//clientid
-// 545806078238-qgt8lgl9hvn67lkm5eufb42qge5obcsa.apps.googleusercontent.com
-
-//client secret
-// S-0MdDBAb4znoImfpva3MA7B
+// const router = require('./router')
 
 const app = express()
 const port = process.env.PORT || 3000
 
-passport.use(new GoogleStrategy())
-
-// const router = require('./router')
+passport.use(new GoogleStrategy({
+  clientID: keys.googleClientID,
+  clientSecret: keys.googleClientSecret,
+  callbackURL: '/auth/google/callback'
+}, (accessToken) => {
+  console.log(accessToken)
+}))
 
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -39,9 +39,9 @@ MongoClient.connect(
   const pedals = db.collection('pedals')
   const userConfigs = db.collection('userConfigs')
 
-  app.get('/hello', (req, res) => {
-    res.send({ hi: 'there' })
-  })
+  app.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+  }))
 
   app.get('/api/pedalboards', (req, res) =>
     pedalboards
