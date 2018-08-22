@@ -5,10 +5,17 @@ const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
 const path = require('path')
 const moment = require('moment')
+const morgan = require('morgan')
+// const users = require('./api/users')
+// const pedalboards = require('./api/pedalboards')
+// const pedals = require('./api/pedals')
 
 const app = express()
 const port = process.env.PORT || 3000
 
+// const router = require('./router')
+
+app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -21,6 +28,10 @@ MongoClient.connect(
   const pedalboards = db.collection('pedalboards')
   const pedals = db.collection('pedals')
   const userConfigs = db.collection('userConfigs')
+
+  app.get('/hello', (req, res) => {
+    res.send({ hi: 'there' })
+  })
 
   app.get('/api/pedalboards', (req, res) =>
     pedalboards
