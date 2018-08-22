@@ -6,12 +6,22 @@ const { MongoClient } = require('mongodb')
 const path = require('path')
 const moment = require('moment')
 const morgan = require('morgan')
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 // const users = require('./api/users')
 // const pedalboards = require('./api/pedalboards')
 // const pedals = require('./api/pedals')
 
+//clientid
+// 545806078238-qgt8lgl9hvn67lkm5eufb42qge5obcsa.apps.googleusercontent.com
+
+//client secret
+// S-0MdDBAb4znoImfpva3MA7B
+
 const app = express()
 const port = process.env.PORT || 3000
+
+passport.use(new GoogleStrategy())
 
 // const router = require('./router')
 
