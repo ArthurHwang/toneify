@@ -1,6 +1,7 @@
 require('dotenv/config')
 require('./services/passport')
 const express = require('express')
+const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -11,6 +12,7 @@ const userConfigsRouter = require('./routes/userConfigs')
 const pedalboardsRouter = require('./routes/pedalboards')
 const pedalsRouter = require('./routes/pedals')
 
+mongoose.connect(process.env.MONGODB_URI)
 const app = express()
 const PORT = process.env.PORT || 3000
 
