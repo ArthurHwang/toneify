@@ -8,7 +8,9 @@ const { MongoClient } = require('mongodb')
 const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
-
+const cookieSession = require('cookie-session')
+const passport = require('passport')
+const { cookieKey } = require('./config/keys')
 const authRouter = require('./routes/authRoutes')
 const userConfigsRouter = require('./routes/userConfigs')
 const pedalboardsRouter = require('./routes/pedalboards')
@@ -17,6 +19,17 @@ const pedalsRouter = require('./routes/pedals')
 mongoose.connect(process.env.MONGODB_URI)
 
 const app = express()
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [cookieKey]
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 const PORT = process.env.PORT || 3000
 
 MongoClient.connect(
