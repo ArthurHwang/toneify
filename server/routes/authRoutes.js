@@ -12,9 +12,14 @@ router.get(
 
 router.get('/google/callback', passport.authenticate('google'))
 
-// router.get('/api/current_user', (req, res) => {
-//   res.send(req.user)
-// })
+router.get('/api/current_user', (req, res) => {
+  res.send(req.user)
+})
+
+router.get('/api/logout', (req, res) => {
+  req.logout()
+  res.send(req.user)
+})
 
 router.get('/facebook/', passport.authenticate('facebook', { scope: ['user_friends', 'manage_pages'] }), (req, res) => {
   res.redirect('/')
