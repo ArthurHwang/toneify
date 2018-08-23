@@ -3,27 +3,23 @@ import { Container, Button, Icon } from 'semantic-ui-react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 
 class LandingPage extends Component {
-  handleClick = event => {
-    const socialName = event.target.name
-    console.log(socialName)
-    // this.props.history.push(`/auth/${socialName}`)
-    fetch('/auth/google').then(res => console.log(res))
-    // .then(data => console.log(data))
-  }
-
   render() {
     return (
       <Fragment>
         <Container className="landing-header">
           <h1>toneify</h1>
 
-          <Button name="google" onClick={this.handleClick} className="landing-button" color="google plus">
-            <Icon name="google plus" /> Google Plus
-          </Button>
+          <a href="/auth/google">
+            <Button className="landing-button" color="google plus">
+              Google Plus
+            </Button>
+          </a>
 
-          <Button name="facebook" onClick={this.handleClick} className="landing-button" color="facebook">
-            <Icon name="facebook" /> Facebook
-          </Button>
+          <a href="/auth/facebook">
+            <Button className="landing-button" color="facebook">
+              Facebook
+            </Button>
+          </a>
         </Container>
 
         <ul className="slideshow">
