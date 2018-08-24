@@ -30,6 +30,7 @@ class Builder extends Component {
     this.props.initCurrentPedalboard()
     this.props.initBuildHistory()
     this.props.initPedals()
+    console.log(this.props.authData)
   }
 
   componentWillUnmount() {
@@ -91,13 +92,7 @@ class Builder extends Component {
           pedalData={pedals}
           handleClick={addPedal}
         />
-        {currentPedalboard ? (
-          <PedalboardBuilderDisplay
-            currentPedalboard={currentPedalboard}
-          />
-        ) : (
-          <WarningMessage />
-        )}
+        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
         <div className="builder-actions">
           <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
           <DeleteAllPedalsButton showButton={pedalsOnBoard} deleteAllPedals={removeAllPedals} />
@@ -136,7 +131,8 @@ class Builder extends Component {
   }
 }
 
-const mapStateToProps = ({ builder }) => ({
+const mapStateToProps = ({ builder, auth }) => ({
+  authData: auth.data,
   pedals: builder.pedals,
   buildHistory: builder.buildHistory,
   pedalsOnBoard: builder.pedalsOnBoard,

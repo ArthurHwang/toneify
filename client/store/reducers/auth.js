@@ -6,6 +6,7 @@ const initialState = {
 }
 
 const fetchUser = (state, action) => {
+  console.log(action.payload)
   const updatedState = { data: action.payload }
   return updateObject(state, updatedState)
 }
@@ -13,7 +14,7 @@ const fetchUser = (state, action) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_USER:
-      return fetchUser(state, action) || false
+      return fetchUser(state, action)
     default:
       return state
   }
