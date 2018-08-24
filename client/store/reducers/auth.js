@@ -6,7 +6,6 @@ const initialState = {
 }
 
 const fetchUser = (state, action) => {
-  console.log(action.payload)
   const updatedState = { data: action.payload }
   return updateObject(state, updatedState)
 }

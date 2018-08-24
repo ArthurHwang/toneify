@@ -24,7 +24,6 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ facebookId: profile.id }).then(existingUser => {
         if (existingUser) {
-          console.log(existingUser)
           done(null, existingUser)
         } else {
           new User({ facebookId: profile.id }).save().then(user => done(null, user))

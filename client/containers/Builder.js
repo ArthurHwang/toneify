@@ -30,7 +30,6 @@ class Builder extends Component {
     this.props.initCurrentPedalboard()
     this.props.initBuildHistory()
     this.props.initPedals()
-    console.log(this.props.authData)
   }
 
   componentWillUnmount() {

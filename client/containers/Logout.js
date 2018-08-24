@@ -24,6 +24,7 @@ const Logout = props => {
       <Card style={styles.card} raised>
         <Card.Content>
           <Card.Header textAlign="center">You Have Been Logged Out</Card.Header>
+          <Card.Description textAlign="center">Would you like login again?</Card.Description>
         </Card.Content>
         <Card.Content>
           <a href="/auth/google">
