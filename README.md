@@ -48,6 +48,8 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - ### Users can double-click a pedal to hear what it sounds like
 <img src="https://user-images.githubusercontent.com/18460401/43878521-7daecc8c-9b54-11e8-8dd0-76561de5dc3a.gif" alt="Oops...cant display">
 
+- ### Users can sign-in using Google OAuth / Facebook OAuth
+<img src="https://user-images.githubusercontent.com/18460401/44611709-b60d9f80-a7b7-11e8-9cdd-b03145e9975a.gif" alt="Oops...cant display">
 
 ## Development
 
@@ -85,4 +87,3 @@ npm run watch
 npm run build
 npm run start
 ```
-
