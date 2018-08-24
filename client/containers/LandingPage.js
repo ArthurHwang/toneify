@@ -1,11 +1,24 @@
 import React, { Fragment, Component } from 'react'
 import { Container, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import * as actions from '../store/actions/index'
 
 class LandingPage extends Component {
+  componentDidMount() {
+    this.props.initUser()
+  }
+
+  clicker = () => {
+    console.log(this.props.authData)
+  }
+
   render() {
     return (
       <Fragment>
-        <Container className="landing-header">
+        {/* <Container className="landing-header">
+          <Button onClick={this.clicker} className="landing-buttadsfon" color="faasfdsfcebook">
+            Facasdfadsfebook
+          </Button>
           <h1>toneify</h1>
           <a href="/auth/google">
             <Button className="landing-button" color="google plus">
@@ -16,7 +29,15 @@ class LandingPage extends Component {
             <Button className="landing-button" color="facebook">
               Facebook
             </Button>
-          </a>
+          </a> */}
+        {/* </Container> */}
+        <Container className="landing-header">
+          <h1>toneify</h1>
+          <Link style={{ color: 'white' }} to="/pedalboards">
+            <Button className="landing-button" color="black">
+              Start
+            </Button>
+          </Link>
         </Container>
         <ul className="slideshow">
           <li />
@@ -30,4 +51,15 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage
+const mapStateToProps = ({ auth }) => ({
+  authData: auth.data
+})
+
+const mapDispatchToProps = dispatch => ({
+  initUser: () => dispatch(actions.fetchUser())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LandingPage)

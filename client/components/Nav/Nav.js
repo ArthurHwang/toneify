@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Nav extends Component {
-  state = { activeItem: '/' }
+  state = { activeItem: 'pedalboards' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -11,7 +11,7 @@ class Nav extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu style={{ borderRadius: '0', height: '10px' }} size="small" inverted >
+      <Menu style={{ borderRadius: '0', height: '10px' }} size="small" inverted>
         <Link to="/">
           <Menu.Item
             style={{ width: '120px', height: '40px' }}
@@ -38,6 +38,13 @@ class Nav extends Component {
             Builder
           </Menu.Item>
         </Link>
+
+        <Menu.Item position="right" onClick={this.handleItemClick} name="login" active={activeItem === 'login'}>
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+        <Menu.Item onClick={this.handleItemClick} name="login" active={activeItem === 'login'}>
+          <Link to="/login">Checkout</Link>
+        </Menu.Item>
       </Menu>
     )
   }

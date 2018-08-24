@@ -14,7 +14,7 @@ class App extends Component {
           <Switch>
             <Route path="/pedals" component={Pedals} />
             <Route path="/builder" component={Builder} />
-            <Route path="/pedalboards/" component={PedalBoards} />
+            <Route path="/pedalboards" component={PedalBoards} />
             <Route path="/" component={LandingPage} />
           </Switch>
         </Layout>

@@ -25,3 +25,5 @@ export {
   openUpdateModal,
   closeUpdateModal
 } from './builder'
+
+export { fetchUser } from './auth'
