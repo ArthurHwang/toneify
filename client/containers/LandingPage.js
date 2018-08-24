@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import { Container, Button, Icon } from 'semantic-ui-react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class LandingPage extends Component {
   render() {
