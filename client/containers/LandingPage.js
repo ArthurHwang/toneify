@@ -1,15 +1,12 @@
 import React, { Fragment, Component } from 'react'
 import { Container, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import * as actions from '../store/actions/index'
 
 class LandingPage extends Component {
   componentDidMount() {
     this.props.initUser()
-  }
-
-  clicker = () => {
-    console.log(this.props.authData)
   }
 
   render() {
