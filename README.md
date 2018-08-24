@@ -13,6 +13,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - MongoDB
 - Mongoose
 - PassportJS
+- CookieSession
 - Google OAuth
 - Facebook OAuth
 - Semantic UI React
