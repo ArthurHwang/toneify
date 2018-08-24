@@ -20,7 +20,7 @@ router.get('/api/current_user', (req, res) => {
 
 router.get('/api/logout', (req, res) => {
   req.logout()
-  res.redirect('/')
+  res.redirect('/logout')
 })
 
 router.get('/facebook', passport.authenticate('facebook'))

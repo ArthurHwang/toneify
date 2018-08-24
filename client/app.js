@@ -6,6 +6,7 @@ import PedalBoards from './containers/PedalboardsView'
 import Pedals from './containers/PedalsView'
 import LandingPage from './containers/LandingPage'
 import Login from './containers/Login'
+import Logout from './containers/Logout'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route path="/builder" component={Builder} />
             <Route path="/pedalboards" component={PedalBoards} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/" component={LandingPage} />
           </Switch>
         </Layout>
