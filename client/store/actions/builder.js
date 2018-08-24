@@ -104,16 +104,22 @@ export const setYoutubeResults = videos => ({
 })
 
 export const doubleClickHandler = (brand, model) => dispatch => {
-  const opts = {
-    maxResults: 6,
-    key: process.env.YOUTUBE_API_KEY
-  }
-  const query = brand + ' ' + model + ' sound demo'
+  // const opts = {
+  //   maxResults: 6,
+  //   key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+  // }
+  // const query = brand + ' ' + model + ' sound demo'
+  //
+  // YoutubeSearch(query, opts, (err, results) => {
+  //   if (err) console.log(err)
+  //   dispatch(setYoutubeResults(results))
+  // })
 
-  YoutubeSearch(query, opts, (err, results) => {
-    if (err) console.log(err)
-    dispatch(setYoutubeResults(results))
-  })
+  fetch(`/api/youtube?brand=${brand}&model=${model}`)
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setYoutubeResults(data))
+    })
 }
 
 export const initCurrentPedalboard = pedalboard => ({

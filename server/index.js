@@ -6,6 +6,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb')
 const bodyParser = require('body-parser')
+const YoutubeSearch = require('youtube-search')
+
 const path = require('path')
 const morgan = require('morgan')
 const cookieSession = require('cookie-session')
@@ -56,6 +58,25 @@ MongoClient.connect(
     app.use('/api/pedalboards', pedalboardsRouter(pedalboards))
     app.use('/api/pedals', pedalsRouter(pedals))
     app.use('/api/userConfigs', userConfigsRouter(userConfigs))
+
+    app.get('/api/youtube', (req, res) => {
+      console.log(req.query)
+      const opts = {
+        maxResults: 6,
+        key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+      }
+      const brand = req.query.brand
+      const model = req.query.model
+
+      console.log(brand, model)
+
+      const query = brand + ' ' + model + ' sound demo'
+
+      YoutubeSearch(query, opts, (err, results) => {
+        if (err) console.log(err)
+        res.json(results)
+      })
+    })
 
     app.get('/*', (req, res) => {
       res.sendFile(path.join(__dirname, 'public/index.html'), err => {
