@@ -4,8 +4,11 @@ import { Container, Button, Icon, Card } from 'semantic-ui-react'
 const Logout = props => {
   const styles = {
     container: {
-      position: 'relative',
-      transform: 'translateY(150%)'
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      display: 'flex',
+      height: 'calc(100vh - 54.125px)'
     },
     button: {
       margin: '5px auto'
