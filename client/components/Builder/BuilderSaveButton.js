@@ -18,7 +18,7 @@ const BuilderSaveButton = ({ showButton, saveBuild }) => {
     }
   }
   const buttonOutput = showButton.length > 0 && (
-    <Button onClick={saveBuild} className="save-button" style={styles.button}>
+    <Button color="black" onClick={saveBuild} className="save-button" style={styles.button}>
       <Icon style={styles.icon} size="large" color="blue" name="save outline" />
       <span style={styles.text}>Save Build</span>
     </Button>

@@ -4,6 +4,7 @@ import { Button, Icon } from 'semantic-ui-react'
 const DeleteAllPedalsButton = ({ showButton, deleteAllPedals }) => {
   const buttonOutput = showButton.length > 0 && (
     <Button
+      color="black"
       onClick={deleteAllPedals}
       className="pedal-delete-button"
       style={{

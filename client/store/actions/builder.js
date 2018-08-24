@@ -1,4 +1,3 @@
-import YoutubeSearch from 'youtube-search'
 import * as actionTypes from './actionTypes'
 
 export const addPedal = id => ({

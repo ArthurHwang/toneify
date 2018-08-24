@@ -17,7 +17,7 @@ const ShowHistoryButton = ({ showButton, showModal }) => {
     }
   }
   const buttonOutput = showButton.length > 0 && (
-    <Button onClick={showModal} className="show-history-button" style={styles.button}>
+    <Button color="black" onClick={showModal} className="show-history-button" style={styles.button}>
       <Icon style={styles.icon} size="large" color="orange" name="history" />
       <span style={styles.text}>History</span>
     </Button>
