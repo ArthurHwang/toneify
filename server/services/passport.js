@@ -2,7 +2,7 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const mongoose = require('mongoose')
-const keys = require('../config/keys')
+// const keys = require('../config/keys')
 
 const User = mongoose.model('users')
 
@@ -17,8 +17,8 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new FacebookStrategy(
     {
-      clientID: keys.facebookAppID,
-      clientSecret: keys.facebookSecret,
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
       callbackURL: '/auth/facebook/callback'
     },
     (accessToken, refreshToken, profile, done) => {
@@ -37,8 +37,8 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/callback'
     },
     (accessToken, refreshToken, profile, done) => {

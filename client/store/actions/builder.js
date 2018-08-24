@@ -106,7 +106,7 @@ export const setYoutubeResults = videos => ({
 export const doubleClickHandler = (brand, model) => dispatch => {
   const opts = {
     maxResults: 6,
-    key: 'AIzaSyBDkUSbJPfuFC5fNWKYfp-sx-KOJSLh9bs'
+    key: process.env.YOUTUBE_API_KEY
   }
   const query = brand + ' ' + model + ' sound demo'
 
