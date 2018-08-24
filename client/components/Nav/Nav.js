@@ -24,36 +24,28 @@ class Nav extends Component {
 
   render() {
     const { activeItem } = this.state
-
     return (
-      <Menu style={{ borderRadius: '0', height: '10px' }} size="small" inverted>
-        <Link to="/">
-          <Menu.Item
-            style={{ width: '120px', height: '40px' }}
-            onClick={this.handleItemClick}
-            active={activeItem === '/'}
-            name="/"
-          >
+      <Menu stackable style={{ borderRadius: '0' }} size="small" inverted>
+        <Menu.Item
+          style={{ width: '120px', height: '40px' }}
+          onClick={this.handleItemClick}
+          active={activeItem === '/'}
+          name="/"
+        >
+          <Link to="/">
             <img className="logo" src="https://image.flaticon.com/icons/svg/199/199449.svg" alt="logo" />
             <span className="title-text">toneify</span>
-          </Menu.Item>
-        </Link>
-        <Link to="/pedalboards">
-          <Menu.Item onClick={this.handleItemClick} name="pedalboards" active={activeItem === 'pedalboards'}>
-            Pedalboards
-          </Menu.Item>
-        </Link>
-        <Link to="/pedals">
-          <Menu.Item onClick={this.handleItemClick} name="pedals" active={activeItem === 'pedals'}>
-            Pedals
-          </Menu.Item>
-        </Link>
-        <Link to="/builder">
-          <Menu.Item onClick={this.handleItemClick} name="builder" active={activeItem === 'builder'}>
-            Builder
-          </Menu.Item>
-        </Link>
-
+          </Link>
+        </Menu.Item>
+        <Menu.Item onClick={this.handleItemClick} name="pedalboards" active={activeItem === 'pedalboards'}>
+          <Link to="/pedalboards">Pedalboards</Link>
+        </Menu.Item>
+        <Menu.Item onClick={this.handleItemClick} name="pedals" active={activeItem === 'pedals'}>
+          <Link to="/pedals">Pedals</Link>
+        </Menu.Item>
+        <Menu.Item onClick={this.handleItemClick} name="builder" active={activeItem === 'builder'}>
+          <Link to="/builder">Builder</Link>
+        </Menu.Item>
         <Menu.Item position="right" onClick={this.handleItemClick} name="login" active={activeItem === 'login'}>
           {this.renderContent()}
         </Menu.Item>
