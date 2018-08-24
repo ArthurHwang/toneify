@@ -225,29 +225,51 @@ const closeUpdateModal = (state, action) => {
   }
   return updateObject(state, updatedState)
 }
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_PEDAL: return addPedal(state, action)
-    case actionTypes.REMOVE_PEDAL: return removePedal(state, action)
-    case actionTypes.REMOVE_ALL_PEDALS: return removeAllPedals(state, action)
-    case actionTypes.SHOW_BUTTONS: return showButtons(state, action)
-    case actionTypes.HIDE_BUTTONS: return hideButtons(state, action)
-    case actionTypes.ROTATE_PEDAL: return rotatePedal(state, action)
-    case actionTypes.CURRENT_DRAGGED_ID: return currentDraggedId(state, action)
-    case actionTypes.ON_CONTROLLED_DRAG: return onControlledDrag(state, action)
-    case actionTypes.SAVE_BUILD: return setSaveBuild(state, action)
-    case actionTypes.SET_PEDALS: return setPedals(state, action)
-    case actionTypes.CLOSE_SAVE_MODAL: return closeSaveModal(state, action)
-    case actionTypes.SET_BUILD_HISTORY: return setBuildHistory(state, action)
-    case actionTypes.INIT_CURRENT_PEDALBOARD: return setCurrentPedalboard(state, action)
-    case actionTypes.SET_YOUTUBE_RESULTS: return setYoutubeResults(state, action)
-    case actionTypes.SET_DELETE_BUILD: return setDeleteBuild(state, action)
-    case actionTypes.SET_LOAD_BUILD: return setLoadBuild(state, action)
-    case actionTypes.OPEN_HISTORY_MODAL: return openHistoryModal(state, action)
-    case actionTypes.CLOSE_HISTORY_MODAL: return closeHistoryModal(state, action)
-    case actionTypes.SET_UPDATE_BUILD: return setUpdateBuild(state, action)
-    case actionTypes.OPEN_UPDATE_MODAL: return openUpdateModal(state, action)
-    case actionTypes.CLOSE_UPDATE_MODAL: return closeUpdateModal(state, action)
+    case actionTypes.ADD_PEDAL:
+      return addPedal(state, action)
+    case actionTypes.REMOVE_PEDAL:
+      return removePedal(state, action)
+    case actionTypes.REMOVE_ALL_PEDALS:
+      return removeAllPedals(state, action)
+    case actionTypes.SHOW_BUTTONS:
+      return showButtons(state, action)
+    case actionTypes.HIDE_BUTTONS:
+      return hideButtons(state, action)
+    case actionTypes.ROTATE_PEDAL:
+      return rotatePedal(state, action)
+    case actionTypes.CURRENT_DRAGGED_ID:
+      return currentDraggedId(state, action)
+    case actionTypes.ON_CONTROLLED_DRAG:
+      return onControlledDrag(state, action)
+    case actionTypes.SAVE_BUILD:
+      return setSaveBuild(state, action)
+    case actionTypes.SET_PEDALS:
+      return setPedals(state, action)
+    case actionTypes.CLOSE_SAVE_MODAL:
+      return closeSaveModal(state, action)
+    case actionTypes.SET_BUILD_HISTORY:
+      return setBuildHistory(state, action)
+    case actionTypes.INIT_CURRENT_PEDALBOARD:
+      return setCurrentPedalboard(state, action)
+    case actionTypes.SET_YOUTUBE_RESULTS:
+      return setYoutubeResults(state, action)
+    case actionTypes.SET_DELETE_BUILD:
+      return setDeleteBuild(state, action)
+    case actionTypes.SET_LOAD_BUILD:
+      return setLoadBuild(state, action)
+    case actionTypes.OPEN_HISTORY_MODAL:
+      return openHistoryModal(state, action)
+    case actionTypes.CLOSE_HISTORY_MODAL:
+      return closeHistoryModal(state, action)
+    case actionTypes.SET_UPDATE_BUILD:
+      return setUpdateBuild(state, action)
+    case actionTypes.OPEN_UPDATE_MODAL:
+      return openUpdateModal(state, action)
+    case actionTypes.CLOSE_UPDATE_MODAL:
+      return closeUpdateModal(state, action)
     default:
       return state
   }

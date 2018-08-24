@@ -21,7 +21,7 @@ const UpdateBuildButton = ({ updateBuild, pedalsOnScreen, isEditing, showButton 
   const buttonOutput = isEditing &&
     showButton &&
     pedalsOnScreen.length > 0 && (
-    <Button onClick={updateBuild} style={styles.button}>
+    <Button color="black" onClick={updateBuild} style={styles.button}>
       <Icon style={styles.icon} size="large" name="edit" />
       <span style={styles.text}>Update</span>
     </Button>
