@@ -10,7 +10,9 @@ router.get(
   })
 )
 
-router.get('/google/callback', passport.authenticate('google'))
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  res.redirect('/pedalboards')
+})
 
 router.get('/api/current_user', (req, res) => {
   res.send(req.user)
@@ -21,10 +23,10 @@ router.get('/api/logout', (req, res) => {
   res.send(req.user)
 })
 
-router.get('/facebook/', passport.authenticate('facebook', { scope: ['user_friends', 'manage_pages'] }), (req, res) => {
-  res.redirect('/')
-})
+router.get('/facebook', passport.authenticate('facebook'))
 
-router.get('/facebook/callback', passport.authenticate('facebook'))
+router.get('/facebook/callback', passport.authenticate('facebook'), (req, res) => {
+  res.redirect('/pedalboards')
+})
 
 module.exports = router

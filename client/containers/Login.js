@@ -33,7 +33,6 @@ const Login = props => {
               Connect with Google+
             </Button>
           </a>
-
           <a href="/auth/facebook">
             <Button fluid style={styles.button} color="facebook">
               <i style={styles.icon} className="fab fa-facebook-f" />
