@@ -41,6 +41,7 @@
   position: absolute;
   bottom: 45%;
   left: 39%;
+  font-size: 500px;
 }
 
 .pedal-on-board-container {
@@ -56,7 +57,6 @@
   height: 200px;
   width: 135px;
 }
-
 
 .pedalboard-modal-image {
   height: 100%;
@@ -75,4 +75,23 @@
 
 .builder-actions {
   text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  .pedal-on-board {
+    height: 100px;
+    width: 67.5px;
+  }
+
+  .icon-rotate {
+    font-size: 1.1em !important;
+  }
+
+  .icon-delete {
+    font-size: 1.1em !important;
+  }
+
+  .icon-drag {
+    font-size: 1.1em !important;
+  }
 }
