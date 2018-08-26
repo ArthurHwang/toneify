@@ -79,7 +79,8 @@ class Builder extends Component {
       showButtons,
       rotatePedal,
       buildToBeUpdated,
-      showHint
+      showHint,
+      totalPrice
     } = this.props
     return (
       <Fragment>
@@ -91,7 +92,15 @@ class Builder extends Component {
           pedalData={pedals}
           handleClick={addPedal}
         />
-        {currentPedalboard ? <PedalboardBuilderDisplay currentPedalboard={currentPedalboard} /> : <WarningMessage />}
+        {currentPedalboard ? (
+          <PedalboardBuilderDisplay
+            pedalsOnBoard={pedalsOnBoard}
+            totalPrice={totalPrice}
+            currentPedalboard={currentPedalboard}
+          />
+        ) : (
+          <WarningMessage />
+        )}
         <div className="builder-actions">
           <BuilderAddPedalButton showButton={currentPedalboard} showModal={this.openModalHandler} />
           <DeleteAllPedalsButton showButton={pedalsOnBoard} deleteAllPedals={removeAllPedals} />
@@ -125,7 +134,6 @@ class Builder extends Component {
 
         <SaveCompleteModal closeModal={closeSaveModal} showModal={showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={closeUpdateModal} showModal={showUpdateModal} />
-        <h1>{this.props.totalPrice}</h1>
       </Fragment>
     )
   }
