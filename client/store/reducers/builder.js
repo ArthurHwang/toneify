@@ -197,13 +197,18 @@ const setDeleteBuild = (state, action) => {
 }
 
 const setLoadBuild = (state, action) => {
+  let price = action.build.pedalBoard.price
+  action.build.pedals.forEach(pedal => {
+    price += pedal.price
+  })
   const updatedState = {
     currentPedalboard: action.build.pedalBoard,
     pedalsOnBoard: action.build.pedals,
     showHistoryModal: false,
     isEditing: true,
     currentBuildId: action.build.id,
-    youtubePedalResults: []
+    youtubePedalResults: [],
+    totalPrice: price
   }
   return updateObject(state, updatedState)
 }
