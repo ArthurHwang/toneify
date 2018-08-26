@@ -49,16 +49,18 @@ class Nav extends Component {
         <Menu.Item position="right" onClick={this.handleItemClick} name="login" active={activeItem === 'login'}>
           {this.renderContent()}
         </Menu.Item>
-        <Menu.Item onClick={this.handleItemClick} name="checkout" active={activeItem === 'checkout'}>
-          <Link to="/checkout">Checkout</Link>
+        <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>
+          <Link to="/cart">Cart</Link>
         </Menu.Item>
       </Menu>
     )
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  authData: auth.data
+const mapStateToProps = ({ builder, auth }) => ({
+  authData: auth.data,
+  pedalsOnBoard: builder.pedalsOnBoard,
+  currentPedalboard: builder.currentPedalboard
 })
 
 const mapDispatchToProps = dispatch => ({

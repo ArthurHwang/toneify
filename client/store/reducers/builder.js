@@ -15,7 +15,8 @@ const initialState = {
   showSaveCompleteModal: false,
   showHistoryModal: false,
   currentBuildId: null,
-  showUpdateModal: false
+  showUpdateModal: false,
+  totalPrice: null
 }
 
 const addPedal = (state, action) => {
@@ -23,20 +24,23 @@ const addPedal = (state, action) => {
   const newPedalProperties = { rotation: 0, showButtons: false, posX: null, posY: null }
   const transformedPedal = Object.assign(findPedal, newPedalProperties)
   let updatedState = null
+  const price = state.totalPrice + findPedal.price
 
   if (state.currentBuildId) {
     updatedState = {
       pedalsOnBoard: state.pedalsOnBoard.concat(transformedPedal),
       isEditing: true,
       buildToBeUpdated: true,
-      showHint: false
+      showHint: false,
+      totalPrice: price
     }
   } else {
     updatedState = {
       pedalsOnBoard: state.pedalsOnBoard.concat(transformedPedal),
       isEditing: false,
       buildToBeUpdated: false,
-      showHint: false
+      showHint: false,
+      totalPrice: price
     }
   }
   return updateObject(state, updatedState)
@@ -45,8 +49,9 @@ const addPedal = (state, action) => {
 const removePedal = (state, action) => {
   const stateCopy = [...state.pedalsOnBoard]
   const deleteIndex = stateCopy.findIndex(pedal => pedal.id === action.id)
+  const price = state.totalPrice - stateCopy[deleteIndex].price
   stateCopy.splice(deleteIndex, 1)
-  const updatedState = { pedalsOnBoard: stateCopy }
+  const updatedState = { pedalsOnBoard: stateCopy, totalPrice: price }
   return updateObject(state, updatedState)
 }
 
@@ -56,7 +61,8 @@ const removeAllPedals = (state, action) => {
     buildToBeUpdated: false,
     isEditing: false,
     youtubePedalResults: [],
-    currentBuildId: null
+    currentBuildId: null,
+    totalPrice: state.currentPedalboard.price
   }
   return updateObject(state, updatedState)
 }
@@ -159,7 +165,11 @@ const setYoutubeResults = (state, action) => {
 }
 
 const setCurrentPedalboard = (state, action) => {
-  const updatedState = { currentPedalboard: action.pedalboard }
+  let price = action.pedalboard.price
+  if (state.totalPrice > price) {
+    price = state.totalPrice
+  }
+  const updatedState = { currentPedalboard: action.pedalboard, totalPrice: price }
   return updateObject(state, updatedState)
 }
 
@@ -187,13 +197,18 @@ const setDeleteBuild = (state, action) => {
 }
 
 const setLoadBuild = (state, action) => {
+  let price = action.build.pedalBoard.price
+  action.build.pedals.forEach(pedal => {
+    price += pedal.price
+  })
   const updatedState = {
     currentPedalboard: action.build.pedalBoard,
     pedalsOnBoard: action.build.pedals,
     showHistoryModal: false,
     isEditing: true,
     currentBuildId: action.build.id,
-    youtubePedalResults: []
+    youtubePedalResults: [],
+    totalPrice: price
   }
   return updateObject(state, updatedState)
 }
