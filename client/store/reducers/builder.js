@@ -215,7 +215,8 @@ const setLoadBuild = (state, action) => {
     isEditing: true,
     currentBuildId: action.build.id,
     youtubePedalResults: [],
-    totalPrice: price
+    totalPrice: price,
+    showHint: false
   }
   return updateObject(state, updatedState)
 }
