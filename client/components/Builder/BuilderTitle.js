@@ -1,5 +1,6 @@
 import React from 'react'
 import { Message, Segment, Button, Icon, Image, Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
   const styles = {
@@ -75,8 +76,10 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
                 {totalPrice.toFixed(2)}
               </strong>
             </p>
-            <Button href="/cart" primary compact>
-              Purchase Build
+            <Button primary compact>
+              <Link style={{ color: 'white' }} to="/cart">
+                Purchase Configuration
+              </Link>
             </Button>
           </Segment>
         </Grid.Column>

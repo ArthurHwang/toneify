@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import CartItems from '../components/Cart/CartItems'
 
 class Cart extends Component {
   render() {
-    return <h1>hi</h1>
+    return (
+      <CartItems
+        pedalsOnBoard={this.props.pedalsOnBoard}
+        currentPedalboard={this.props.currentPedalboard}
+        totalPrice={this.props.totalPrice}
+      />
+    )
   }
 }
 
