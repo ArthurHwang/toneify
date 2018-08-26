@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
 
 class Cart extends Component {
-
-
   render() {
-    return (
-
-    )
+    return <h1>hi</h1>
   }
 }
 
-export default Cart
+const mapStateToProps = ({ builder }) => ({
+  pedalsOnBoard: builder.pedalsOnBoard,
+  currentPedalboard: builder.currentPedalboard,
+  totalPrice: builder.totalPrice
+})
+
+export default connect(
+  mapStateToProps,
+  null
+)(Cart)

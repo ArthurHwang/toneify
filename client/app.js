@@ -19,7 +19,6 @@ class App extends Component {
             <Route path="/builder" component={Builder} />
             <Route path="/pedalboards" component={PedalBoards} />
             <Route path="/cart" component={Cart} />
-
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/" component={LandingPage} />
