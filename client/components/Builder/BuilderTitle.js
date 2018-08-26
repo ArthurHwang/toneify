@@ -75,7 +75,7 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
                 {totalPrice.toFixed(2)}
               </strong>
             </p>
-            <Button href="/checkout" primary compact>
+            <Button href="/cart" primary compact>
               Purchase Build
             </Button>
           </Segment>

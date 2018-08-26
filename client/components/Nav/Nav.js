@@ -57,8 +57,10 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  authData: auth.data
+const mapStateToProps = ({ builder, auth }) => ({
+  authData: auth.data,
+  pedalsOnBoard: builder.pedalsOnBoard,
+  currentPedalboard: builder.currentPedalboard
 })
 
 const mapDispatchToProps = dispatch => ({

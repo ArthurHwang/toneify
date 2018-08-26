@@ -165,7 +165,11 @@ const setYoutubeResults = (state, action) => {
 }
 
 const setCurrentPedalboard = (state, action) => {
-  const updatedState = { currentPedalboard: action.pedalboard, totalPrice: action.pedalboard.price }
+  let price = action.pedalboard.price
+  if (state.totalPrice > price) {
+    price = state.totalPrice
+  }
+  const updatedState = { currentPedalboard: action.pedalboard, totalPrice: price }
   return updateObject(state, updatedState)
 }
 
