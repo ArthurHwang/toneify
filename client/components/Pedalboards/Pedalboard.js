@@ -21,7 +21,7 @@ const PedalBoard = ({ id, handleClick, price, brand, model, description, image }
         </Card.Meta>
         <Card.Description>
           <strong>
-            <Icon name="money bill alternate" />
+            <Icon color="green" name="money bill alternate" />
             {price}
           </strong>
         </Card.Description>

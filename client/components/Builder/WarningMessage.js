@@ -6,8 +6,10 @@ const WarningMessage = () => (
   <Container
     style={{
       position: 'absolute',
+      left: '0',
+      right: '0',
+      margin: 'auto',
       top: '45%',
-      left: '38%',
       width: '25%'
     }}
   >

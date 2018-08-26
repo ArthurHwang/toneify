@@ -48,12 +48,11 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
             </p>
           </Segment>
         </Grid.Column>
-
         <Grid.Column>
           <Segment textAlign="center" style={styles.segmentMiddle}>
             {pedalsOnBoard.map(pedal => (
               <div key={pedal.id} style={styles.pedalDiv}>
-                <span style={{ display: 'inline-block' }} key={pedal.id}>
+                <span style={{ display: 'inline-block' }}>
                   <Image inline style={styles.image} size="mini" src={pedal.image} />
                   <p style={{ margin: '0', display: 'block' }}>
                     <strong>
@@ -66,7 +65,6 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
             ))}
           </Segment>
         </Grid.Column>
-
         <Grid.Column>
           <Segment textAlign="center" style={styles.segment}>
             <p style={{ marginBottom: '0' }}>
