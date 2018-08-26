@@ -16,7 +16,7 @@ const initialState = {
   showHistoryModal: false,
   currentBuildId: null,
   showUpdateModal: false,
-  totalPrice: null
+  totalPrice: 0
 }
 
 const addPedal = (state, action) => {
@@ -165,11 +165,18 @@ const setYoutubeResults = (state, action) => {
 }
 
 const setCurrentPedalboard = (state, action) => {
-  let price = action.pedalboard.price
-  if (state.totalPrice > price) {
-    price = state.totalPrice
+  let price = null
+  let pedalboardPrice = null
+
+  if (state.pedalsOnBoard) {
+    state.pedalsOnBoard.forEach(pedal => (price += pedal.price))
   }
-  const updatedState = { currentPedalboard: action.pedalboard, totalPrice: price }
+  if (action.pedalboard) {
+    console.log(action.pedalboard.price)
+    pedalboardPrice = action.pedalboard.price
+  }
+
+  const updatedState = { currentPedalboard: action.pedalboard, totalPrice: pedalboardPrice + price }
   return updateObject(state, updatedState)
 }
 
