@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Item, Divider, Container } from 'semantic-ui-react'
+import { Item, Divider, Container, Icon } from 'semantic-ui-react'
 
 const CartItems = ({ pedalsOnBoard, currentPedalboard }) => (
   <Container>
@@ -10,7 +10,10 @@ const CartItems = ({ pedalsOnBoard, currentPedalboard }) => (
           <Item.Header>{currentPedalboard.brand}</Item.Header>
           <Item.Meta> {currentPedalboard.model}</Item.Meta>
         </Item.Content>
-        <h3 style={{ margin: '0' }}>${currentPedalboard.price}</h3>
+        <strong>
+          <Icon color="green" name="money bill alternate" />
+          ${currentPedalboard.price.toFixed(2)}
+        </strong>
       </Item>
       <Divider />
       {pedalsOnBoard.map(pedal => (
@@ -21,7 +24,10 @@ const CartItems = ({ pedalsOnBoard, currentPedalboard }) => (
               <Item.Header>{pedal.brand}</Item.Header>
               <Item.Meta>{pedal.model}</Item.Meta>
             </Item.Content>
-            <h3 style={{ margin: '0' }}>${pedal.price}</h3>
+            <strong>
+              <Icon color="green" name="money bill alternate" />
+              ${pedal.price.toFixed(2)}
+            </strong>
           </Item>
           <Divider />
         </Fragment>

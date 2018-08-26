@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import CartItems from '../components/Cart/CartItems'
 import CartTotalPrice from '../components/Cart/CartTotalPrice'
+import CartCheckoutButton from '../components/Cart/CartCheckoutButton'
 
 class Cart extends Component {
   render() {
@@ -9,6 +10,7 @@ class Cart extends Component {
       <Fragment>
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
+        <CartCheckoutButton />
       </Fragment>
     )
   }

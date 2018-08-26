@@ -1,11 +1,18 @@
 import React from 'react'
-import { Item, Container, Button } from 'semantic-ui-react'
+import { Item, Container, Header, Icon } from 'semantic-ui-react'
 
 const CartTotalPrice = ({ totalPrice }) => (
   <Container>
     <Item>
-      <h3 style={{ margin: '0', display: 'inline', float: 'left' }}>Total Price</h3>
-      <h3 style={{ margin: '0', display: 'inline', float: 'right' }}>${totalPrice}</h3>
+      <Header floated="left" as="h3" style={{ margin: '0' }}>
+        Total Price
+      </Header>
+      <Header floated="right" as="h3" style={{ margin: '0' }}>
+        <strong>
+          <Icon color="green" name="money bill alternate" />
+          ${totalPrice.toFixed(2)}
+        </strong>
+      </Header>
     </Item>
   </Container>
 )
