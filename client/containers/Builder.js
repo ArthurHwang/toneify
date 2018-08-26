@@ -125,6 +125,7 @@ class Builder extends Component {
 
         <SaveCompleteModal closeModal={closeSaveModal} showModal={showSaveCompleteModal} />
         <UpdateCompleteModal closeModal={closeUpdateModal} showModal={showUpdateModal} />
+        <h1>{this.props.totalPrice}</h1>
       </Fragment>
     )
   }
@@ -132,6 +133,7 @@ class Builder extends Component {
 
 const mapStateToProps = ({ builder, auth }) => ({
   authData: auth.data,
+  totalPrice: builder.totalPrice,
   pedals: builder.pedals,
   buildHistory: builder.buildHistory,
   pedalsOnBoard: builder.pedalsOnBoard,
