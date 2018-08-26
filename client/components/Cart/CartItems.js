@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Item, Divider, Container } from 'semantic-ui-react'
 
-const CartItems = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => (
+const CartItems = ({ pedalsOnBoard, currentPedalboard }) => (
   <Container>
     <Item.Group>
       <Item>
@@ -10,7 +10,7 @@ const CartItems = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => (
           <Item.Header>{currentPedalboard.brand}</Item.Header>
           <Item.Meta> {currentPedalboard.model}</Item.Meta>
         </Item.Content>
-        <h3 style={{ margin: '0' }}>{currentPedalboard.price}</h3>
+        <h3 style={{ margin: '0' }}>${currentPedalboard.price}</h3>
       </Item>
       <Divider />
       {pedalsOnBoard.map(pedal => (
@@ -21,7 +21,7 @@ const CartItems = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => (
               <Item.Header>{pedal.brand}</Item.Header>
               <Item.Meta>{pedal.model}</Item.Meta>
             </Item.Content>
-            <h3 style={{ margin: '0' }}>{pedal.price}</h3>
+            <h3 style={{ margin: '0' }}>${pedal.price}</h3>
           </Item>
           <Divider />
         </Fragment>
