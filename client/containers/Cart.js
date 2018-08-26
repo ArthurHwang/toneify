@@ -6,13 +6,16 @@ import CartCheckoutButton from '../components/Cart/CartCheckoutButton'
 
 class Cart extends Component {
   render() {
-    return (
+    let cart = this.props.currentPedalboard ? (
       <Fragment>
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
         <CartCheckoutButton />
       </Fragment>
+    ) : (
+      <h3 className="checkout-empty-warning">Please add items to your build</h3>
     )
+    return cart
   }
 }
 
