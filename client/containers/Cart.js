@@ -2,10 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Container, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-
 import CartItems from '../components/Cart/CartItems'
 import CartTotalPrice from '../components/Cart/CartTotalPrice'
-import CartCheckoutButton from '../components/Cart/CartCheckoutButton'
+import StripeBilling from '../components/Cart/StripeBilling'
 
 const styles = {
   warning: {
@@ -24,7 +23,12 @@ class Cart extends Component {
       <Fragment>
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
-        <CartCheckoutButton />
+        <StripeBilling
+          user={this.props.user}
+          pedalsOnBoard={this.props.pedalsOnBoard}
+          currentPedalboard={this.props.currentPedalboard}
+          amount={this.props.totalPrice}
+        />
       </Fragment>
     ) : (
       <Container style={styles.warning}>
@@ -38,7 +42,8 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = ({ builder }) => ({
+const mapStateToProps = ({ auth, builder }) => ({
+  user: auth.data,
   pedalsOnBoard: builder.pedalsOnBoard,
   currentPedalboard: builder.currentPedalboard,
   totalPrice: builder.totalPrice

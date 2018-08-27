@@ -4,7 +4,7 @@ import { Item, Container, Header, Icon } from 'semantic-ui-react'
 const CartTotalPrice = ({ totalPrice }) => (
   <Container>
     <Item>
-      <Header floated="left" as="h3" style={{ margin: '0' }}>
+      <Header as="h3" style={{ display: 'inline-block', margin: '0' }}>
         Total Price
       </Header>
       <Header floated="right" as="h3" style={{ margin: '0' }}>
