@@ -49,7 +49,13 @@ class Nav extends Component {
         <Menu.Item position="right" onClick={this.handleItemClick} name="login" active={activeItem === 'login'}>
           {this.renderContent()}
         </Menu.Item>
+        {this.props.authData ? (
+          <Menu.Item onClick={this.handleItemClick} name="history" active={activeItem === 'history'}>
+            <Link to="/history">History</Link>
+          </Menu.Item>
+        ) : null}
         <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>
+          {' '}
           <Link to="/cart">Cart</Link>
         </Menu.Item>
       </Menu>
