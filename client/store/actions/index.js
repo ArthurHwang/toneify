@@ -26,4 +26,4 @@ export {
   closeUpdateModal
 } from './builder'
 
-export { fetchUser } from './auth'
+export { fetchUser, handleToken } from './auth'

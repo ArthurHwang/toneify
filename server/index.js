@@ -15,6 +15,7 @@ const authRouter = require('./routes/authRoutes')
 const userConfigsRouter = require('./routes/userConfigs')
 const pedalboardsRouter = require('./routes/pedalboards')
 const pedalsRouter = require('./routes/pedals')
+const billingRouter = require('./routes/billingRoutes')
 
 mongoose.connect(process.env.MONGODB_URI)
 const app = express()
@@ -55,6 +56,7 @@ MongoClient.connect(
     app.use('/api/pedalboards', pedalboardsRouter(pedalboards))
     app.use('/api/pedals', pedalsRouter(pedals))
     app.use('/api/userConfigs', userConfigsRouter(userConfigs))
+    app.use('/billing', billingRouter)
 
     app.get('/api/youtube', (req, res) => {
       const opts = {

@@ -10,6 +10,10 @@ const fetchUser = (state, action) => {
   return updateObject(state, updatedState)
 }
 
+// const handleToken = (state, action) => {
+//   const updatedState = {...dat}
+// }
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_USER:
