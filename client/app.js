@@ -8,6 +8,7 @@ import LandingPage from './containers/LandingPage'
 import Login from './containers/Login'
 import Logout from './containers/Logout'
 import Cart from './containers/Cart'
+import AccountHistory from './containers/AccountHistory'
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/builder" component={Builder} />
             <Route path="/pedalboards" component={PedalBoards} />
             <Route path="/cart" component={Cart} />
+            <Route path="/history" component={AccountHistory} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/" component={LandingPage} />
