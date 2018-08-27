@@ -23,7 +23,6 @@ class Cart extends Component {
       <Fragment>
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
-
         <StripeBilling amount={this.props.totalPrice} />
       </Fragment>
     ) : (
