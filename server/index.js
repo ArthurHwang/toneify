@@ -8,7 +8,6 @@ const { MongoClient } = require('mongodb')
 const bodyParser = require('body-parser')
 const YoutubeSearch = require('youtube-search')
 const path = require('path')
-const morgan = require('morgan')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const authRouter = require('./routes/authRoutes')
@@ -19,16 +18,6 @@ const billingRouter = require('./routes/billingRoutes')
 
 mongoose.connect(process.env.MONGODB_URI)
 const app = express()
-
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY]
-  })
-)
-
-app.use(passport.initialize())
-app.use(passport.session())
 
 const PORT = process.env.PORT || 3000
 
@@ -47,9 +36,12 @@ MongoClient.connect(
     const userConfigs = db.collection('userConfigs')
     const publicPath = path.join(__dirname, 'public')
 
-    app.use(morgan('combined'))
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
+
+    app.use(cookieSession({ maxAge: 30 * 24 * 60 * 60 * 1000, keys: [process.env.COOKIE_KEY] }))
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(express.static(publicPath))
 
     app.use('/auth', authRouter)
