@@ -4,7 +4,6 @@ import { Container, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import CartItems from '../components/Cart/CartItems'
 import CartTotalPrice from '../components/Cart/CartTotalPrice'
-import CartCheckoutButton from '../components/Cart/CartCheckoutButton'
 import StripeBilling from '../components/Cart/StripeBilling'
 
 const styles = {
@@ -24,8 +23,8 @@ class Cart extends Component {
       <Fragment>
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
-        <CartCheckoutButton />
-        <StripeBilling />
+
+        <StripeBilling amount={this.props.totalPrice} />
       </Fragment>
     ) : (
       <Container style={styles.warning}>
