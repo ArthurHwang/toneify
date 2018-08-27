@@ -12,7 +12,14 @@ class Payments extends Component {
           name="toneify"
           description="Custom Pedalboard Configuration"
           amount={this.props.amount * 100}
-          token={token => this.props.handleToken(token)}
+          token={(token, amount, pedalboard, pedals) =>
+            this.props.handleToken(
+              token,
+              this.props.amount * 100,
+              this.props.currentPedalboard,
+              this.props.pedalsOnBoard
+            )
+          }
           stripeKey="pk_test_DnbMQwRiJo2rAXTS6QxmbgmA"
         >
           <Button primary>Checkout</Button>
@@ -23,7 +30,7 @@ class Payments extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  handleToken: token => dispatch(actions.handleToken(token))
+  handleToken: (token, amount, pedalboard, pedals) => dispatch(actions.handleToken(token, amount, pedalboard, pedals))
 })
 
 export default connect(

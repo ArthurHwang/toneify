@@ -4,7 +4,8 @@ const { Schema } = mongoose
 
 const userSchema = new Schema({
   googleId: String,
-  facebookId: String
+  facebookId: String,
+  purchaseHistory: Array
 })
 
 mongoose.model('users', userSchema)
