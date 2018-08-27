@@ -16,6 +16,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 - CookieSession
 - Google OAuth
 - Facebook OAuth
+- Stripe API
 - Semantic UI React
 - MomentJS
 
