@@ -3,7 +3,7 @@ import { Item, Divider, Container, Icon, Table, Message } from 'semantic-ui-reac
 
 const HistoryItems = ({ data }) => (
   <Container>
-    <Message textAlign="center">Purchase History</Message>
+    <Message>Purchase History</Message>
 
     <Table striped>
       <Table.Header>
