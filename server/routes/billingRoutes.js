@@ -2,13 +2,11 @@ const express = require('express')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const uuid = require('uuid')
 const moment = require('moment')
+const requireLogin = require('../middlewares/requireLogin')
 
 const router = express.Router()
 
-router.post('/stripe', async (req, res) => {
-  if (!req.user) {
-    return res.status(401).send({ error: 'You must log in' })
-  }
+router.post('/stripe', requireLogin, async (req, res) => {
   const charge = await stripe.charges.create({
     amount: req.body.amount,
     currency: 'usd',
