@@ -24,6 +24,7 @@ class Cart extends Component {
         <CartItems pedalsOnBoard={this.props.pedalsOnBoard} currentPedalboard={this.props.currentPedalboard} />
         <CartTotalPrice totalPrice={this.props.totalPrice} />
         <StripeBilling
+          user={this.props.user}
           pedalsOnBoard={this.props.pedalsOnBoard}
           currentPedalboard={this.props.currentPedalboard}
           amount={this.props.totalPrice}
@@ -41,7 +42,8 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = ({ builder }) => ({
+const mapStateToProps = ({ auth, builder }) => ({
+  user: auth.data,
   pedalsOnBoard: builder.pedalsOnBoard,
   currentPedalboard: builder.currentPedalboard,
   totalPrice: builder.totalPrice
