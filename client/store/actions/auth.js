@@ -7,7 +7,7 @@ export const fetchUser = () => async dispatch => {
 }
 
 export const handleToken = token => async dispatch => {
-  const response = await fetch('/auth/api/stripe', {
+  const response = await fetch('/billing/stripe', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
