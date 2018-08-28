@@ -49,7 +49,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/44752404-be275100-aacf-11e8-9321-bb3fa4cfae5b.gif" alt="Oops...cant display">
 
 - ### Users can double-click a pedal to hear what it sounds like
-<img src="https://user-images.githubusercontent.com/18460401/43878521-7daecc8c-9b54-11e8-8dd0-76561de5dc3a.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/44752831-1f035900-aad1-11e8-8e39-2968c27f274a.gif" alt="Oops...cant display">
 
 - ### Users can sign-in using Google OAuth / Facebook OAuth
 <img src="https://user-images.githubusercontent.com/18460401/44611942-4bf5fa00-a7b9-11e8-9176-fde00f0a0319.gif" alt="Oops...cant display">
