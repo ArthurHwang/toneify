@@ -13,7 +13,6 @@ import SaveCompleteModal from '../components/Modal/SaveCompleteModal'
 import UpdateBuildButton from '../components/Builder/UpdateBuildButton'
 import UpdateCompleteModal from '../components/Modal/UpdateCompleteModal'
 import YoutubePedalsOutput from '../components/Builder/YoutubePedalsOutput'
-import BuilderHint from '../components/Builder/BuilderHint'
 import * as actions from '../store/actions/index'
 
 require('dotenv/config')
@@ -69,13 +68,10 @@ class Builder extends Component {
       showButtons,
       rotatePedal,
       buildToBeUpdated,
-      showHint,
       totalPrice
     } = this.props
     return (
       <Fragment>
-        <BuilderHint pedalsOnBoard={pedalsOnBoard} currentPedalboard={currentPedalboard} showHint={showHint} />
-
         <BuilderModal
           closeModalHandler={this.closeModalHandler}
           showModal={showModal}

@@ -12,6 +12,11 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
     segment: {
       height: '80px'
     },
+    segmentMiddleTip: {
+      height: '80px',
+      padding: '0',
+      color: '#bc003f'
+    },
     segmentMiddle: {
       height: '80px',
       padding: '0'
@@ -25,6 +30,9 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
       margin: '0 auto',
       height: '50px',
       width: '33.75px'
+    },
+    p: {
+      lineHeight: '78.011px'
     }
   }
 
@@ -49,21 +57,29 @@ const BuilderTitle = ({ pedalsOnBoard, currentPedalboard, totalPrice }) => {
           </Segment>
         </Grid.Column>
         <Grid.Column>
-          <Segment textAlign="center" style={styles.segmentMiddle}>
-            {pedalsOnBoard.map(pedal => (
-              <div key={pedal.id} style={styles.pedalDiv}>
-                <span style={{ display: 'inline-block' }}>
-                  <Image inline style={styles.image} size="mini" src={pedal.image} />
-                  <p style={{ margin: '0', display: 'block' }}>
-                    <strong>
-                      <Icon color="green" name="money bill alternate" />
-                      {pedal.price}
-                    </strong>
-                  </p>
-                </span>
-              </div>
-            ))}
-          </Segment>
+          {pedalsOnBoard.length < 1 ? (
+            <Segment textAlign="center" style={styles.segmentMiddleTip}>
+              <strong>
+                <p style={styles.p}>Tip: Double-click a pedal to hear it!</p>
+              </strong>
+            </Segment>
+          ) : (
+            <Segment textAlign="center" style={styles.segmentMiddle}>
+              {pedalsOnBoard.map(pedal => (
+                <div key={pedal.id} style={styles.pedalDiv}>
+                  <span style={{ display: 'inline-block' }}>
+                    <Image inline style={styles.image} size="mini" src={pedal.image} />
+                    <p style={{ margin: '0', display: 'block' }}>
+                      <strong>
+                        <Icon color="green" name="money bill alternate" />
+                        {pedal.price}
+                      </strong>
+                    </p>
+                  </span>
+                </div>
+              ))}
+            </Segment>
+          )}
         </Grid.Column>
         <Grid.Column>
           <Segment textAlign="center" style={styles.segment}>
