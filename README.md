@@ -46,7 +46,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/44752187-29245800-aacf-11e8-98fb-31b6abdfde3e.gif" alt="Oops...cant display">
 
 - ### Users can update their build history
-<img src="https://user-images.githubusercontent.com/18460401/43681088-9821f214-97fe-11e8-946f-68d25309139f.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/44752404-be275100-aacf-11e8-9321-bb3fa4cfae5b.gif" alt="Oops...cant display">
 
 - ### Users can double-click a pedal to hear what it sounds like
 <img src="https://user-images.githubusercontent.com/18460401/43878521-7daecc8c-9b54-11e8-8dd0-76561de5dc3a.gif" alt="Oops...cant display">
@@ -55,7 +55,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/44611942-4bf5fa00-a7b9-11e8-9176-fde00f0a0319.gif" alt="Oops...cant display">
 
 - ### Users can checkout with Stripe API
-<img src="https://user-images.githubusercontent.com/18460401/44689097-311ac400-aa0b-11e8-8a42-c859c32df58e.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/44752580-49a0e200-aad0-11e8-8e1d-16684cf4bc28.gif" alt="Oops...cant display">
 
 ## Development
 
