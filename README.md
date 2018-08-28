@@ -25,7 +25,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 ## Key Features
 
 - ### Users can pick and choose pedals to add to their pedalboard configuration
-<img src="https://user-images.githubusercontent.com/18460401/43680914-7bc51690-97fa-11e8-8dce-0ff8cdde40f5.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/44747534-443c9b00-aac2-11e8-8f53-fe642d8a382f.gif" alt="Oops...cant display">
 
 - ### Users can drag and drop pedals
 <img src="https://user-images.githubusercontent.com/18460401/43680938-17972c52-97fb-11e8-8f26-3e44533e755e.gif" alt="Oops...cant display">
