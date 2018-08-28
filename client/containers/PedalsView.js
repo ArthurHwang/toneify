@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import Pedals from '../components/Pedals/Pedals'
 import PedalsModal from '../components/Modal/PedalsModal'
+import * as actions from '../store/actions/index'
 
 class PedalsView extends Component {
   constructor(props) {
@@ -36,7 +38,8 @@ class PedalsView extends Component {
     this.setState({ modalOpen: false })
   }
 
-  handleBuildClick = event => {
+  handleBuildClick = id => {
+    this.props.addPedal(id)
     this.props.history.push({
       pathname: '/builder'
     })
@@ -58,4 +61,11 @@ class PedalsView extends Component {
   }
 }
 
-export default PedalsView
+const mapDispatchToProps = dispatch => ({
+  addPedal: id => dispatch(actions.addPedal(id))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(PedalsView)

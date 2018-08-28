@@ -6,7 +6,7 @@ const PedalsModal = ({ handleBuildClick, handleClick, pedalData, modalOpen }) =>
     <Modal style={{ top: '10%' }} open size="large" onClick={handleClick}>
       <Modal.Header>
         {pedalData.brand}
-        <Button onClick={handleBuildClick} compact floated="right" primary>
+        <Button onClick={() => handleBuildClick(pedalData.id)} compact floated="right" primary>
           Add to Pedalboard
         </Button>
       </Modal.Header>
