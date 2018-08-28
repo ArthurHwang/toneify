@@ -36,6 +36,9 @@ class Builder extends Component {
     if (this.props.pedalsOnBoard.length) {
       sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
     }
+    if (this.props.currentPedalboard.length) {
+      sessionStorage.setItem('data', JSON.stringify(this.props.currentPedalboard))
+    }
     if (this.props.youtubePedalResults.length) {
       sessionStorage.setItem('youtube', JSON.stringify(this.props.youtubePedalResults))
     }
