@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Item, Divider, Container, Icon, Table, Message } from 'semantic-ui-react'
+import React from 'react'
+import { Container, Icon, Table, Message } from 'semantic-ui-react'
 
 const HistoryItems = ({ data }) => (
   <Container>
@@ -28,7 +28,10 @@ const HistoryItems = ({ data }) => (
               ))}
             </Table.Cell>
             <Table.Cell textAlign="center" verticalAlign="middle">
-              ${build.amount / 100}
+              <strong>
+                <Icon color="green" name="money bill alternate" />
+                ${build.amount / 100}
+              </strong>
             </Table.Cell>
           </Table.Row>
         ))}
