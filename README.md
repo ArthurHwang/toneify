@@ -31,7 +31,7 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 <img src="https://user-images.githubusercontent.com/18460401/44747752-c3ca6a00-aac2-11e8-8ef8-adbb42bc01e4.gif" alt="Oops...cant display">
 
 - ### Users can rotate pedals to have a more realistic experience
-<img src="https://user-images.githubusercontent.com/18460401/43680937-1781c6be-97fb-11e8-968c-afce1bc530b1.gif" alt="Oops...cant display">
+<img src="https://user-images.githubusercontent.com/18460401/44747923-47845680-aac3-11e8-8de8-63822c36a58a.gif" alt="Oops...cant display">
 
 - ### Users can delete pedals from their build
 <img src="https://user-images.githubusercontent.com/18460401/43680995-7bf6d782-97fc-11e8-8672-77c5e30c07e2.gif" alt="Oops...cant display">
