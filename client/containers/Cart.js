@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import CartItems from '../components/Cart/CartItems'
 import CartTotalPrice from '../components/Cart/CartTotalPrice'
 import StripeBilling from '../components/Cart/StripeBilling'
+import * as actions from '../store/actions/index'
 
 const styles = {
   warning: {
@@ -18,6 +19,17 @@ const styles = {
 }
 
 class Cart extends Component {
+  componentDidMount() {
+    this.props.initCurrentPedalboard()
+    this.props.initPedals()
+  }
+
+  componentWillUnmount() {
+    if (this.props.pedalsOnBoard.length) {
+      sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
+    }
+  }
+
   render() {
     let cart = this.props.currentPedalboard ? (
       <Fragment>
@@ -49,7 +61,13 @@ const mapStateToProps = ({ auth, builder }) => ({
   totalPrice: builder.totalPrice
 })
 
+const mapDispatchToProps = dispatch => ({
+  initCurrentPedalboard: pedalboard =>
+    dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
+  initPedals: () => dispatch(actions.initPedals())
+})
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Cart)

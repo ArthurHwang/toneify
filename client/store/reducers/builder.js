@@ -172,7 +172,6 @@ const setCurrentPedalboard = (state, action) => {
     state.pedalsOnBoard.forEach(pedal => (price += pedal.price))
   }
   if (action.pedalboard) {
-    console.log(action.pedalboard.price)
     pedalboardPrice = action.pedalboard.price
   }
 
