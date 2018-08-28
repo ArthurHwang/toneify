@@ -7,8 +7,9 @@ A full-stack Javascript application to help guitarists create pedalboard configu
 ## Technologies Used
 - React
 - Redux
-- Redux Persist
-- React Router
+- Redux-Thunk
+- Redux-Persist
+- React-Router
 - Express
 - Node
 - MongoDB
