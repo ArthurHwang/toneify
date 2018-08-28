@@ -27,21 +27,8 @@ class Builder extends Component {
   }
 
   componentDidMount() {
-    this.props.initCurrentPedalboard()
     this.props.initBuildHistory()
     this.props.initPedals()
-  }
-
-  componentWillUnmount() {
-    if (this.props.pedalsOnBoard.length) {
-      sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
-    }
-    if (this.props.currentPedalboard.length) {
-      sessionStorage.setItem('data', JSON.stringify(this.props.currentPedalboard))
-    }
-    if (this.props.youtubePedalResults.length) {
-      sessionStorage.setItem('youtube', JSON.stringify(this.props.youtubePedalResults))
-    }
   }
 
   openModalHandler = () => {
@@ -87,7 +74,7 @@ class Builder extends Component {
     } = this.props
     return (
       <Fragment>
-        <BuilderHint currentPedalboard={currentPedalboard} showHint={showHint} />
+        <BuilderHint pedalsOnBoard={pedalsOnBoard} currentPedalboard={currentPedalboard} showHint={showHint} />
 
         <BuilderModal
           closeModalHandler={this.closeModalHandler}

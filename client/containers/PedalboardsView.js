@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import PedalBoards from '../components/Pedalboards/Pedalboards'
 import PedalboardsModal from '../components/Modal/PedalboardsModal'
+import * as actions from '../store/actions/index'
 
 class PedalboardsView extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class PedalboardsView extends Component {
   }
 
   handleBuildClick = event => {
-    sessionStorage.setItem('data', JSON.stringify(this.state.currentPedalboard))
+    this.props.addPedalboard(this.state.currentPedalboard)
     this.props.history.push({
       pathname: '/builder'
     })
@@ -49,7 +51,7 @@ class PedalboardsView extends Component {
       <Fragment>
         <PedalboardsModal
           handleClick={this.handleModalClick}
-          pedalData={currentPedalboard}
+          pedalboardData={currentPedalboard}
           modalOpen={modalOpen}
           handleBuildClick={this.handleBuildClick}
         />
@@ -58,5 +60,11 @@ class PedalboardsView extends Component {
     )
   }
 }
+const mapDispatchToProps = dispatch => ({
+  addPedalboard: pedalboard => dispatch(actions.initCurrentPedalboard(pedalboard))
+})
 
-export default PedalboardsView
+export default connect(
+  null,
+  mapDispatchToProps
+)(PedalboardsView)

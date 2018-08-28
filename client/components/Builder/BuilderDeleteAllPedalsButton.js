@@ -30,7 +30,6 @@ const DeleteAllPedalsButton = ({ showButton, deleteAllPedals }) => {
       </span>
     </Button>
   )
-
   return buttonOutput
 }
 export default DeleteAllPedalsButton

@@ -20,14 +20,7 @@ const styles = {
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.initCurrentPedalboard()
     this.props.initPedals()
-  }
-
-  componentWillUnmount() {
-    if (this.props.pedalsOnBoard.length) {
-      sessionStorage.setItem('pedals', JSON.stringify(this.props.pedalsOnBoard))
-    }
   }
 
   render() {
@@ -62,8 +55,6 @@ const mapStateToProps = ({ auth, builder }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  initCurrentPedalboard: pedalboard =>
-    dispatch(actions.initCurrentPedalboard(JSON.parse(sessionStorage.getItem('data')))),
   initPedals: () => dispatch(actions.initPedals())
 })
 
