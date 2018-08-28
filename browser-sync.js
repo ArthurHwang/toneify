@@ -1,4 +1,4 @@
-require('dotenv/config');
+require('dotenv/config')
 
 module.exports = {
   ui: false,
@@ -6,4 +6,4 @@ module.exports = {
   serveStatic: ['server/public/'],
   port: parseInt(process.env.PORT, 10) + 1,
   proxy: `http://localhost:${process.env.PORT}`
-};
+}
