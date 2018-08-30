@@ -54,8 +54,7 @@ class Nav extends Component {
             <Link to="/history">History</Link>
           </Menu.Item>
         ) : null}
-        <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>
-          {' '}
+        <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>    
           <Link to="/cart">Cart</Link>
         </Menu.Item>
       </Menu>
