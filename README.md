@@ -1,6 +1,6 @@
 # toneify
 
-https://toneify-arthurhwang.herokuapp.com/  -- Please allow up to 10 seconds for the link to load.  Heroku hosting is extremely slow sometimes.
+https://toneify-arthurhwang.herokuapp.com/  -- Please allow up to 20 seconds for the link to load.  Heroku hosting is extremely slow sometimes.
 
 A full-stack Javascript application to help guitarists create pedalboard configurations dynamically with an interactive builder.
 
