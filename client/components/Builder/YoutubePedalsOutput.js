@@ -4,8 +4,8 @@ import YoutubeFrame from 'react-youtube'
 
 const YoutubePedalsOutput = ({ searchResults, pedalsOnBoard }) => {
   const opts = {
-    width: '300',
-    height: '200'
+    width: '250',
+    height: '180'
   }
   const styles = {
     container: {
@@ -15,9 +15,12 @@ const YoutubePedalsOutput = ({ searchResults, pedalsOnBoard }) => {
     }
   }
   return (
-    pedalsOnBoard.length > 0 && searchResults.length > 0 && (
+    pedalsOnBoard.length > 0 &&
+    searchResults.length > 0 && (
       <Container fluid style={styles.container} textAlign="center">
-        {searchResults.map(video => <YoutubeFrame key={video.id} opts={opts} videoId={video.id} />)}
+        {searchResults.map(video => (
+          <YoutubeFrame key={video.id} opts={opts} videoId={video.id} />
+        ))}
       </Container>
     )
   )

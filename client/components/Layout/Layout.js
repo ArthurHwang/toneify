@@ -6,7 +6,7 @@ class Layout extends Component {
   render() {
     return (
       <Fragment>
-        {this.props.location.pathname !== '/' && <Nav />}
+        <Nav />
         <main>{this.props.children}</main>
       </Fragment>
     )
