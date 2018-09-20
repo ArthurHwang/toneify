@@ -4,7 +4,6 @@ import Layout from './components/Layout/Layout'
 import Builder from './containers/Builder'
 import PedalBoards from './containers/PedalboardsView'
 import Pedals from './containers/PedalsView'
-import LandingPage from './containers/LandingPage'
 import Login from './containers/Login'
 import Logout from './containers/Logout'
 import Cart from './containers/Cart'
@@ -23,7 +22,7 @@ class App extends Component {
             <Route path="/history" component={AccountHistory} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
-            <Route path="/" component={LandingPage} />
+            <Route path="/" component={PedalBoards} />
           </Switch>
         </Layout>
       </Fragment>

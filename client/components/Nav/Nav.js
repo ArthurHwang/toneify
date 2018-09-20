@@ -26,13 +26,8 @@ class Nav extends Component {
     const { activeItem } = this.state
     return (
       <Menu stackable style={{ borderRadius: '0' }} size="small" inverted>
-        <Menu.Item
-          style={{ width: '120px', height: '40px' }}
-          onClick={this.handleItemClick}
-          active={activeItem === '/'}
-          name="/"
-        >
-          <Link to="/">
+        <Menu.Item style={{ width: '120px', height: '40px' }} onClick={this.handleItemClick}>
+          <Link to="/pedalboards">
             <img className="logo" src="https://image.flaticon.com/icons/svg/199/199449.svg" alt="logo" />
             <span className="title-text">toneify</span>
           </Link>
@@ -54,7 +49,7 @@ class Nav extends Component {
             <Link to="/history">History</Link>
           </Menu.Item>
         ) : null}
-        <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>    
+        <Menu.Item onClick={this.handleItemClick} name="cart" active={activeItem === 'cart'}>
           <Link to="/cart">Cart</Link>
         </Menu.Item>
       </Menu>
